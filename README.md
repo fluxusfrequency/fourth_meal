@@ -1,4 +1,4 @@
-**Ono Burrito** is a farm to table restaurant specalizing in pseudo-mexican fare.  
+**Fifth Meal** is a farm to table restaurant specalizing in pseudo-mexican fare.  
 
 [Ono Burrito Website](http://onoburrito.herokuapp.com/)
 

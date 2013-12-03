@@ -19,8 +19,4 @@ OnoBurrito::Application.routes.draw do
   get "menu/:category_slug" => "items#in_category", as: "menu_items"
   get "sign_up" => "users#new"
 
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-
 end

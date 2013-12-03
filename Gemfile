@@ -10,7 +10,6 @@ gem 'jbuilder', '~> 1.2'
 gem 'thin'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'paperclip'
-gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :development, :test do
   gem 'rails-pry'
@@ -18,12 +17,11 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'capybara-rails'
   gem 'minitest-rails-capybara'
-  gem 'launchy'
   gem 'guard'
   gem 'guard-minitest'
   gem 'launchy'
   gem 'faker'
-  gem 'simplecov', :require => false, :group => :test
+  # gem 'simplecov', :require => false, :group => :test
   gem 'quiet_assets'
 end
 
