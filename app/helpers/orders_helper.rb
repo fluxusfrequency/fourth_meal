@@ -2,7 +2,7 @@ module OrdersHelper
 
   def order_total(order_items)
     order_items.inject(0) do |sum, order_item|
-      sum += (order_item.item.price.to_i * order_item.quantity)
+      sum += (order_item.item.price * order_item.quantity)
     end
   end
 
