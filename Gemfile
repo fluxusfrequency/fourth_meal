@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'thin'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'paperclip'
+gem 'pry'
 
 group :development, :test do
   gem 'rails-pry'
