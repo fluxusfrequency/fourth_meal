@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order_total
-    order_total(current_order.order_items)
+    order_total(current_order.order_items).to_i
   end
 
   private

@@ -6,10 +6,10 @@
         <%= item.title %>
       </h2>
       <p class="tile-details"><%= item.description %></p>
-      <p class="tile-details"><%= item.price %></p>
+      <p class="tile-details"><%= number_to_currency item.price %></p>
 
       <%= hidden_field_tag :item, item.id %>
       <%= f.submit "Add to Cart", class:'button-small add-to-cart' %>
-    <% end %>    
+    <% end %>
 <% end %>
 
