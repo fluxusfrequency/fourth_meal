@@ -45,6 +45,18 @@ class ActiveSupport::TestCase
   def create_valid_restaurant
     @restaurant = Restaurant.create(:name => "KFC",
       :description => "Kentucky Fried Wonder")
+    @category = Category.create(:title => 'dinners', :restaurant_id => @restaurant.id)
+    create_valid_item
+    @item.update(:restaurant_id => @restaurant.id, :title => "Mashed Potatoes")
+    @restaurant
+  end
+
+  def create_another_valid_restaurant
+    @new_restaurant = Restaurant.create(:name => "McDonalds", :description => "Have you had your break today?")
+    @new_category = Category.create(:title => 'Burgers', :restaurant_id => @restaurant.id)
+    @new_item = create_valid_item
+    @new_item.update(:restaurant_id => @new_restaurant.id, :title => "Big Mac")
+    @new_restaurant
   end
 
   # Add more helper methods to be used by all tests here...

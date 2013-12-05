@@ -7,13 +7,14 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.active
+    @restaurant = Restaurant.find_by_slug(params[:restaurant])
+    @items = @restaurant.items.active
     @page_title = "Full Menu"
   end
 
   def in_category
-    @restaurant = Restaurant.find(params[:restaurant])
-    @categories = @restaurant.categories.all
+    @restaurant = Restaurant.find_by_slug(params[:restaurant])
+    # @category = @restaurant.categories.find_by_slug(params[:category_slug])
     @items = @category.items.active
     @page_title = @category.title
     render :index

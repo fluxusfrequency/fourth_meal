@@ -1,5 +1,7 @@
 <%= render 'header' %>
 
+<h1 id="restaurant-title"><%= @restaurant.name %></h1>
+
 <section class="grid-container menu-view">
   <%= render partial: 'items/item', collection: @items %>
 </section>
