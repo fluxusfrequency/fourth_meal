@@ -1,4 +1,14 @@
 OnoBurrito::Application.routes.draw do
+  get "/log_out" => "sessions#destroy"
+  get "/log_in" => "sessions#new", as: "log_in"
+  get "/sign_up" => "users#new"
+
+  resources :users
+  resources :sessions
+  resources :restaurants
+  root :to => "restaurants#index"
+
+
   scope ":restaurant" do
     resources :contacts
     resources :items do
@@ -17,13 +27,5 @@ OnoBurrito::Application.routes.draw do
 
   end
 
-  resources :users
-  resources :sessions
-  resources :restaurants
-  root :to => "restaurants#index"
-
-  get "log_out" => "sessions#destroy"
-  get "log_in" => "sessions#new"
-  get "sign_up" => "users#new"
 
 end

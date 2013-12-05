@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     if @user.save && current_order.id
       session[:user_id] = @user.id
       current_order.save
-      redirect_to order_path(current_order.id), :notice => "Signed up!"
+      redirect_to :back, :notice => "Signed up!"
     elsif @user.save && !current_order.id
       session[:user_id] = @user.id
-      redirect_to menu_path
+      redirect_to restaurant_root_path(session[:current_restaurant] || root_path)
     else
       render "sessions/new"
     end

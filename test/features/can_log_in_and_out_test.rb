@@ -3,8 +3,7 @@ require './test/test_helper'
 class CanLogInAndOutTest < Capybara::Rails::TestCase
 
   test "user can sign up with valid params" do
-    visit root_path
-
+    visit '/onoburrito'
     click_on "Sign up or Log in"
 
     within "#new_user" do
@@ -15,7 +14,6 @@ class CanLogInAndOutTest < Capybara::Rails::TestCase
       fill_in "Password confirmation", with: 'password'
       click_button "Create User"
     end
-
     assert_content page, 'Logged in'
     end
 
@@ -34,7 +32,7 @@ class CanLogInAndOutTest < Capybara::Rails::TestCase
     end
 
     test "cannot sign up with invalid params" do
-      visit root_path
+      visit '/onoburrito'
 
     click_on "Sign up or Log in"
 
@@ -45,9 +43,7 @@ class CanLogInAndOutTest < Capybara::Rails::TestCase
       click_button "Create User"
     end
     assert_content page, "can't be blank"
-    end
-
-
+  end
 end
 
 
