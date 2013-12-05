@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save && current_order.id
       session[:user_id] = @user.id
+      current_order.update_attributes(:user_id => @user.id) # new line
       current_order.save
       redirect_to order_path(current_order.id), :notice => "Signed up!"
     elsif @user.save && !current_order.id
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
   end
 
 private
-    
+
   def set_user
     @user = user.find(params[:id])
   end

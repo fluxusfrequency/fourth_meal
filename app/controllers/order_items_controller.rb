@@ -9,5 +9,5 @@ class OrderItemsController < ApplicationController
     end
     redirect_to order_path(current_order.id)
   end
-  
+
 end
