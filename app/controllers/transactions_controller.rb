@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  
+
   def new
     @transaction = Transaction.new
     session[:current_address] = params[:address_id]
@@ -25,13 +25,14 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.create(order_id: current_order.id, 
+    @transaction = Transaction.create(order_id: current_order.id,
                                       address_id: session[:current_address],
                                       stripe_token: params["stripeToken"])
     if @transaction.save
       @transaction.pay!
       clear_current_order
-      @owner = current_restaurant.restaurant_users.where(role: "owner").last.user 
+      clear_checkout_session_data
+      @owner = current_restaurant.restaurant_users.where(role: "owner").last.user
       @address = Address.find(@transaction.address_id)
       TransactionNotifier.user_email(@address.email, @transaction).deliver
       TransactionNotifier.user_email(@owner.email, @transaction).deliver
@@ -46,13 +47,18 @@ class TransactionsController < ApplicationController
   def show
     @transaction = Transaction.find_by(id: params[:id])
     @address = Address.find(@transaction.address_id)
-    @total = order_total(@transaction.order.order_items)
+    total = order_total(@transaction.order.order_items)
   end
 
   private
 
   def transaction_params
     params.require(:transaction).permit(:stripe_token, :address, :stripe_email)
+  end
+
+  def clear_checkout_session_data
+    session[:forwarding_path] = nil
+    session[:current_address] = nil
   end
 
 end
