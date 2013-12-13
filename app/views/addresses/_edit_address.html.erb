@@ -1,11 +1,11 @@
-<div class="grid-30 address-panel">
+<div class="grid-50 address-panel">
   <li class="list">
     <%= address.first_name + " " + address.last_name %><br/>
     <%= address.street_address %><br/>
     <%= address.city + ", " + address.state %><br/>
     <%= address.zipcode %><br/>
     <%= address.email %><br/>
-    <%= link_to "Use Address", new_transaction_path(session[:current_restaurant], address_id: address.id), class: "button", id:"transaction-button" %>
+    <%= link_to "Edit Address", edit_address_path("your",address.id), class: "button" %>
   </li><br/><br/><br/>
 </div>
 
