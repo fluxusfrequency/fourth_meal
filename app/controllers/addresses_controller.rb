@@ -17,6 +17,10 @@ class AddressesController < ApplicationController
     find_redirect
   end
 
+  def edit
+    @user.addresses.find(params[:id])
+  end
+
   def change
     session[:current_address] = nil
     redirect_to :back
@@ -29,7 +33,7 @@ class AddressesController < ApplicationController
       redirect_to addresses_path(session[:current_restaurant])
     else
       redirect_to guest_transaction_path(session[:current_restaurant])
-    end  
+    end 
   end
 
   def update_user
