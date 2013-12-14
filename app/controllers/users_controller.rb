@@ -29,10 +29,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user.addresses.find(params[:id])
-  end
-
   def show
     @user = current_user
     @addresses = current_user.addresses
