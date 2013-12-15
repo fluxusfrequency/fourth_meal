@@ -81,7 +81,7 @@
 
   def clone_restaurant(restaurant, locations, count)
     count.times do |i|
-      # puts "creating restaurant #{restaurant.name} #{i}..."
+      puts "creating restaurant #{restaurant.name} #{i}..."
       r = restaurant.dup
       r.update(
         name: restaurant.name + "#{i}",
@@ -144,7 +144,7 @@
 
   def seed_users(count)
     count.times do |i|
-      # puts "Creating user #{i}"
+      puts "Creating user #{i}"
       User.create(
         full_name: "user_number_#{i}",
         display_name: "user_#{i}",
@@ -169,19 +169,19 @@
 
     count.times do |i|
       begin 
-        # puts "Seeding #{role} number #{i} for restaurant #{rest_id}..."
+        puts "Seeding #{role} number #{i} for restaurant #{rest_id}..."
         RestaurantUser.create(
           restaurant_id: rest_id,
-          user_id: User.all[rand(@size)],
+          user_id: User.all[rand(@size)].id,
           role: role)
       rescue
-        # puts "Failed to create role! Trying again..."
+        puts "Failed to create role! Trying again..."
         retry
       end
     end
   end
 
-  @size = User.all.size
+  @size = User.all.count
 
   Restaurant.all.each { |r| seed_restaurant_users(r.id, "employee", 2) }
   Restaurant.all.each { |r| seed_restaurant_users(r.id, "owner", 2) }
@@ -193,13 +193,13 @@
   def seed_items(restaurant, menu, adjectives, count)
     count.times do |i|
       begin
-        # puts "Seeding item number #{i} for #{restaurant.name}..."
+        puts "Seeding item number #{i} for #{restaurant.name}..."
         title = menu[rand(5)] + "_#{i}"
         desc = "#{title}. Oh so #{adjectives[rand(5)]}!"
         item = restaurant.items.create(item_params(title, desc, restaurant))
       rescue
         # binding.pry
-        puts "Item failed to create! Trying again..."
+        # puts "Item failed to create! Trying again..."
         retry
       end
     end
@@ -266,13 +266,13 @@
   def seed_categories(restaurant, categories, count)
     count.times do |i|
       begin
-        # puts "Creating category #{i} for #{restaurant.name}..."
+        puts "Creating category #{i} for #{restaurant.name}..."
         category = categories[i]
         restaurant.categories.create(title: category,
                                     restaurant_id: restaurant.id)
       rescue
         # binding.pry
-        # puts "Category already exists! Trying again..."
+        puts "Category already exists! Trying again..."
         retry
       end
     end
@@ -288,14 +288,14 @@
   def seed_item_categories(restaurant, count)
     count.times do |i|
       begin
-        # puts "Seeding item category ##{i} for #{restaurant.name}..."
+        puts "Seeding item category ##{i} for #{restaurant.name}..."
         item_id = restaurant.items[i - 1].id
         category_id = restaurant.categories[rand(5)].id
         ItemCategory.create!( item_id: item_id,
                               category_id: category_id)
       rescue
         # binding.pry
-        # puts "Item category failed to create! Trying again..."
+        puts "Item category failed to create! Trying again..."
         retry
       end
     end
@@ -309,5 +309,5 @@
 
 # end
 
-# puts "Time to seed:"
-# puts time
+puts "Time to seed:"
+puts time
