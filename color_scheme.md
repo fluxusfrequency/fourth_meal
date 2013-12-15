@@ -23,7 +23,13 @@ Blue: rgb(222,69,100)
 Off-White: rgb(30,17,97)
 Light: rgb(0,0,100)
 Peach: rgb(52,43,100)
-Lilac: rgb(277,41,100)
+Lilac: #D796FF
+
+Blue: #4F84FF
+Off-White: #F7E2CD
+Light: #FFFFFF
+Peach: #FFF091
+Lilac: #D796FF
 
 ## SOLARIZED
 

@@ -1,5 +1,5 @@
 #main-nav-container {
-  background-color: rgb(222,69,100);
+  background-color: #FFFFFF;
   margin-bottom: 0px;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
@@ -29,7 +29,7 @@
 .nav-item a:hover,
 #user-nav a:hover {
   text-decoration: underline; 
-  color: rgb(52,43,100);
+  color: #FFF091;
 }
 
 .active {
@@ -37,7 +37,7 @@
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  background-color: rgb(277,41,100);
+  background-color: #D796FF;
   padding: 0.8%;
   color: rgb(249, 249, 249);
 }
@@ -65,7 +65,7 @@
 
 .order-link {
   font-family: 'Podkova', serif;
-  background-color: rgb(52,43,100);
+  background-color: #FFF091;
   font-size: 1.6em;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
