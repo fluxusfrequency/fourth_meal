@@ -8,9 +8,9 @@
 # 2 stockers per restaurant
 # 2 platform administrators
 
-# require 'benchmark'
+require 'benchmark'
 
-# time = Benchmark.measure do 
+time = Benchmark.measure do 
 
   # CITIES
 
@@ -307,7 +307,7 @@
   end
 
 
-# end
+end
 
 puts "Time to seed:"
 puts time
