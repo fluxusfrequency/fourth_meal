@@ -198,8 +198,8 @@
         desc = "#{title}. Oh so #{adjectives[rand(5)]}!"
         item = restaurant.items.create(item_params(title, desc, restaurant))
       rescue
-        binding.pry
-        # puts "Item failed to create! Trying again..."
+        # binding.pry
+        puts "Item failed to create! Trying again..."
         retry
       end
     end
@@ -271,7 +271,7 @@
         restaurant.categories.create(title: category,
                                     restaurant_id: restaurant.id)
       rescue
-        binding.pry
+        # binding.pry
         # puts "Category already exists! Trying again..."
         retry
       end
@@ -294,7 +294,7 @@
         ItemCategory.create!( item_id: item_id,
                               category_id: category_id)
       rescue
-        binding.pry
+        # binding.pry
         # puts "Item category failed to create! Trying again..."
         retry
       end
