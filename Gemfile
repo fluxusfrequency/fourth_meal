@@ -9,8 +9,10 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'thin'
 gem "bcrypt-ruby", :require => "bcrypt"
-gem 'paperclip'
 gem 'faker'
+gem 'paperclip'
+gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
+gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 
 group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'

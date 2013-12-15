@@ -4,6 +4,7 @@ one:
   active: true
   status: "approved"
   slug: "kfc"
+  location: one
 
 two:
   name: "McDonalds"
@@ -11,6 +12,7 @@ two:
   active: true
   status: "approved"
   slug: "mcdonalds"
+  location: two
 
 three:
   name: "Taco Bell"
@@ -18,6 +20,7 @@ three:
   active: false
   status: "pending"
   slug: "taco-bell"
+  location: two
 
 four:
   name: "Pizza Hut"
@@ -25,3 +28,4 @@ four:
   active: false
   status: "pending"
   slug: "pizza-hut"
+  location: two

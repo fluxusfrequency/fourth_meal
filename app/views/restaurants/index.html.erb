@@ -1,3 +1,20 @@
-<h1>All Restaurants</h1>
-<%= render @restaurants %>
+<div id="welcome-message" class="grid-100">
+  <h1>Welcome to Noshify!</h1>
+  <p>Noshify is your online restaurant ordering solution! Hungry? Plase browse 
+    our selection of over 10,000 restaurants to find the perfect meal tonight!
+    <br />
+    <br />
+    Feel free to <%= link_to "sign up for your own account", new_restaurant_path %> 
+    if you're a restaurant owner! It's easy and fast. Just submit your 
+    application, wait for approval, add your products, and start selling today.
+    Thanks for visiting! Bon apetit!</p>
+</div>
+<% @locations.each do |l|%>
+  <% unless l.restaurants..where(:active => true).size == 0 %>
+    <div class="grid-container">
+      <h1><%= l.city %></h1>
+      <%= render l.restaurants.where(:active => true) %>
+    </div>
+  <% end %>
+<% end %>
 

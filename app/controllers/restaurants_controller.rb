@@ -1,8 +1,8 @@
 class RestaurantsController < ApplicationController
   layout 'home'
   def index
-    @restaurants = Restaurant.where(:active => true).sort
-   end
+    @locations ||= Location.all.includes(:restaurants)
+  end
 
   def new
     verify_logged_in_user

@@ -9,7 +9,7 @@
         
       </div>
     </div><!-- /.row -->
-
+    <%= render 'activate_view' if owner_access %>
     <%= render 'employee_view' if employee_access %>
     <%= render 'owner_view' if owner_access %>
 

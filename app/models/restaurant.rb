@@ -8,6 +8,8 @@ class Restaurant < ActiveRecord::Base
   validates :description, presence: true
   validates_inclusion_of :status, :in => ["pending", "rejected", "approved"]
 
+  belongs_to :location
+
   def to_param
     slug || name.parameterize
   end

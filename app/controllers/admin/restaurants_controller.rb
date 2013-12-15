@@ -14,10 +14,29 @@ class Admin::RestaurantsController < ApplicationController
     redirect_to admin_path(session[:current_restaurant])
   end
 
+  def destroy
+    @restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
+    @restaurant.toggle_status
+    toggle_status_message
+    redirect_to admin_path(@restaurant)
+  end
+
   private
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :description, :slug)
+  end
+
+  def toggle_status_message
+    @restaurant.active ? activate_message : deactivate_message
+  end
+
+  def deactivate_message
+    flash.notice = "#{@restaurant.name} was taken offline!"
+  end
+
+  def activate_message
+    flash.notice = "#{@restaurant.name} was reactivated!"
   end
 
 end

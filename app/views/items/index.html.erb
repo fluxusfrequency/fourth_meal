@@ -1,8 +1,11 @@
 <%= render 'header' %>
 
 <section class="grid-container menu-view">
-  <% if current_order.items_in_cart? %>
-    <%= render 'layouts/view_order_link' %>
-  <% end %>
+  <div class="grid-50">
+    <% if current_order.items_in_cart? %>
+      <%= render 'layouts/view_order_link' %>
+    <% end %>
+  </div>
+
   <%= render @items %>
 </section>

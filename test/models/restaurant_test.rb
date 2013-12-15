@@ -45,4 +45,8 @@ class RestaurantTest < ActiveSupport::TestCase
     assert_includes restaurants(:one).restaurant_users, restaurant_users(:one)
   end  
 
+  test "it has a location" do 
+    assert_equal restaurants(:one).location, locations(:one)
+  end  
+
 end

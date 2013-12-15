@@ -1,5 +1,8 @@
 <h3>Edit Restaurant Details</h3>
-<%= form_for [:admin, @restaurant], url: admin_restaurant_path(@restaurant, @restaurant.id), method: :put do |f| %>
+
+<%= form_for [:admin, @restaurant], 
+    url: admin_restaurant_path(@restaurant, @restaurant.id), 
+    method: :put do |f| %>
   <ul>
   <% @restaurant.errors.full_messages.each do |error| %>
     <li><%= error %></li>
@@ -16,6 +19,9 @@
   <p>
     <%= f.label :slug %> - <small>Note: use lowercase letters and dashes without spaces, like <em>my-restaurant-slug</em></small><br />
     <%= f.text_area :slug %>
+  </p>
+  <p>
+    <strong>Location</strong>
   </p>
   <p>
     <strong>Photo</strong><br/>
