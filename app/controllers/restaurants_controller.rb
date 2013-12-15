@@ -7,13 +7,13 @@ class RestaurantsController < ApplicationController
   def new
     verify_logged_in_user
     @restaurant = Restaurant.new
+    @themes = Restaurant.themes
   end
 
   def create
     verify_logged_in_user
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
-
       @restaurant.restaurant_users.create(:restaurant => @restaurant, 
                                           :user => current_user, 
                                           :role => "owner")
@@ -44,7 +44,7 @@ class RestaurantsController < ApplicationController
   end
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :description)
+    params.require(:restaurant).permit(:name, :description, :slug, :theme)
   end
 
 end

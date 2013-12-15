@@ -27,7 +27,7 @@ class CreateRestaurantTest < Capybara::Rails::TestCase
     fill_in "Description", with: "Frozen Goodness"
 
     click_on "Create Restaurant"
-
+    save_and_open_page
     assert_content page, "Your request has been submitted. You will be emailed when your restaurant is approved."
 
   end

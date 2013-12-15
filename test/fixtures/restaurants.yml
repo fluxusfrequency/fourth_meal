@@ -5,6 +5,7 @@ one:
   status: "approved"
   slug: "kfc"
   location: one
+  theme: application
 
 two:
   name: "McDonalds"
@@ -13,6 +14,7 @@ two:
   status: "approved"
   slug: "mcdonalds"
   location: two
+  theme: dark
 
 three:
   name: "Taco Bell"
@@ -21,6 +23,7 @@ three:
   status: "pending"
   slug: "taco-bell"
   location: two
+  theme: application
 
 four:
   name: "Pizza Hut"
@@ -29,3 +32,4 @@ four:
   status: "pending"
   slug: "pizza-hut"
   location: two
+  theme: dark
