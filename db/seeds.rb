@@ -60,11 +60,11 @@
   # RESTAURANTS
 
   #approved
-  ono = Restaurant.create(name: "Ono Burrito", description: "Yummy Burros", slug: "ono-burrito", status: "approved", location_id: denver.id , active: true)
-  billy = Restaurant.create(name: "Billy's BBQ", description: "Fingerlickin' Chickin'", slug: "billys-bbq", status: "approved", location_id: dc.id, active: true)
-  adam = Restaurant.create(name: "Adam's Pizza", description: "Ummm...I made you a pizza?", slug: "adams-pizza", status: "approved", location_id: nyc.id, active: true)
-  ben = Restaurant.create(name: "Ben's Beer", description: "Good Head!", slug: "bens-beer", status: "approved", location_id: atlanta.id, active: true)
-  taste_of_india = Restaurant.create(name: "Taste of India", description: "Delicacies from India", slug: "taste-of-india", status: "approved", location_id: philadelphia.id, active: true)
+  ono = Restaurant.create(name: "Ono Burrito", description: "Yummy Burros", slug: "ono-burrito", status: "approved", location_id: denver.id, theme: "application", active: true)
+  billy = Restaurant.create(name: "Billy's BBQ", description: "Fingerlickin' Chickin'", slug: "billys-bbq", status: "approved", location_id: dc.id, theme: "application", active: true)
+  adam = Restaurant.create(name: "Adam's Pizza", description: "Ummm...I made you a pizza?", slug: "adams-pizza", status: "approved", location_id: nyc.id, theme: "dark", active: true)
+  ben = Restaurant.create(name: "Ben's Beer", description: "Good Head!", slug: "bens-beer", status: "approved", location_id: atlanta.id, theme: "light", active: true)
+  taste_of_india = Restaurant.create(name: "Taste of India", description: "Delicacies from India", slug: "taste-of-india", status: "approved", theme: "solarized", location_id: philadelphia.id, active: true)
 
   #offline
   le_central = Restaurant.create(name: "Le Central", description: "High Brow Cuisine", slug: "le-central", status: "approved", location_id: pittsburgh.id, active: false)

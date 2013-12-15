@@ -15,3 +15,20 @@ Grey: rgb(118,119,122)
 Light: rgb(140,153,180)
 Purple: rgb(71,72,89)
 Maroon: rgb(101,89,93)
+
+
+## LIGHT
+
+Blue: rgb(222,69,100)
+Off-White: rgb(30,17,97)
+Light: rgb(0,0,100)
+Peach: rgb(52,43,100)
+Lilac: rgb(277,41,100)
+
+## SOLARIZED
+
+Blue: #268bd2
+Yellow: #b58900
+Orange: #cb4b16
+Background: #fdf6e3
+Green: #859900
