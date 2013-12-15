@@ -5,7 +5,7 @@
     <%= address.city + ", " + address.state %><br/>
     <%= address.zipcode %><br/>
     <%= address.email %><br/>
-    <%= link_to "Edit Address", edit_address_path("your",address.id), class: "button" %>
+    <%= link_to "Edit Address", edit_address_path(address.id), class: "button" %>
   </li><br/><br/><br/>
 </div>
 

@@ -13,10 +13,11 @@ OnoBurrito::Application.routes.draw do
     post "/restaurants/approve" => "restaurants#approve", as: "approve"
     post "/restaurants/reject" => "restaurants#reject", as: "reject"
   end
-  
+
   resources :users
   resources :sessions
   resources :restaurants
+  resources :addresses
 
 
   scope ":restaurant_slug" do
