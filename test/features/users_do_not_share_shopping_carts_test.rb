@@ -1,0 +1,51 @@
+require './test/test_helper'
+
+class UsersDoNotShareShoppingCartsTest < Capybara::Rails::TestCase
+
+  def test_cart_is_not_shared_by_users
+    visit root_path
+
+    user1 = users(:one)
+    user2 = users(:two)
+
+    click_on "Sign up or Log in"
+
+    within "#login-form" do
+      fill_in "Email", with: user1.email
+      fill_in "Password", with: "password"
+      click_on "Log In"
+    end
+
+    click_on "KFC"
+
+    within "#item_298486374" do
+      click_on "Add to Cart"
+    end
+
+    click_on "View Your Order"
+
+    assert_content page,("Mashed Potatoes")
+
+    click_on "Log out"
+
+    refute_content page, "Log out"
+
+    assert_content page, "Sign up or Log in"
+
+    assert current_path == root_path
+
+    click_on "Sign up or Log in"
+
+    within "#login-form" do
+      fill_in "Email", with: user2.email
+      fill_in "Password", with: "password"
+      click_on "Log In"
+    end
+
+    click_on "KFC"
+
+    refute_content page, "View Your Order"
+
+
+  end
+end

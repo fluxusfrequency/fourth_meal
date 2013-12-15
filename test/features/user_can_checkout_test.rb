@@ -2,7 +2,7 @@ require './test/test_helper'
 
 class UserCanCheckoutTest < Capybara::Rails::TestCase
 
-  def test_user_can_checkout_after_adding_items_to_cart
+  def test_user_can_checkout_after_adding_items_clicking_on_checkout
     visit root_path
     user = users(:one)
     click_on "Sign up or Log in"
