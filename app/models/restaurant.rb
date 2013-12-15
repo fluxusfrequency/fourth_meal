@@ -7,7 +7,7 @@ class Restaurant < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true
   validates_inclusion_of :status, :in => ["pending", "rejected", "approved"]
-  validates_inclusion_of :theme, :in => ["application", "dark"]
+  validates_inclusion_of :theme, :in => ["application", "dark", "light", "solarized"]
 
   belongs_to :location
 
@@ -89,7 +89,7 @@ class Restaurant < ActiveRecord::Base
   end
 
   def self.themes
-    %w(application dark)
+    %w(application dark light solarized)
   end
 
 end
