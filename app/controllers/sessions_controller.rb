@@ -31,6 +31,7 @@ class SessionsController < ApplicationController
     session[:forwarding_path] = nil
     session[:current_order] = nil
     session[:user_id] = nil
+    clear_current_order
     redirect_to root_url, :notice => "Logged out!"
   end
 
