@@ -91,7 +91,7 @@
     end
   end
 
-  restaurants.each {|r| clone_restaurant(r, cities, 5) }
+  restaurants.each {|r| clone_restaurant(r, cities, 10) }
   # restaurants.each {|r| clone_restaurant(r, cities, 1000) }
 
 
@@ -155,7 +155,7 @@
   end
 
   # seed_users(100000)
-  seed_users(10)
+  seed_users(100)
 
 
 
@@ -267,7 +267,7 @@
     count.times do |i|
       begin
         # puts "Creating category #{i} for #{restaurant.name}..."
-        category = categories[rand(10)]
+        category = categories[i]
         restaurant.categories.create(title: category,
                                     restaurant_id: restaurant.id)
       rescue
