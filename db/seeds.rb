@@ -91,8 +91,8 @@
     end
   end
 
-  # restaurants.each {|r| clone_restaurant(r, cities, 10) }
-  restaurants.each {|r| clone_restaurant(r, cities, 1000) }
+  restaurants.each {|r| clone_restaurant(r, cities, 10) }
+  # restaurants.each {|r| clone_restaurant(r, cities, 1000) }
 
 
 
@@ -154,8 +154,8 @@
     end
   end
 
-  seed_users(100000)
-  # seed_users(100)
+  # seed_users(100000)
+  seed_users(100)
 
 
 
@@ -172,7 +172,7 @@
         puts "Seeding #{role} number #{i} for restaurant #{rest_id}..."
         RestaurantUser.create(
           restaurant_id: rest_id,
-          user_id: User.all[rand(@size)].id,
+          user_id: rand(@user_count),
           role: role)
       rescue
         puts "Failed to create role! Trying again..."
@@ -181,10 +181,13 @@
     end
   end
 
-  @size = User.all.count
+  @user_count = User.all.count
+  @rest_count = Restaurant.all.count
 
-  Restaurant.all.each { |r| seed_restaurant_users(r.id, "employee", 2) }
-  Restaurant.all.each { |r| seed_restaurant_users(r.id, "owner", 2) }
+  @rest_count.times do |i| 
+    seed_restaurant_users(i, "employee", 2)
+    seed_restaurant_users(i, "owner", 2)
+  end
 
 
 
