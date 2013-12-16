@@ -91,8 +91,8 @@
     end
   end
 
-  restaurants.each {|r| clone_restaurant(r, cities, 10) }
-  # restaurants.each {|r| clone_restaurant(r, cities, 1000) }
+  # restaurants.each {|r| clone_restaurant(r, cities, 10) }
+  restaurants.each {|r| clone_restaurant(r, cities, 1000) }
 
 
 
@@ -154,8 +154,8 @@
     end
   end
 
-  # seed_users(100000)
-  seed_users(100)
+  seed_users(100000)
+  # seed_users(100)
 
 
 
