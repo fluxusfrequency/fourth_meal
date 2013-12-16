@@ -1,0 +1,21 @@
+<tr>
+  <td><%= order.id %></td>
+
+  <td>
+    <% if order.user %>
+      <%= order.user.name %>
+    <% else %>
+      Guest
+    <% end %>
+  </td>
+
+  <td><%= order.status %></td>
+
+  <td><%= number_to_currency(order.total_price) %></td>
+  
+  <td><%= order.updated_at.strftime('%m/%d/%Y') %></td>
+
+  <td>
+      <%= button_to "delete", admin_order_path(session[:current_restaurant], order),:method => :delete, class: "button" %>
+  </td>
+</tr>

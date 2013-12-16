@@ -1,11 +1,13 @@
 <h3>Restaurant Details</h3>
 
 <p style="line-height: 2em;">
-<strong>Name:</strong> <%= @restaurant.name %><br/>
-<strong>Description:</strong> <%= @restaurant.description %><br/>
-<strong>Location:</strong> <%= @restaurant.location.city %><br/>
-<strong>Owners:</strong> <% @restaurant.owners.each do |owner| %><%= owner.full_name + " " %><% end %><br/>
-<strong>Employees:</strong> <% @restaurant.employees.each do |employee| %><%= employee.full_name %><% end %><br/>
-<strong>Url:</strong> <%= link_to root_url + restaurant_root_path(@restaurant)[1..-1] %><br/>
-<strong>Photo:</strong> <em>none</em><br/>
+<% cache @restaurant do %>
+  <strong>Name:</strong> <%= @restaurant.name %><br/>
+  <strong>Description:</strong> <%= @restaurant.description %><br/>
+  <strong>Location:</strong> <%= @restaurant.location.city %><br/>
+  <strong>Owners:</strong> <% @restaurant.owners.each do |owner| %><%= owner.full_name + " " %><% end %><br/>
+  <strong>Employees:</strong> <% @restaurant.employees.each do |employee| %><%= employee.full_name %><% end %><br/>
+  <strong>Url:</strong> <%= link_to root_url + restaurant_root_path(@restaurant)[1..-1] %><br/>
+  <strong>Photo:</strong> <em>none</em><br/>
+<% end %>
 <p>

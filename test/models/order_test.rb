@@ -11,11 +11,12 @@ class OrderTest < ActiveSupport::TestCase
     assert order.invalid?
   end
 
-  # test "it_validates_restaurant_id" do
-  #   order = orders(:one)
-  #   order.update(:restaurant_id => nil)
-  #   refute order.valid?
-  # end
+  test "it_validates_restaurant_id" do
+    order = Order.new(status: "paid", restaurant_id: 1)
+    assert order.valid?
+    order.update(:restaurant_id => nil)
+    refute order.valid?
+  end
 
   test "it_validates_correct_type_of_status" do
     order = orders(:one)

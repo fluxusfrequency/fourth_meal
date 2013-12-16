@@ -6,11 +6,7 @@ class Admin::DashboardController < ApplicationController
   def index
     @restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
     @themes = Restaurant.themes
-  end
-
-  def update
-    @restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
-    @restaurant.update(restaurant_params)
+    @locations = Location.all.collect {|location| location.city}.sort
   end
 
   def total_sales
@@ -18,12 +14,6 @@ class Admin::DashboardController < ApplicationController
     completed_orders.collect do |order|
       order.total_price
     end.reduce(:+)
-  end
-
-  private
-
-  def restaurant_params
-    params.require(:restaurant).permit(:name, :description, :slug, :theme)
   end
 
 end
