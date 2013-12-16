@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     self.super
   end
 
+  def supercharge
+    self.update(super: true)
+  end
+
   def move_to(user)
     orders.update_all(user_id: user.id)
   end
