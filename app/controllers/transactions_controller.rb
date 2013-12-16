@@ -49,7 +49,7 @@ class TransactionsController < ApplicationController
   private
 
   def set_forwarding_path
-    session[:forwarding_path] = addresses_path(session[:current_restaurant])
+    session[:forwarding_path] = addresses_path
   end
 
   def find_current_user_address
@@ -58,7 +58,7 @@ class TransactionsController < ApplicationController
 
   def find_redirect
     if current_user
-      redirect_to addresses_path(session[:current_restaurant])
+      redirect_to addresses_path
     else
       flash[:checking_out] = true
       redirect_to new_session_path

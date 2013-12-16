@@ -6,8 +6,7 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = Address.create(address_params)
-    update_user
+    @address = current_user.addresses.create(address_params)
     if @address.save
       session[:current_address] = @address.id
       success_message
@@ -18,7 +17,7 @@ class AddressesController < ApplicationController
   end
 
   def edit
-    @user.addresses.find(params[:id])
+    @address = current_user.addresses.find(params[:id])
   end
 
   def change
@@ -30,14 +29,10 @@ class AddressesController < ApplicationController
 
   def find_redirect
     if current_user
-      redirect_to addresses_path(session[:current_restaurant])
+      redirect_to addresses_path
     else
       redirect_to guest_transaction_path(session[:current_restaurant])
-    end 
-  end
-
-  def update_user
-    @address.update(user_id: current_user.id) if current_user
+    end
   end
 
   def success_message

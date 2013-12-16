@@ -9,6 +9,7 @@
     <% @addresses.each do |a| %>
       <%= render partial: "addresses/edit_address", locals: {:address => a} %>
     <% end %>
+    <%= link_to "Add Address", new_address_path %>
   </div>
 
   <div class="grid-100">

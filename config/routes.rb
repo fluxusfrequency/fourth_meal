@@ -24,7 +24,6 @@ OnoBurrito::Application.routes.draw do
     resources :contacts
     resources :items, only: [:index, :in_category]
     resources :locations
-    resources :addresses
     resources :orders
     resources :order_items
     get '/transactions/guest' => 'transactions#checkout_as_guest', as: "guest_transaction"
