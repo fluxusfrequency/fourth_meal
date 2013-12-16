@@ -21,6 +21,7 @@ class Superman::RestaurantsController < ApplicationController
   def approve
     @restaurant = Restaurant.find_by_slug(params[:format])
     @restaurant.approve
+    notify_owner_of_approval(@restaurant)
     redirect_to superman_path, :notice => "#{@restaurant.name} was approved!"
   end
 
@@ -42,6 +43,13 @@ class Superman::RestaurantsController < ApplicationController
 
   def activate_message
     flash.notice = "#{@restaurant.name} was reactivated!"
+  end
+
+  def notify_owner_of_approval(restaurant)
+    @owner = restaurant.owners.last
+    @link = root_url + restaurant.slug + "/admin"
+    @restaurant = restaurant
+    OwnerNotifier.owner_email(@owner, @link, @restaurant).deliver
   end
 
 end
