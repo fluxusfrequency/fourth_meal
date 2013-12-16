@@ -28,6 +28,7 @@ class Superman::RestaurantsController < ApplicationController
   def reject
     @restaurant = Restaurant.find_by_slug(params[:format])
     @restaurant.reject
+    notify_owner_of_rejection(@restaurant)
     redirect_to superman_path, :notice => "#{@restaurant.name} was rejected!"
   end
 
@@ -50,6 +51,13 @@ class Superman::RestaurantsController < ApplicationController
     @link = root_url + restaurant.slug + "/admin"
     @restaurant = restaurant
     OwnerNotifier.owner_approve_email(@owner, @link, @restaurant).deliver
+  end
+
+  def notify_owner_of_rejection(restaurant)
+    @owner = restaurant.owners.last
+    @link = root_url
+    @restaurant = restaurant
+    OwnerNotifier.owner_reject_email(@owner, @link, @restaurant).deliver
   end
 
 end
