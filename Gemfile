@@ -26,6 +26,7 @@ group :development, :test do
   gem 'faker'
   gem 'quiet_assets'
   gem 'devise'
+  gem 'rake'
   gem 'database_cleaner'
 end
 
