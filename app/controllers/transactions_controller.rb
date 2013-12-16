@@ -2,8 +2,8 @@ class TransactionsController < ApplicationController
   before_action :check_active
   def new
     @transaction = Transaction.new
-    session[:current_address] = params[:address_id]
-    set_forwarding_path
+    session[:current_address] ||= params[:address_id]
+    set_forwarding_path 
     if current_user && session[:current_address]
       find_current_user_address
       render :new
@@ -14,7 +14,7 @@ class TransactionsController < ApplicationController
 
   def add_guest_address
     @address = Address.create(address_params)
-    if @address.save 
+    if @address.save
       session[:current_address] = @address.id
       redirect_to guest_transaction_path(session[:current_restaurant])
     else

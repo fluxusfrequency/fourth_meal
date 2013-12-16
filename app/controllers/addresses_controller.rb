@@ -1,8 +1,8 @@
 class AddressesController < ApplicationController
 
   def index
-    @addresses = current_user.addresses
     @address = Address.new
+    @addresses = current_user.addresses
   end
 
   def new
@@ -32,8 +32,10 @@ class AddressesController < ApplicationController
   private
 
   def find_redirect
-    if current_user
-      redirect_to addresses_path
+    if current_user && session[:current_address]
+      redirect_to new_transaction_path(session[:current_restaurant])
+    elsif current_user
+      redirect_to user_path(current_user)
     else
       redirect_to guest_transaction_path(session[:current_restaurant])
     end

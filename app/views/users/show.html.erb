@@ -1,15 +1,19 @@
 <div class="grid-container">
-  <div class="grid-50">
+  <div class="grid-100">
     <h1 id="edit-your-account">Edit Your Account Info</h1>
     <%= render 'users/form' %>
   </div>
 
-  <div class="grid-50">
+  <div class="grid-100">
     <h1 id="edit-your-account">Your Addresses</h1>
+    <div class="grid-100">
+      <%= link_to "Add New Address", new_address_path, class: "button" %>
+      <br/>
+      <br/>
+    </div>
     <% @addresses.each do |a| %>
       <%= render partial: "addresses/edit_address", locals: {:address => a} %>
     <% end %>
-    <%= link_to "Add Address", new_address_path, class: "button" %>
   </div>
 
   <div class="grid-100">
