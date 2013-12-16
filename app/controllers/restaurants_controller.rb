@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
   layout 'home'
   def index
-      @locations ||= Location.all.includes(:restaurants)
+    @locations ||= Location.all.includes(:restaurants)
   end
 
   def new
