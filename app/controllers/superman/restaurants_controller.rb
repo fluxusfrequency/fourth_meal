@@ -49,7 +49,7 @@ class Superman::RestaurantsController < ApplicationController
     @owner = restaurant.owners.last
     @link = root_url + restaurant.slug + "/admin"
     @restaurant = restaurant
-    OwnerNotifier.owner_email(@owner, @link, @restaurant).deliver
+    OwnerNotifier.owner_approve_email(@owner, @link, @restaurant).deliver
   end
 
 end
