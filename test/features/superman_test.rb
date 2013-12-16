@@ -62,6 +62,7 @@ class SupermanTest < Capybara::Rails::TestCase
       assert_content page, "pending"
       find("#approve_button").click
     end
+    
     assert_content page, "Taco Bell was approved!"
     within "#taco-bell_row" do
       assert_content page, "approved"

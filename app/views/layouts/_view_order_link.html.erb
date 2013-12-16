@@ -1,5 +1,3 @@
-<div id="view_order" class="grid-container">
-  <div class="grid-100">
-    <%= link_to "View Your Order", order_path(session[:current_restaurant], current_order), class: "view-order-link" %>
-  </div>
-</div>
+<%= link_to "View Your Order", order_path(session[:current_restaurant], current_order), class: "view-order-link" %>
+<br />
+<br />

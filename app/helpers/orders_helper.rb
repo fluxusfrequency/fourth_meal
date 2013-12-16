@@ -8,7 +8,7 @@ module OrdersHelper
   end
 
   def delete_order_from_session
-    session[:orders].delete(current_restaurant.id)
+    session[:orders].delete(current_restaurant.id) 
   end
 
 

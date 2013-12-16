@@ -11,8 +11,7 @@ gem 'thin'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'faker'
 gem 'paperclip'
-gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
-gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
+gem 'travis'
 
 group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
@@ -27,6 +26,7 @@ group :development, :test do
   gem 'faker'
   gem 'quiet_assets'
   gem 'devise'
+  gem 'rake'
   gem 'database_cleaner'
 end
 
