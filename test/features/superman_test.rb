@@ -62,7 +62,6 @@ class SupermanTest < Capybara::Rails::TestCase
       assert_content page, "pending"
       find("#approve_button").click
     end
-    save_and_open_page
     
     assert_content page, "Taco Bell was approved!"
     within "#taco-bell_row" do
@@ -84,6 +83,7 @@ class SupermanTest < Capybara::Rails::TestCase
       assert_content page, "pending"
       find("#reject_button").click
     end
+    save_and_open_page
 
     # Superman is redirected to the restaurant listing and no longer sees Pizza Hut
     assert_content page, "Pizza Hut was rejected!"
