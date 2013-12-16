@@ -58,4 +58,11 @@ class UsersTest < ActiveSupport::TestCase
     assert_includes users(:one).restaurant_users, restaurant_users(:one)
   end
 
+  test "it can turn into superman" do 
+    user = users(:two)
+    refute user.superman?
+    user.supercharge
+    assert user.superman?
+  end
+
 end
