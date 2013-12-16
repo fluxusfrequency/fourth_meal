@@ -8,9 +8,9 @@
 # 2 stockers per restaurant
 # 2 platform administrators
 
-require 'benchmark'
+# require 'benchmark'
 
-time = Benchmark.measure do 
+# time = Benchmark.measure do 
 
   # CITIES
 
@@ -91,8 +91,8 @@ time = Benchmark.measure do
     end
   end
 
-  restaurants.each {|r| clone_restaurant(r, cities, 10) }
-  # restaurants.each {|r| clone_restaurant(r, cities, 1000) }
+  # restaurants.each {|r| clone_restaurant(r, cities, 10) }
+  restaurants.each {|r| clone_restaurant(r, cities, 1000) }
 
 
 
@@ -154,8 +154,8 @@ time = Benchmark.measure do
     end
   end
 
-  # seed_users(100000)
-  seed_users(100)
+  seed_users(100000)
+  # seed_users(100)
 
 
 
@@ -307,7 +307,7 @@ time = Benchmark.measure do
   end
 
 
-end
+# end
 
-puts "Time to seed:"
-puts time
+# puts "Time to seed:"
+# puts time
