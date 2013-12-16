@@ -12,7 +12,7 @@ class Restaurant < ActiveRecord::Base
   belongs_to :location
 
   def to_param
-    slug || name.parameterize
+    @param ||= slug || name.parameterize
   end
 
   def generate_slug
@@ -20,7 +20,6 @@ class Restaurant < ActiveRecord::Base
   end
 
   def self.find_by_slug(target)
-    # all.detect{|c| c.to_param == target}
     where(slug: target).first
   end
 

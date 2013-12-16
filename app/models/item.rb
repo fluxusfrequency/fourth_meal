@@ -38,6 +38,4 @@ class Item < ActiveRecord::Base
   def active?
     self.retired ? false : true
   end
-
-
 end

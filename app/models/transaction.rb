@@ -13,6 +13,6 @@ class Transaction < ActiveRecord::Base
   end
 
   def total
-    order.total_price
+    @total ||= order.total_price
   end
 end
