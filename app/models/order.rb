@@ -14,6 +14,8 @@ class Order < ActiveRecord::Base
   end
 
   def total_price
-    self.order_items.inject(0) {|sum, i| sum += (i.item.price * i.quantity) }
+    Rails.cache.fetch("order_total_price") do
+      self.order_items.inject(0) {|sum, i| sum += (i.item.price * i.quantity) }
+    end
   end
 end
