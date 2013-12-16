@@ -47,7 +47,7 @@ class Superman::RestaurantsController < ApplicationController
 
   def notify_owner_of_approval(restaurant)
     @owner = restaurant.owners.last
-    @link = root_url
+    @link = root_url + restaurant.slug + "/admin"
     @restaurant = restaurant
     OwnerNotifier.owner_email(@owner, @link, @restaurant).deliver
   end
