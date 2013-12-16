@@ -1,0 +1,83 @@
+// Place all the styles related to the Orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#your-current-order,
+#fill-your-bag {
+  margin: 2% 0 5% 0;
+}
+
+table {
+  display: block;
+  margin-bottom: 2%;
+}
+
+.table-header-item {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-right: 5%;
+}
+
+.table-header-item,
+.table-item {
+  padding: 0 5% 2% 0;
+}
+
+#current-total,
+#cancel-link {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+#current-total {
+  margin-top: 5%;
+  margin-bottom: 1%;
+}
+
+#cancel-link {
+  text-decoration: none;
+  font-size: 0.8em;
+  color: black;
+  margin-bottom: 10px;
+}
+
+#cancel-link:hover {
+  text-decoration: underline; 
+  color: rgb(101,89,93);
+}
+
+#checkout-button {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: rgb(249, 249, 249);
+}
+
+#your-current-order {
+  padding-left: 1%;
+}
+
+#your-order-history {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+
+#view-history {
+  font-size: 1.2em;
+  text-decoration: none; 
+  color: rgb(249, 249, 249);
+}
+
+#view-history:hover {
+  text-decoration: underline; 
+  color: rgb(101,89,93);
+}
+
+#order-history-container {
+  padding-bottom: 3%;
+}
+
+.date-ordered {
+  color: black;
+}

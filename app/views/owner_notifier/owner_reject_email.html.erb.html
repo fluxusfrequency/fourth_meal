@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your restaurant, <%= @restaurant.name %>, was rejected by Noshify.</h1>
+
+    <p>Sorry <%= @owner.full_name %>, but we could not list your restaurant on Noshify.</p>
+
+    <p>Here are your restaurant's details:</p>
+     <div class="grid-container">
+      <div class="grid-100" id="restaurant-container">
+        <div id="restaurant-details">
+           <p>Restaurant Name: <%= @restaurant.name %></p>
+           <p>Restaurant Description: <%= @restaurant.description %></p>
+        </div>
+        <p>If you would like more information, please contact us at navyosu@gmail.com, and if you'd like to submit another restaurant for approval, please visit: <%= @link %></p>
+      </div>
+    </div>
+      
+  </body>
+</html>

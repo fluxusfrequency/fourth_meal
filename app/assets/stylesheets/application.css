@@ -11,13 +11,13 @@
  *= require_self
  *= require normalize
  *= require unsemantic-grid-responsive
- *= require layout
- *= require items
- *= require location
- *= require orders
- *= require contacts
- *= require navigation
- *= require transaction
- *= require users
- *= require footer
+ *= require application/layout
+ *= require application/items
+ *= require application/location
+ *= require application/orders
+ *= require application/contacts
+ *= require application/navigation
+ *= require application/transaction
+ *= require application/users
+ *= require application/footer
  */

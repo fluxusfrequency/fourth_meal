@@ -49,4 +49,13 @@ class RestaurantTest < ActiveSupport::TestCase
     assert_equal restaurants(:one).location, locations(:one)
   end  
 
+  test "the theme is in the set of acceptable themes" do
+    restaurant = restaurants(:one)
+    assert_equal "application", restaurant.theme
+    restaurant.update(theme: "dark")
+    assert_equal "dark", restaurant.theme
+    restaurant.update(theme: "naranja")
+    refute restaurant.valid?
+  end
+
 end
