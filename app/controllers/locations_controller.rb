@@ -1,5 +1,8 @@
 class LocationsController < ApplicationController
   def index
+    @locations = Location.includes(:restaurants).select do |location|
+      location.has_restaurants?
+    end.sort
     @page_title = "Locations"
   end
 
