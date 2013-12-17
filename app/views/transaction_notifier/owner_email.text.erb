@@ -1,9 +1,9 @@
 Your Order at <%= @restaurant.name %> Was Received!
 ==============================================================
 
-Great news, <%= @customer_name %> your order is on the way!
+Great news, <%= @user.full_name %> has placed an order at <%= @restaurant.name %>!
 
-Your card has been charged <%= number_to_currency(@transaction.total) %>
+Their card has been charged <%= number_to_currency(@transaction.total) %>
 
 Here are your order details:
 

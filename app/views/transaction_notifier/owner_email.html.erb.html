@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Great news, <%= @user.full_name %>, your order is on the way!</h1>
+    <h1>Great news, <%= @user.full_name %> has placed an order at <%= @restaurant.name %>!</h1>
 
-    <p>Your card has been charged <%= number_to_currency(@total) %></p>
+    <p>Their card has been charged <%= number_to_currency(@total) %></p>
 
     <p>Here are your order details:</p>
      <div class="grid-container">
