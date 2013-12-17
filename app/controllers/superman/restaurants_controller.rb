@@ -50,7 +50,7 @@ class Superman::RestaurantsController < ApplicationController
     @link = root_url + restaurant.slug + "/admin"
     @restaurant = restaurant
     restaurant.owners.each do |owner|
-      OwnerNotifier.owner_approve_email(owner.email, @link, @restaurant).deliver
+      Restaurant.send_owner_approve_email(owner.email, @link, @restaurant)
     end
   end
 
@@ -58,7 +58,7 @@ class Superman::RestaurantsController < ApplicationController
     @link = root_url
     @restaurant = restaurant
     restaurant.owners.each do |owner|
-      OwnerNotifier.owner_reject_email(owner.email, @link, @restaurant).deliver
+      Restaurant.send_owner_reject_email(owner.email, @link, @restaurant)
     end
   end
 

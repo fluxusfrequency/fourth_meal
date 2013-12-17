@@ -95,4 +95,12 @@ class Restaurant < ActiveRecord::Base
     SuperNotifier.super_email(user, email, link, restaurant).deliver
   end
 
+  def send_owner_approve_email(email, link, restaurant)
+    OwnerNotifier.owner_approve_email(owner.email, @link, @restaurant).deliver
+  end
+
+  def send_owner_reject_email(email, link, restaurant)
+    OwnerNotifier.owner_reject_email(owner.email, @link, @restaurant).deliver
+  end
+
 end
