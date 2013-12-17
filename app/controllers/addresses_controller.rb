@@ -24,6 +24,12 @@ class AddressesController < ApplicationController
     @address = current_user.addresses.find(params[:id])
   end
 
+  def update
+    @address = current_user.addresses.find(params[:id])
+    @address.update(address_params)
+    redirect_to user_path(current_user)
+  end
+
   def change
     session[:current_address] = nil
     redirect_to :back
