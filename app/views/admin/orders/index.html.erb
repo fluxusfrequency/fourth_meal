@@ -11,43 +11,23 @@
     </div>
   </div><!-- /.row -->
 
-      <table class="table table-hover">
-          <tr>
-              <th>Order #</th>
+  <table class="table table-hover">
+    <tr>
+        <th>Order #</th>
 
-              <th>Customer</th>
+        <th>Customer</th>
 
-              <th>Status</th>
+        <th>Status</th>
 
-              <th>Order Total</th>
-              
-              <th>Order placed at</th>
+        <th>Order Total</th>
+        
+        <th>Order placed at</th>
 
-              <th>Delete</th>
-          </tr>
-          <% @orders.each do |order|  %>
-          <tr>
-              <td><%= order.id %></td>
-
-              <td>
-                <% if order.user %>
-                  <%= order.user.name %>
-                <% else %>
-                  Guest
-                <% end %>
-              </td>
-
-              <td><%= order.status %></td>
-
-              <td><%= number_to_currency(order.total_price) %></td>
-              
-              <td><%= order.updated_at.strftime('%m/%d/%Y') %></td>
-
-              <td>
-                  <%= button_to "delete", admin_order_path(session[:current_restaurant], order),:method => :delete, class: "button" %>
-              </td>
-          </tr>
-      <% end %>
+        <th>Delete</th>
+    </tr>
+    <% cache @orders do %>
+      <%= render @orders %> 
+    <% end %>
   </table>
 
 </div><!-- /#page-wrapper -->

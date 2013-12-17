@@ -6,6 +6,7 @@ class Admin::DashboardController < ApplicationController
   def index
     @restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
     @themes = Restaurant.themes
+    @locations = Location.all.collect {|location| location.city}
   end
 
   def update
@@ -23,7 +24,7 @@ class Admin::DashboardController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :description, :slug, :theme)
+    params.require(:restaurant).permit(:name, :description, :slug, :theme, :location)
   end
 
 end

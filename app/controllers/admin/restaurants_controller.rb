@@ -5,6 +5,8 @@ class Admin::RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
     @restaurant.update(restaurant_params)
+    @location = Location.find_by_city(params[:restaurant][:location])
+    @restaurant.update(location_id: @location.id)
     session[:current_restaurant] = @restaurant.to_param
     redirect_to admin_path(session[:current_restaurant]), :notice => "#{@restaurant.name} was updated!"
   end
