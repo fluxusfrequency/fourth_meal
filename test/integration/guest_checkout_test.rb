@@ -4,6 +4,7 @@ class GuestCheckoutTest < Capybara::Rails::TestCase
 
   def test_guest_can_checkout_without_signing_up
     visit root_path
+    click_on "Denver"
     click_on "KFC"
 
     within "#item_#{items(:two).id}" do
@@ -30,7 +31,7 @@ class GuestCheckoutTest < Capybara::Rails::TestCase
      fill_in "Email", with: "Benji@yeehaw.com"
      click_on "Use This Billing Address"
     end
-    # save_and_open_page
+    
     assert_content page, ("Order Summary")
     assert_content page, ("Checking out as Guest")
 

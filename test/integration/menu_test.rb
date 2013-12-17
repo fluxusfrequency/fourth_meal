@@ -4,12 +4,14 @@ class MenuTest < Capybara::Rails::TestCase
   
   def test_guest_can_browse_the_home_page
     visit root_path
+    click_on "Denver"
     click_on "KFC"
     assert page.has_content?('Kentucky Fried Wonder')
   end
 
   def test_guest_can_sort_by_specific_category
     visit root_path
+    click_on "Denver"
     click_on "KFC"
     click_on 'Brunch'
 

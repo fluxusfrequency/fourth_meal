@@ -4,7 +4,7 @@ class UserCheckoutTest < Capybara::Rails::TestCase
 
   def test_user_can_checkout_after_signing_up
     visit root_path
-
+    click_on "Denver"
     click_on "KFC"
 
     within "#item_#{items(:two).id}" do
@@ -64,7 +64,7 @@ class UserCheckoutTest < Capybara::Rails::TestCase
     end
 
     assert_content page, "Logged in!"
-
+    click_on "Denver"
     click_on "KFC"
 
     within "#item_298486374" do
@@ -80,6 +80,7 @@ class UserCheckoutTest < Capybara::Rails::TestCase
 
   def test_user_can_checkout_after_signing_in
     visit root_path
+    click_on "Denver"
     click_on "KFC"
 
     click_on "Sign up or Log in"
@@ -97,6 +98,7 @@ class UserCheckoutTest < Capybara::Rails::TestCase
 
 
     visit root_path
+    click_on "Denver"
     click_on "KFC"
 
     within "#item_#{items(:two).id}" do

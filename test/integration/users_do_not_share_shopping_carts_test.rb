@@ -16,6 +16,8 @@ class UsersDoNotShareShoppingCartsTest < Capybara::Rails::TestCase
       click_on "Log In"
     end
 
+    click_on "Denver"
+
     click_on "KFC"
 
     within "#item_#{items(:two).id}" do
@@ -42,6 +44,8 @@ class UsersDoNotShareShoppingCartsTest < Capybara::Rails::TestCase
       fill_in "Password", with: "password"
       click_on "Log In"
     end
+
+    click_on "Denver"
 
     click_on "KFC"
     refute_content page, "View Your Order"

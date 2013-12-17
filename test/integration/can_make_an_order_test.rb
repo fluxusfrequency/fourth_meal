@@ -5,6 +5,7 @@ class CanMakeAnOrderTest < Capybara::Rails::TestCase
 
   test "a user can create an order" do
     visit root_path
+    click_on "Denver"
     click_on "KFC"
 
     within "#item_#{items(:two).id}" do
@@ -19,6 +20,7 @@ class CanMakeAnOrderTest < Capybara::Rails::TestCase
 
   test "can add multiple items to order without logging in" do
     visit root_path
+    click_on "Denver"
     click_on "KFC"
 
     within "#item_#{items(:two).id}" do
@@ -37,6 +39,7 @@ class CanMakeAnOrderTest < Capybara::Rails::TestCase
 
   test "can add multiple instances of same item to order" do
     visit root_path
+    click_on "Denver"
     click_on "KFC"
 
     within "#item_#{items(:one).id}" do
@@ -57,6 +60,7 @@ class CanMakeAnOrderTest < Capybara::Rails::TestCase
 
   test "a user can create an order on multiple stores" do
     visit root_path
+    click_on "Denver"
     click_on "KFC"
 
     within "#item_#{items(:two).id}" do
@@ -68,6 +72,7 @@ class CanMakeAnOrderTest < Capybara::Rails::TestCase
     assert_content page, "Mashed Potatoes"
 
     visit root_path
+    click_on "Washington D.C."
     click_on "McDonalds"
 
     within "#item_#{items(:four).id}" do
