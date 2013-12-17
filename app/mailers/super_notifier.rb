@@ -4,7 +4,7 @@ class SuperNotifier < ActionMailer::Base
 
   def super_email(user, superman_email, link, restaurant)
     @user = user
-    @email = superman.email
+    @email = superman_email
     @link = link
     @restaurant = restaurant
     mail(to: @email, subject: "New Restaurant #{@restaurant.name} on Noshify Pending Approval!")
