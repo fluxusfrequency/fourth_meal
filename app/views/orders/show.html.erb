@@ -8,5 +8,7 @@
   <div class="grid-100">
     <h1 id="fill-your-bag">Fill Your Bag</h1>
   </div>
-  <%= render partial: 'items/item', collection: @items %>
+  <% cache @items do %>
+    <%= render partial: 'items/item', collection: @items %>
+  <% end %>
 </section>
