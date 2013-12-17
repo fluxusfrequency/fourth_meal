@@ -1,0 +1,5 @@
+<div class="grid-container">
+  <%= paginate @restaurants %>
+  <h1>Restaurants in <%= @location.city %></h1>
+  <%= render partial: "restaurants/restaurant", collection: @restaurants %>
+</div>

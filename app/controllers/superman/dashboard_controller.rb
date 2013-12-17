@@ -4,7 +4,7 @@ class Superman::DashboardController < ApplicationController
   before_action :super_access
 
   def index
-    @restaurants = Restaurant.all.reject {|r| r.rejected?}.sort
+    @restaurants = Restaurant.all.page(params[:page]).per(20)
   end
   
 end

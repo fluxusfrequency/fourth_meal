@@ -20,6 +20,18 @@ class User < ActiveRecord::Base
     self.super
   end
 
+  def owns?(restaurant)
+    self.restaurant_users.where(role: "owner").detect do |role| 
+      role.restaurant_id == restaurant.id
+    end
+  end
+
+  def works_for?(restaurant)
+    self.restaurant_users.where(role: "employee").detect do |role| 
+      role.restaurant_id == restaurant.id
+    end
+  end
+
   def supercharge
     self.update(super: true)
   end

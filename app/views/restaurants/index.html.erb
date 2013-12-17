@@ -10,11 +10,11 @@
     Thanks for visiting! Bon apetit!</p>
 </div>
 
+
 <% cache @locations do %>
   <% @locations.each do |location|%>
     <div class="grid-container">
-      <h1><%= location.city %></h1>
-      <%= render partial: "restaurants/restaurant", collection: location.active_restaurants %>
+      <h1><%= link_to location.city, location_path(location) %></h1>
     </div>
   <% end %>
 <% end %>

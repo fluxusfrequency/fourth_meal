@@ -6,12 +6,12 @@ module AuthHelper
   end
 
   def owner_access
-    return unauthorized unless current_restaurant.is_owner?(current_user) || current_user.superman?
+    return unauthorized unless current_user.owns?(current_restaurant) || current_user.superman?
     true
   end
 
   def employee_access
-    return unauthorized unless current_restaurant.is_employee?(current_user) || current_restaurant.is_owner?(current_user) || current_user.superman?
+    return unauthorized unless current_user.works_for?(current_restaurant) || current_user.owns?(current_restaurant) || current_user.superman?
     true
   end
 
