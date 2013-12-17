@@ -44,9 +44,6 @@ class UsersDoNotShareShoppingCartsTest < Capybara::Rails::TestCase
     end
 
     click_on "KFC"
-    
-    save_and_open_page
-
     refute_content page, "View Your Order"
 
   end
