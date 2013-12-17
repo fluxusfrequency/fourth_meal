@@ -31,7 +31,6 @@ class UserCheckoutTest < Capybara::Rails::TestCase
     end
 
     assert_content page, "Logged in"
-    save_and_open_page
     assert_content page, "Enter a new address"
     refute_css page, ".address-panel"
 

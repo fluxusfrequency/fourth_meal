@@ -18,7 +18,7 @@ class UsersDoNotShareShoppingCartsTest < Capybara::Rails::TestCase
 
     click_on "KFC"
 
-    within "#item_298486374" do
+    within "#item_#{items(:two).id}" do
       click_on "Add to Cart"
     end
 
@@ -33,10 +33,6 @@ class UsersDoNotShareShoppingCartsTest < Capybara::Rails::TestCase
     refute_content page, "Log out"
 
     assert_content page, "Sign up or Log in"
-
-    assert current_path == root_path
-
-puts "#{current_path}"
     click_on "Sign up or Log in"
 
     assert_equal "rolen@example.com", user2.email
@@ -47,9 +43,9 @@ puts "#{current_path}"
       click_on "Log In"
     end
 
-    save_and_open_page
-
     click_on "KFC"
+    
+    save_and_open_page
 
     refute_content page, "View Your Order"
 
