@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217003216) do
+ActiveRecord::Schema.define(version: 20131217020723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,11 +29,14 @@ ActiveRecord::Schema.define(version: 20131217003216) do
     t.datetime "updated_at"
   end
 
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
+
   create_table "categories", force: true do |t|
     t.string   "title",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "restaurant_id"
+    t.string   "slug"
   end
 
   create_table "contacts", force: true do |t|
@@ -52,6 +55,9 @@ ActiveRecord::Schema.define(version: 20131217003216) do
     t.datetime "updated_at"
   end
 
+  add_index "item_categories", ["category_id"], name: "index_item_categories_on_category_id", using: :btree
+  add_index "item_categories", ["item_id"], name: "index_item_categories_on_item_id", using: :btree
+
   create_table "items", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -67,6 +73,8 @@ ActiveRecord::Schema.define(version: 20131217003216) do
     t.integer  "restaurant_id"
   end
 
+  add_index "items", ["restaurant_id"], name: "index_items_on_restaurant_id", using: :btree
+
   create_table "locations", force: true do |t|
     t.string   "city"
     t.datetime "created_at"
@@ -81,6 +89,9 @@ ActiveRecord::Schema.define(version: 20131217003216) do
     t.integer  "quantity"
   end
 
+  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+
   create_table "orders", force: true do |t|
     t.text     "status"
     t.integer  "user_id"
@@ -89,11 +100,16 @@ ActiveRecord::Schema.define(version: 20131217003216) do
     t.integer  "restaurant_id"
   end
 
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
   create_table "restaurant_users", force: true do |t|
     t.integer "restaurant_id"
     t.integer "user_id"
     t.string  "role",          default: "customer"
   end
+
+  add_index "restaurant_users", ["restaurant_id"], name: "index_restaurant_users_on_restaurant_id", using: :btree
+  add_index "restaurant_users", ["user_id"], name: "index_restaurant_users_on_user_id", using: :btree
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
@@ -116,6 +132,8 @@ ActiveRecord::Schema.define(version: 20131217003216) do
     t.integer  "address_id"
     t.string   "stripe_token"
   end
+
+  add_index "transactions", ["order_id"], name: "index_transactions_on_order_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"

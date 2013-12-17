@@ -6,7 +6,15 @@ class Category < ActiveRecord::Base
   has_many :items, through: :item_categories
 
   def to_param
-    @param ||= title.downcase.gsub(" ", "_")
+    @param ||= slug || title.parameterize
+  end
+
+  # def slug
+  #   @slug ||= slug || generate_slug
+  # end
+
+  def generate_slug
+    self.update(slug: title.parameterize)
   end
 
   def self.find_by_slug(target)
