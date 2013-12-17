@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   layout "application"
-  before_action :check_active, :load_restaurant, :load_category, only: [:in_category, :index]
+  before_action :check_active,
+                :load_restaurant,
+                :load_category, only: [:in_category, :index]
 
   def in_category
     @category = @restaurant.categories.find_by_slug(params[:category_slug])
@@ -26,7 +28,12 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :photo, :photo_file_name)
+    params.require(:item).permit(
+      :title,
+      :description,
+      :price,
+      :photo,
+      :photo_file_name)
   end
 
 end

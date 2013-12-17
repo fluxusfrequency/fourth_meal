@@ -13,7 +13,8 @@ class Admin::RestaurantsController < ApplicationController
     @location = Location.find_by_city(params[:restaurant][:location])
     @restaurant.update(location_id: @location.id)
     session[:current_restaurant] = @restaurant.to_param
-    redirect_to admin_path(session[:current_restaurant]), :notice => "#{@restaurant.name} was updated!"
+    redirect_to admin_path(session[:current_restaurant]),
+      :notice => "#{@restaurant.name} was updated!"
   end
 
   def destroy

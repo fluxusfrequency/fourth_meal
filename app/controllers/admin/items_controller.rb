@@ -20,7 +20,8 @@ class Admin::ItemsController < ApplicationController
       ItemCategory.create(item_id: @item.id, category_id: @category.id)
       flash.notice = "#{@item.title} was added to the menu!"
     else
-      flash.notice = "Errors prevented the item from being created: #{@item.errors.full_messages}"
+      flash.notice = "Errors prevented the item from
+        being created: #{@item.errors.full_messages}"
     end
     redirect_to admin_items_path(session[:current_restaurant])
   end
@@ -40,7 +41,8 @@ class Admin::ItemsController < ApplicationController
     if @item.save
       flash.notice = "#{@item.title} was updated"
     else
-      flash.notice = "Errors prevented the item from being edited: #{@item.errors.full_messages}"
+      flash.notice = "Errors prevented the item from
+        being edited: #{@item.errors.full_messages}"
     end
     redirect_to admin_items_path(session[:current_restaurant])
   end
@@ -60,7 +62,11 @@ class Admin::ItemsController < ApplicationController
   end
 
   def admin_item_params
-    params.require(:item).permit(:title, :description, :price, :retired)
+    params.require(:item).permit(
+      :title,
+      :description,
+      :price,
+      :retired)
   end
 
 end

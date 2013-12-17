@@ -52,11 +52,19 @@ class AddressesController < ApplicationController
   end
 
   def failure_message
-    flash.notice = "Errors prevented the address from being saved: #{@address.errors.full_messages}"
+    flash.notice = "Errors prevented the address from being
+    saved: #{@address.errors.full_messages}"
   end
 
   def address_params
-    params.require(:address).permit(:first_name, :last_name, :street_address, :city, :state, :zipcode, :email)
+    params.require(:address).permit(
+      :first_name,
+      :last_name,
+      :street_address,
+      :city,
+      :state,
+      :zipcode,
+      :email)
   end
 
 end
