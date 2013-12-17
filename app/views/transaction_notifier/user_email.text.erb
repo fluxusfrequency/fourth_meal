@@ -8,12 +8,14 @@ Your card has been charged <%= number_to_currency(@transaction.total) %>
 Here are your order details:
 
 Restaurant Name: <%= @restaurant.name %>
-Time Order was placed: <%= @transaction.created_at %>
+Order Date/Time: <%= @transaction.created_at.strftime("%b %d, %Y at %I:%M%p") %>
 Status: <%= @transaction.order.status %>
-Items: <% @transaction.order.order_items.each do |oi| %>
-  <%= oi.item.title %> - <%= oi.quantity %>
-<% end %>
+Items:  <% @transaction.order.order_items.each do |oi| %>
+          <%= oi.item.title %> - <%= oi.quantity %>
+        <% end %>
 
 Total: <%= number_to_currency(@transaction.total) %>
 
-To see your full order information, please visit: <%= @link %>
+To view your full order information, please visit: <%= @link %>
+
+Thanks for using Noshify!

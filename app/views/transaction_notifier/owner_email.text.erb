@@ -1,19 +1,21 @@
-Your Order at <%= @restaurant.name %> Was Received!
+A Customer Placed an Order at <%= @restaurant.name %>!
 ==============================================================
 
-Great news, <%= @user.full_name %> has placed an order at <%= @restaurant.name %>!
+Great news, <%= @customer_name %> has placed an order at <%= @restaurant.name %>!
 
 Their card has been charged <%= number_to_currency(@transaction.total) %>
 
-Here are your order details:
+Here are their order details:
 
 Restaurant Name: <%= @restaurant.name %>
-Time Order was placed: <%= @transaction.created_at %>
+Order Date/Time: <%= @transaction.created_at.strftime("%b %d, %Y at %I:%M%p") %>
 Status: <%= @transaction.order.status %>
-Items: <% @transaction.order.order_items.each do |oi| %>
-  <%= oi.item.title %> - <%= oi.quantity %>
-<% end %>
+Items:  <% @transaction.order.order_items.each do |oi| %>
+          <%= oi.item.title %> - <%= oi.quantity %>
+        <% end %>
 
 Total: <%= number_to_currency(@transaction.total) %>
 
-To see your full order information, please visit: <%= @link %>
+To view their full order information, please visit: <%= @link %>
+
+Thanks for using Noshify!

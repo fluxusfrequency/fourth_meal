@@ -6,7 +6,6 @@ class TransactionNotifier < ActionMailer::Base
     @customer_name = transaction.order.user.full_name
     @email = email
     @transaction = transaction
-    @total = order_total(@transaction.order.order_items)
     @link = link
     @restaurant = Restaurant.find(@transaction.order.restaurant_id)
     mail(to: @email, subject: "Order Confirmation for #{@restaurant.name} on Noshify!")
@@ -16,7 +15,6 @@ class TransactionNotifier < ActionMailer::Base
     @customer_name = transaction.order.user.full_name
     @email = email
     @transaction = transaction
-    @total = order_total(@transaction.order.order_items)
     @link = link
     @restaurant = Restaurant.find(@transaction.order.restaurant_id)
     mail(to: @email, subject: "Order Received for #{@restaurant.name} on Noshify!")
