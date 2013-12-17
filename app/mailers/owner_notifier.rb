@@ -1,4 +1,5 @@
 class OwnerNotifier < ActionMailer::Base
+  include Resque::Mailer
   default from: "customer_service@noshify.com"
 
   def owner_approve_email(owner, link, restaurant)
