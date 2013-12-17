@@ -13,17 +13,17 @@ OnoBurrito::Application.routes.draw do
     post "/restaurants/approve" => "restaurants#approve", as: "approve"
     post "/restaurants/reject" => "restaurants#reject", as: "reject"
   end
-  
+
   resources :users
   resources :sessions
   resources :restaurants
+  resources :addresses
 
 
   scope ":restaurant_slug" do
     resources :contacts
     resources :items, only: [:index, :in_category]
     resources :locations
-    resources :addresses
     resources :orders
     resources :order_items
     get '/transactions/guest' => 'transactions#checkout_as_guest', as: "guest_transaction"
