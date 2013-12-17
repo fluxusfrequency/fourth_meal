@@ -6,7 +6,7 @@ class Admin::DashboardController < ApplicationController
   def index
     @restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
     @themes = Restaurant.themes
-    @locations = Location.all.collect {|location| location.city}
+    @locations = Location.all.collect {|location| location.city}.sort
   end
 
   def update

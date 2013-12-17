@@ -9,4 +9,8 @@ class Location < ActiveRecord::Base
   def active_restaurants
     self.restaurants.where(:active => true)
   end
+
+  def <=>(other_location)
+    self.city <=> other_location.city
+  end
 end
