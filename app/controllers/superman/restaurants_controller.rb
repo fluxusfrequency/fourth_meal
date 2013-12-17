@@ -47,11 +47,10 @@ class Superman::RestaurantsController < ApplicationController
   end
 
   def notify_owner_of_approval(restaurant)
-    @owner = restaurant.owners.last
     @link = root_url + restaurant.slug + "/admin"
     @restaurant = restaurant
     restaurant.owners.each do |owner|
-      OwnerNotifier.owner_approve_email(@owner, @link, @restaurant).deliver
+      OwnerNotifier.owner_approve_email(owner, @link, @restaurant).deliver
     end
   end
 
