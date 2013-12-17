@@ -51,6 +51,10 @@ class Restaurant < ActiveRecord::Base
     self.active
   end
 
+  def inactive?
+    !self.active
+  end
+
   def activate
     self.update(active: true)
   end
