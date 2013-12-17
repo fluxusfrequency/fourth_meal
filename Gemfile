@@ -34,6 +34,8 @@ group :development, :test do
   gem 'devise'
   gem 'rake'
   gem 'database_cleaner'
+  gem 'cane'
+  gem 'reek'
 end
 
 group :production do
