@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :check_active
   helper_method :add_item_to_order
+  include ActionView::Helpers::NumberHelper
 
   def new
     @order = Order.new
@@ -23,7 +24,7 @@ class OrdersController < ApplicationController
     update_order
     @item = current_restaurant.items.find(params[:item])
     add_or_increment_item
-    flash.notice = "Item was added to your cart!"
+    flash.notice = "Item was added to your cart! Current total: #{number_to_currency(current_order.total_price)}."
     redirect_to :back
   end
 
