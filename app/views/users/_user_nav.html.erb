@@ -1,12 +1,15 @@
 <div id="user-nav" class="grid-100">
-  <% if current_user %>
-    Logged in as <%= current_user.display_name %>
-    <%= link_to "Superman Panel", superman_path, class:"user-nav-link" if current_user.superman? %>
-    <%= link_to "Account Profile", user_path(current_user.id), class:"user-nav-link" %>
-    <%= link_to "Log out", log_out_path, class:"user-nav-link" %>
-  <% else %>
-    <%= link_to "Sign up or Log in", log_in_path, class:"user-nav-link" %>
+  <% cache current_user do %>
+    <% if current_user %>
+      Logged in as <%= current_user.display_name %>
+      <%= link_to "Superman Panel", superman_path, class:"user-nav-link" if current_user.superman? %>
+      <%= link_to "Account Profile", user_path(current_user.id), class:"user-nav-link" %>
+      <%= link_to "Log out", log_out_path, class:"user-nav-link" %>
+    <% else %>
+      <%= link_to "Sign up or Log in", log_in_path, class:"user-nav-link" %>
+    <% end %>
   <% end %>
+
 </div>
 
 

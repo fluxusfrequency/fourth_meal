@@ -1,5 +1,5 @@
 <h3>Edit Restaurant Details</h3>
-
+<% cache @restaurant do %>
 <%= form_for [:admin, @restaurant], 
     url: admin_restaurant_path(@restaurant, @restaurant.id), 
     method: :put do |f| %>
@@ -25,7 +25,8 @@
     <%= f.text_area :slug %>
   </p>
   <p>
-    <strong>Location</strong>
+    <%= f.label :location %><br />
+    <%= f.select :location, @locations %>
   </p>
   <p>
     <strong>Photo</strong><br/>
@@ -34,4 +35,5 @@
   <p>
     <%= f.submit "Save Restaurant", class: "button" %>
   </p>
+<% end %>
 <% end %>

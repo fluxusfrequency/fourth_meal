@@ -11,6 +11,9 @@ gem 'thin'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'faker'
 gem 'paperclip'
+gem 'travis'
+gem 'redis-rails'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
@@ -21,10 +24,13 @@ group :development, :test do
   gem 'minitest-rails-capybara'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'nokogiri'
+  gem 'rb-fsevent'
   gem 'launchy'
   gem 'faker'
   gem 'quiet_assets'
   gem 'devise'
+  gem 'rake'
   gem 'database_cleaner'
 end
 

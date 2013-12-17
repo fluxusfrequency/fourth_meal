@@ -1,0 +1,23 @@
+<tr <%= "id=" +"#{item.title.parameterize}-row" %>>
+  <td><%= item.title %></td>
+
+  <td><%= item.description %></td>
+
+  <td><%= number_to_currency(item.price) %></td>
+
+  <td><%= item.photo_file_name %></td>
+
+  <td><% item.categories.each do |c| %>
+      <%= c.title %>
+  <% end %></td>
+
+  <td><%= item.active? %>
+
+  <td>
+      <%= button_to "retire", admin_item_path(session[:current_restaurant], item), {class: "btn btn-danger", :method => :delete} %>
+  </td>
+  
+  <td>
+    <%= link_to "edit", edit_admin_item_path(session[:current_restaurant], item), {class: "btn btn-info"} %>
+  </td>
+</tr>

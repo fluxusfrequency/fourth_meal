@@ -9,11 +9,12 @@
     application, wait for approval, add your products, and start selling today.
     Thanks for visiting! Bon apetit!</p>
 </div>
-<% @locations.each do |l|%>
-  <% unless l.restaurants.where(:active => true).size == 0 %>
+
+<% cache @locations do %>
+  <% @locations.each do |location|%>
     <div class="grid-container">
-      <h1><%= l.city %></h1>
-      <%= render l.restaurants.where(:active => true) %>
+      <h1><%= location.city %></h1>
+      <%= render partial: "restaurants/restaurant", collection: location.active_restaurants %>
     </div>
   <% end %>
 <% end %>

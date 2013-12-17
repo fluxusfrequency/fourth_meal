@@ -1,5 +1,5 @@
 <% if current_order.items_in_cart? %>
-  <section id="current_order" class="grid-container"> 
+  <section id="current_order" class="grid-container">
     <%= render partial: 'order', locals: {:order => @order} %>
   </section>
 <% end %>
@@ -8,5 +8,7 @@
   <div class="grid-100">
     <h1 id="fill-your-bag">Fill Your Bag</h1>
   </div>
-  <%= render partial: 'items/item', collection: @items %>
+  <% cache @items do %>
+    <%= render partial: 'items/item', collection: @items %>
+  <% end %>
 </section>

@@ -32,7 +32,9 @@
       <th>Approve</th>
       
     </tr>
-    <%= render @restaurants %>
+    <% cache @restaurants do %>
+      <%= render @restaurants %>
+    <% end %>
   </table>
 
 </div><!-- /#page-wrapper -->

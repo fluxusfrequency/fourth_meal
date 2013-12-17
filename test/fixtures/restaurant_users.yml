@@ -12,3 +12,8 @@ three:
   restaurant: two
   user: three
   role: "owner"
+
+four:
+  restaurant: three
+  user: three
+  role: "owner"
