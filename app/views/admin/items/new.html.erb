@@ -29,6 +29,10 @@
       <%= f.text_field :price %>
     </p>
     <p> 
+      <%= f.label :categories %>
+      <%= f.select :categories, @categories %>
+    </p>
+    <p> 
       <%= f.label :retired %>
       <%= f.check_box :retired %>
     </p>

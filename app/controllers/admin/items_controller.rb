@@ -16,6 +16,8 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = current_restaurant.items.build(admin_item_params)
     if @item.save
+      @category = Category.find_by_title(params[:item][:categories])
+      ItemCategory.create(item_id: @item.id, category_id: @category.id)
       flash.notice = "#{@item.title} was added to the menu!"
     else
       flash.notice = "Errors prevented the item from being created: #{@item.errors.full_messages}"
@@ -25,6 +27,7 @@ class Admin::ItemsController < ApplicationController
 
   def new
     @item = current_restaurant.items.build
+    @categories = current_restaurant.categories.collect {|c| c.title}
   end
 
   def edit
