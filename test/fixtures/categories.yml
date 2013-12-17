@@ -1,7 +1,9 @@
 one:
   title: "Brunch"
   restaurant: one
+  slug: "brunch"
 
 two:
   title: "Linner"
   restaurant: one
+  slug: "linner"

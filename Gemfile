@@ -24,6 +24,8 @@ group :development, :test do
   gem 'minitest-rails-capybara'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'nokogiri'
+  gem 'rb-fsevent'
   gem 'launchy'
   gem 'faker'
   gem 'quiet_assets'

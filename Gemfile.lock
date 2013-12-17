@@ -319,6 +319,7 @@ DEPENDENCIES
   launchy
   minitest-rails-capybara
   newrelic_rpm
+  nokogiri
   paperclip
   pg
   pry-byebug
@@ -327,6 +328,7 @@ DEPENDENCIES
   rails-pry
   rails_12factor
   rake
+  rb-fsevent
   redis-rails
   sass-rails (~> 4.0.0)
   thin
