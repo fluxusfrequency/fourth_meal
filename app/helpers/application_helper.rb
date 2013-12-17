@@ -1,5 +1,5 @@
 module ApplicationHelper
-  
+
   def page_title
     if @page_title
       "- #{@page_title}"
@@ -11,5 +11,5 @@ module ApplicationHelper
   def order_total(order_items)
     order_items.inject(0) {|sum, i| sum += (i.item.price * i.quantity) }
   end
-    
+
 end

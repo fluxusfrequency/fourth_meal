@@ -6,5 +6,5 @@ class Superman::DashboardController < ApplicationController
   def index
     @restaurants = Restaurant.all.where("status != 'rejected'").page(params[:page]).per(20)
   end
-  
+
 end

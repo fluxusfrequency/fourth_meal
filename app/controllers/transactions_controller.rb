@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     session[:current_address] ||= params[:address_id]
-    set_forwarding_path 
+    set_forwarding_path
     if current_user && session[:current_address]
       find_current_user_address
       render :new
@@ -74,7 +74,7 @@ class TransactionsController < ApplicationController
   end
 
   def create_transaction
-    @transaction = Transaction.new(order_id: current_order.id, 
+    @transaction = Transaction.new(order_id: current_order.id,
                                    address_id: session[:current_address],
                                    stripe_token: params["stripeToken"])
   end

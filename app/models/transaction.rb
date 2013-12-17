@@ -3,7 +3,7 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :order_id
 
   def pay!
-    order.status = "paid" 
+    order.status = "paid"
     order.save
   end
 

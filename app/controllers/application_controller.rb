@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   include OrdersHelper
   include UsersHelper
   include RestaurantsHelper
-  
-  helper_method :current_user, :current_order, :current_order_total, 
+
+  helper_method :current_user, :current_order, :current_order_total,
                 :items_in_cart?, :order_total, :check_active, :unauthorized,
                 :current_theme, :current_restaurant, :is_admin?
 

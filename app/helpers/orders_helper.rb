@@ -8,7 +8,7 @@ module OrdersHelper
   end
 
   def delete_order_from_session
-    session[:orders].delete(current_restaurant.id) 
+    session[:orders].delete(current_restaurant.id)
   end
 
 
@@ -28,7 +28,7 @@ module OrdersHelper
  end
 
  def create_order
-   @current_order = Order.create(status: 'unpaid', 
+   @current_order = Order.create(status: 'unpaid',
                                  restaurant: current_restaurant)
    add_order_to_session
    @current_order

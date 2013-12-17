@@ -1,7 +1,7 @@
 class Admin::OrdersController < ApplicationController
   before_action :owner_access
   layout 'admin'
-  
+
   def index
     @orders = Order.all
   end
@@ -18,5 +18,5 @@ class Admin::OrdersController < ApplicationController
 
     redirect_to admin_orders_path
   end
-  
+
 end

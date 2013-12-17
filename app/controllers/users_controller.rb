@@ -47,7 +47,7 @@ private
       redirect_to root_path, :notice => "Signed up!"
     end
   end
-    
+
   def set_user
     @user = user.find(params[:id])
   end

@@ -14,20 +14,20 @@ class User < ActiveRecord::Base
   validates_presence_of     :full_name
   validates_presence_of     :display_name
   validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-  validates                 :email, uniqueness: true 
+  validates                 :email, uniqueness: true
 
   def superman?
     self.super
   end
 
   def owns?(restaurant)
-    self.restaurant_users.where(role: "owner").detect do |role| 
+    self.restaurant_users.where(role: "owner").detect do |role|
       role.restaurant_id == restaurant.id
     end
   end
 
   def works_for?(restaurant)
-    self.restaurant_users.where(role: "employee").detect do |role| 
+    self.restaurant_users.where(role: "employee").detect do |role|
       role.restaurant_id == restaurant.id
     end
   end

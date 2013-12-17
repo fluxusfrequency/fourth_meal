@@ -19,5 +19,5 @@ class OrderItemsController < ApplicationController
   def cancel_order_message
     flash[:notice] = "Your order has been cancelled."
   end
-  
+
 end

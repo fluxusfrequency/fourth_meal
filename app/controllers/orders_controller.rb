@@ -49,9 +49,9 @@ class OrdersController < ApplicationController
   def add_item_to_order
     if params[:item]
       item = Item.find(params[:item])
-      @order.order_items.build(item: item, quantity: 1) 
+      @order.order_items.build(item: item, quantity: 1)
       @order.save
-    end 
+    end
   end
 
   def update_order
@@ -66,8 +66,8 @@ class OrdersController < ApplicationController
 
   def add_item
     @order_item = OrderItem.create(
-      :order_id => current_order.id, 
-      :item_id => @item.id, 
+      :order_id => current_order.id,
+      :item_id => @item.id,
       :quantity => 1)
   end
 
