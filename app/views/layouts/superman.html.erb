@@ -9,10 +9,7 @@
     <title>Dashboard - Superman</title>
 
 
-    <!-- Add custom CSS here -->
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
-    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
     <%= stylesheet_link_tag "application", media: "all"%> 
     <%= stylesheet_link_tag "bootstrap" %> 
     <%= stylesheet_link_tag "sb-admin" %> 
@@ -45,6 +42,7 @@
           <ul class="nav navbar-nav side-nav">
             <li><%= link_to "All Restaurants", superman_path %><i class="fa fa-dashboard"></i></li>            
             <li><%= link_to "Pending Approval", superman_approval_path %><i class="fa fa-dashboard"></i></li>
+            <li><%= link_to "Inactive", superman_inactive_path %><i class="fa fa-dashboard"></i></li>
             <li><%= link_to "Rejected", superman_rejected_path %><i class="fa fa-dashboard"></i></li>
           </ul>
 
@@ -65,7 +63,5 @@
 
     </div><!-- /#wrapper -->
 
-    <!-- Bootstrap core JavaScript -->
-    <!-- script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script-->
   </body>
 </html>

@@ -1,5 +1,5 @@
 OnoBurrito::Application.routes.draw do
-  root :to => "restaurants#index"
+  root :to => "locations#index"
 
   get "/log_out" => "sessions#destroy"
   get "/log_in" => "sessions#new", as: "log_in"
@@ -9,7 +9,7 @@ OnoBurrito::Application.routes.draw do
   resources :locations, only: [ :index, :show ]
   resources :users, except: [ :index, :destroy ]
   resources :sessions, only: [ :new, :create, :checkout_as_guest, :destroy ]
-  resources :restaurants, except: [ :show, :update, :destroy ]
+  resources :restaurants, except: [ :index, :show, :update, :destroy ]
   resources :addresses
 
   namespace :superman do
@@ -18,6 +18,7 @@ OnoBurrito::Application.routes.draw do
 
     get "/" => "dashboard#index"
     get "/approval" => "restaurants#index", as: "approval"
+    get "/inactive" => "restaurants#inactive", as: "inactive"
     get "/rejected" => "restaurants#rejected", as: "rejected"
     post "/restaurants/approve" => "restaurants#approve", as: "approve"
     post "/restaurants/reject" => "restaurants#reject", as: "reject"

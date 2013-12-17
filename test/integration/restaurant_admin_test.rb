@@ -47,7 +47,7 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
 
     # Admin retires an item
     within "#the-whopper-row" do
-      click_on "retire"
+      click_on "toggle"
     end
     assert_content page, "The Whopper was retired from the menu!"
     

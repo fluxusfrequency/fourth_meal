@@ -33,9 +33,9 @@ class SupermanTest < Capybara::Rails::TestCase
   def test_superman_views_approves_and_rejects_pending_restaurants
     @superman = User.create(full_name: "Clark Kent", display_name: "Superman", email: 'ckent@dailyplanet.com', password: 'kryptonite', password_confirmation: 'kryptonite', :super => true)
     # Can't view a pending restaurant
-    visit restaurant_root_path(restaurants(:three).id)
+    visit restaurant_root_path(restaurants(:three).slug)
     assert_equal root_path, page.current_path
-    assert_content page, "Sorry, this restaurant is currently offline for maintenance."
+    assert_content page, "Sorry, we couldn't find the restaurant you requested in our sytem."
 
     # Superman logs in
     visit root_path
@@ -72,6 +72,11 @@ class SupermanTest < Capybara::Rails::TestCase
     click_on "Rejected"
     assert_content page, "Rejected Restaurants"
     refute_content page, "Pizza Hut"
+
+    # Superman views inactive restaurants
+    click_on "Inactive"
+    assert_content page, "Inactive Restaurants"
+    assert_content page, "Taco Bell"
 
     # Superman views pending restaurants
     click_on "Pending Approval"
@@ -132,18 +137,19 @@ class SupermanTest < Capybara::Rails::TestCase
     # Superwoman adds an item
     click_on "Create New Item"
     assert_content page, "Create New Menu Item"
-
     within "#new_item" do
       fill_in "Title", with: "The Whopper"
       fill_in "Description", with: "Beats a big mac"
       fill_in "Price", with: 6
+      select "Gutbusters", from: "Categories"
       click_on "Create Item"
     end
+
     assert_content page, "The Whopper was added to the menu!"
 
     # Superwoman retires an item
     within "#the-whopper-row" do
-      click_on "retire"
+      click_on "toggle"
     end
     assert_content page, "The Whopper was retired from the menu!"
 

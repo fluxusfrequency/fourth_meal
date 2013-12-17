@@ -4,11 +4,15 @@ class Superman::RestaurantsController < ApplicationController
   before_action :super_access
 
   def index
-    @restaurants = Restaurant.where(:status => "pending")
+    @restaurants = Restaurant.where(:status => "pending").page(params[:page]).per(20)
+  end
+
+  def inactive
+    @restaurants = Restaurant.where("status != 'rejected'").where(:active => false).page(params[:page]).per(20)
   end
 
   def rejected
-    @restaurants = Restaurant.where(:status => "rejected")
+    @restaurants = Restaurant.where(:status => "rejected").page(params[:page]).per(20)
   end
 
   def destroy
