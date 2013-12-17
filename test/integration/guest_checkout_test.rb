@@ -30,7 +30,7 @@ class GuestCheckoutTest < Capybara::Rails::TestCase
      fill_in "Email", with: "Benji@yeehaw.com"
      click_on "Use This Billing Address"
     end
-
+    # save_and_open_page
     assert_content page, ("Order Summary")
     assert_content page, ("Checking out as Guest")
 

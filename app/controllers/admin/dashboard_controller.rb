@@ -9,11 +9,4 @@ class Admin::DashboardController < ApplicationController
     @locations = Location.all.collect {|location| location.city}.sort
   end
 
-  def total_sales
-    completed_orders = current_restaurant.orders.where(:status => 'complete')
-    completed_orders.collect do |order|
-      order.total_price
-    end.reduce(:+)
-  end
-
 end

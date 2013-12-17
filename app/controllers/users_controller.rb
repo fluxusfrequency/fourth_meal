@@ -34,9 +34,7 @@ class UsersController < ApplicationController
     @addresses = current_user.addresses
   end
 
-  def is_admin?
-    current_user && current_user.admin
-  end
+
 
 private
 

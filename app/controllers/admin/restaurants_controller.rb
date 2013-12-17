@@ -2,6 +2,11 @@ class Admin::RestaurantsController < ApplicationController
   before_action :owner_access
   layout 'admin'
 
+  def show
+    @restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
+    redirect_to admin_path(session[:current_restaurant])
+  end
+
   def update
     @restaurant = Restaurant.find(params[:id])
     @restaurant.update(restaurant_params)
@@ -9,11 +14,6 @@ class Admin::RestaurantsController < ApplicationController
     @restaurant.update(location_id: @location.id)
     session[:current_restaurant] = @restaurant.to_param
     redirect_to admin_path(session[:current_restaurant]), :notice => "#{@restaurant.name} was updated!"
-  end
-
-  def show
-    @restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
-    redirect_to admin_path(session[:current_restaurant])
   end
 
   def destroy
