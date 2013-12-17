@@ -26,7 +26,7 @@ class RestaurantsController < ApplicationController
       flash.notice = "Your request has been submitted. 
                       You will be emailed when your restaurant is approved."
       session[:current_restaurant] = @restaurant.to_param
-      notify_super_of_request
+      notify_super_of_request(@restaurant)
       redirect_to root_path
     else
       render :new
@@ -35,10 +35,12 @@ class RestaurantsController < ApplicationController
 
   private
 
-  def notify_super_of_request
-    @superman = User.where(:super => true).first
+  def notify_super_of_request(restaurant)
+    @restaurant = restaurant
     @link = root_url + superman_approval_path
-    SuperNotifier.super_email(current_user, @superman, @link, @restaurant).deliver
+    User.where(:super => true).each do |superman|
+      SuperNotifier.super_email(current_user, superman.email, @link, @restaurant).deliver
+    end
   end
 
   def verify_logged_in_user
