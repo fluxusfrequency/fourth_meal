@@ -2,7 +2,7 @@ class OrderItemsController < ApplicationController
   before_action :check_active
   def destroy
     OrderItem.find(params[:id]).destroy
-    if items_in_cart?
+    if current_order.items_in_cart?
       success_message
     else
       cancel_order_message
