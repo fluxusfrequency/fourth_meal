@@ -43,7 +43,7 @@ class Superman::RestaurantsController < ApplicationController
   end
 
   def activate_message
-    flash.notice = "#{@restaurant.name} was reactivated!"
+    flash.notice = "#{@restaurant.name} was activated!"
   end
 
   def notify_owner_of_approval(restaurant)

@@ -1,28 +1,32 @@
 <%= form_for @restaurant, url: {action: "create"} do |f| %>
 
-    <h1>Creating A New Restaurant</h1>
-    <ul>
-    <% @restaurant.errors.full_messages.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-    </ul>
-    <p>
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </p>
-    <p>
-      <%= f.label :description %><br />
-      <%= f.text_area :description %>
-    </p>
-    <p>
-    <%= f.label :slug %> - <small>Note: use lowercase letters and dashes without spaces, like <em>my-restaurant-slug</em></small><br />
-    <%= f.text_area :slug %>
+   <h1>Creating A New Restaurant</h1>
+   <ul>
+   <% @restaurant.errors.full_messages.each do |error| %>
+     <li><%= error %></li>
+   <% end %>
+   </ul>
+   <p>
+     <%= f.label :name %><br />
+     <%= f.text_field :name %>
+   </p>
+   <p>
+     <%= f.label :description %><br />
+     <%= f.text_area :description %>
+   </p>
+   <p>
+   <%= f.label :slug %> - <small>Note: use lowercase letters and dashes without spaces, like <em>my-restaurant-slug<em></small><br />
+   <%= f.text_area :slug %>
   </p>
-    <p>
-      <%= f.label :theme %><br />
-      <%= f.select :theme, collection: @themes %>
-    </p>
-    <p>
-      <%= f.submit class: "button"  %>
-    </p>
-  <% end %>
+  <p>
+    <%= f.label :theme %><br />
+    <%= f.select :theme, collection: @themes %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= f.select :location, @locations %>
+  </p>
+  <p>
+    <%= f.submit class: "button"  %>
+  </p>
+<% end %>

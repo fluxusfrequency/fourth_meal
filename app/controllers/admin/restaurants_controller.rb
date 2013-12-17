@@ -38,7 +38,7 @@ class Admin::RestaurantsController < ApplicationController
   end
 
   def activate_message
-    flash.notice = "#{@restaurant.name} was reactivated!"
+    flash.notice = "#{@restaurant.name} was activated!"
   end
 
 end
