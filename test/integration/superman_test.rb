@@ -73,6 +73,11 @@ class SupermanTest < Capybara::Rails::TestCase
     assert_content page, "Rejected Restaurants"
     refute_content page, "Pizza Hut"
 
+    # Superman views inactive restaurants
+    click_on "Inactive"
+    assert_content page, "Inactive Restaurants"
+    assert_content page, "Taco Bell"
+
     # Superman views pending restaurants
     click_on "Pending Approval"
     assert_content page, "Pending Restaurants"
