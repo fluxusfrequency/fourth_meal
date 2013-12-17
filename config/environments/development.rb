@@ -10,7 +10,7 @@ OnoBurrito::Application.configure do
   config.eager_load = false
 
   config.consider_all_requests_local       = true
-  config.cache_store = :redis_store, "redis://localhost:6379/1/fourth_meal"
+  config.cache_store = :dalli_store
   config.action_controller.perform_caching = true
 
   # Don't care if the mailer can't send.

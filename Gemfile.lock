@@ -80,6 +80,7 @@ GEM
     columnize (0.3.6)
     coolline (0.4.2)
     daemons (1.1.9)
+    dalli (2.6.4)
     database_cleaner (1.2.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
@@ -308,6 +309,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)
+  dalli
   database_cleaner
   devise
   faker

@@ -14,6 +14,7 @@ gem 'paperclip'
 gem 'travis'
 gem 'redis-rails'
 gem 'newrelic_rpm'
+gem 'dalli'
 
 group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
