@@ -91,4 +91,8 @@ class Restaurant < ActiveRecord::Base
     %w(application dark light solarized)
   end
 
+  def send_super_email(user, email, link, restaurant)
+    SuperNotifier.super_email(user, email, link, restaurant).deliver
+  end
+
 end

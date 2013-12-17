@@ -39,7 +39,7 @@ class RestaurantsController < ApplicationController
     @restaurant = restaurant
     @link = root_url + superman_approval_path
     User.where(:super => true).each do |superman|
-      SuperNotifier.super_email(current_user, superman.email, @link, @restaurant).deliver
+      Restaurant.send_super_email(current_user, superman.email, @link, @restaurant)
     end
   end
 
