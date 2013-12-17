@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user, :current_order, :current_order_total, 
                 :items_in_cart?, :order_total, :check_active, :unauthorized,
-                :current_theme, :current_restaurant, :is_admin?
+                :current_theme, :current_restaurant, :is_admin?, :items_in_cart?
 
   def current_theme
     if current_restaurant
