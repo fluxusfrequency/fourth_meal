@@ -43,13 +43,10 @@ class UserCheckoutTest < Capybara::Rails::TestCase
     fill_in "Email", with: "Benji@yeehaw.com"
 
     click_on "Add This Billing Address"
-
     assert_content page, "Your address was successfully added."
-    within ".address-panel" do
-      click_on "Use Address"
-    end
-
+  
     assert_content page, "Transaction Information"
+    assert_content page, "Checking out as Benjamin Franklin"
 
   end
 
@@ -108,12 +105,9 @@ class UserCheckoutTest < Capybara::Rails::TestCase
 
     click_on "Add This Billing Address"
 
-    assert_content page, "Your address was successfully added."
-    within ".address-panel" do
-      click_on "Use Address"
-    end
-
     assert_content page, "Transaction Information"
+    assert_content page, "Checking out as Benjamin Franklin"
+
 
     # TODO: Get Javascript testing working
     # click_on ".stripe-button-el"
