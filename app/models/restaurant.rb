@@ -9,7 +9,7 @@ class Restaurant < ActiveRecord::Base
   validates_inclusion_of :status, :in => ["pending", "rejected", "approved"]
   validates_inclusion_of :theme, :in => ["application", "dark", "light", "solarized"]
 
-  belongs_to :location
+  belongs_to :location, :touch => true
 
   def to_param
     @param ||= slug || name.parameterize

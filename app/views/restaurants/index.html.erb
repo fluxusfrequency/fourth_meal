@@ -10,11 +10,12 @@
     Thanks for visiting! Bon apetit!</p>
 </div>
 
-
-<% @locations.each do |location|%>
-  <div class="grid-container">
-    <h1><%= location.city %></h1>
-    <%= render location.active_restaurants %>
-  </div>
+<% cache @locations do %>
+  <% @locations.each do |location|%>
+    <div class="grid-container">
+      <h1><%= location.city %></h1>
+      <%= render partial: "restaurants/restaurant", collection: location.active_restaurants %>
+    </div>
+  <% end %>
 <% end %>
 
