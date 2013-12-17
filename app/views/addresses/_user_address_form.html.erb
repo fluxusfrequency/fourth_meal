@@ -1,0 +1,44 @@
+<%= form_for @address do |f| %>
+
+  <%= render "shared/errors", model: @address %>
+
+  <table>
+    <tr>
+      <td class="address-label"><%= f.label :first_name %></td>
+      <td class="address-form"><%= f.text_field :first_name %></td>
+    </tr>
+
+    <tr>
+      <td class="address-label"><%= f.label :last_name %></td>
+      <td class="address-form"><%= f.text_field :last_name %></td>
+    </tr>
+
+    <tr>
+      <td class="address-label"><%= f.label :street_address %></td>
+      <td class="address-form"><%= f.text_field :street_address %></td>
+    </tr>
+
+    <tr>
+      <td class="address-label"><%= f.label :city %></td>
+      <td class="address-form"><%= f.text_field :city %></td>
+    </tr>
+
+    <tr>
+      <td class="address-label"><%= f.label :state %></td>
+      <td class="address-form"><%= f.text_field :state %></td>
+    </tr>
+
+    <tr>
+      <td class="address-label"><%= f.label :zipcode %></td>
+      <td class="address-form"><%= f.text_field :zipcode %></td>
+    </tr>
+
+    <tr>
+      <td class="address-label"><%= f.label :email %></td>
+      <td class="address-form"><%= f.text_field :email %></td>
+    </tr>
+
+  </table>
+  <%= f.submit "Add This Billing Address", class:'button-small button', id: 'ship-to-address' %>
+
+<% end %>
