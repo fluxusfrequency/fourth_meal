@@ -11,12 +11,10 @@
 </div>
 
 
-<% @locations.each do |l|%>
-  <% unless l.restaurants.where(:active => true).size == 0 %>
-    <div class="grid-container">
-      <h1><%= l.city %></h1>
-      <%= render l.restaurants.where(:active => true) %>
-    </div>
-  <% end %>
+<% @locations.each do |location|%>
+  <div class="grid-container">
+    <h1><%= location.city %></h1>
+    <%= render location.active_restaurants %>
+  </div>
 <% end %>
 

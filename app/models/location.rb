@@ -3,6 +3,10 @@ class Location < ActiveRecord::Base
   has_many :restaurants
 
   def has_restaurants?
-    self.restaurants.where(:active => true).size != 0
+    active_restaurants.size != 0
+  end
+
+  def active_restaurants
+    self.restaurants.where(:active => true)
   end
 end

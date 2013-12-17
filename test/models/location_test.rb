@@ -9,4 +9,9 @@ class LocationTest < ActiveSupport::TestCase
     refute location.has_restaurants?
   end
 
+  test "it can find the active restaurants for a location" do 
+    location = locations(:two)
+    assert_equal 2, location.active_restaurants.count
+  end
+
 end

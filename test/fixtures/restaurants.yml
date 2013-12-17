@@ -33,3 +33,12 @@ four:
   slug: "pizza-hut"
   location: two
   theme: dark
+
+five:
+  name: "Bonjour Dickhead"
+  description: "This is a restaurant"
+  active: true
+  status: "approved"
+  slug: "bonjour-dickhead"
+  location: two
+  theme: dark
