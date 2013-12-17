@@ -33,6 +33,7 @@
       
     </tr>
     <% cache @restaurants do %>
+      <%= paginate @restaurants %>
       <%= render @restaurants %>
     <% end %>
   </table>

@@ -18,6 +18,7 @@ OnoBurrito::Application.routes.draw do
 
     get "/" => "dashboard#index"
     get "/approval" => "restaurants#index", as: "approval"
+    get "/inactive" => "restaurants#inactive", as: "inactive"
     get "/rejected" => "restaurants#rejected", as: "rejected"
     post "/restaurants/approve" => "restaurants#approve", as: "approve"
     post "/restaurants/reject" => "restaurants#reject", as: "reject"
