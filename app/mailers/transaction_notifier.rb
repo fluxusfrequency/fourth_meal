@@ -18,7 +18,8 @@ class TransactionNotifier < ActionMailer::Base
     @transaction = transaction
     @link = link
     @restaurant = Restaurant.find(@transaction.order.restaurant_id)
-    mail(to: @email, subject: "Order Received for #{@restaurant.name} on Noshify!")
+    mail(to: @email,
+      subject: "Order Received for #{@restaurant.name} on Noshify!")
   end
 
   def order_total(order_items)
