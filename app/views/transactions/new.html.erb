@@ -18,7 +18,7 @@
     <h2 id="current-total">
       Order Total: <%= number_to_currency(order_total(current_order.order_items)) %>
     </h2>
-    
+
 
   </div>
 
@@ -44,6 +44,10 @@
           data-description="Your Order"
           data-image="">
         </script>
+      <% end %>
+
+      <% if ENV["RAILS_ENV"] == "test" %>
+        <%= f.submit "Pay With Card" %>
       <% end %>
 
     <% end %>

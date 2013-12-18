@@ -12,7 +12,7 @@
         </div>
       <% end %>
       <p class="order-item-details">Total: <%= number_to_currency(@transaction.total) %></p>
-      <p>Save this link to view this transaction in the future: <%= link_to root_url + request.path.to_s[1..-1] %></p>
+      <p>Save this link to view this transaction in the future: <%= link_to root_url + request.path.to_s[1..-1]%></p>
     </div>
     <p>Go back to <%= link_to current_restaurant.name, restaurant_root_path(session[:current_restaurant]) %>?<p>
   </div>
