@@ -3,7 +3,7 @@
 
   <td>
     <% if order.user %>
-      <%= order.user.name %>
+      <%= order.user.full_name %>
     <% else %>
       Guest
     <% end %>
@@ -12,7 +12,7 @@
   <td><%= order.status %></td>
 
   <td><%= number_to_currency(order.total_price) %></td>
-  
+
   <td><%= order.updated_at.strftime('%m/%d/%Y') %></td>
 
   <td>

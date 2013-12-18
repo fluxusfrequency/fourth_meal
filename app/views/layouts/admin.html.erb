@@ -9,12 +9,12 @@
     <title>Dashboard - Admin</title>
 
 
-    <%= stylesheet_link_tag "application", media: "all"%> 
-    <%= stylesheet_link_tag "bootstrap" %> 
-    <%= stylesheet_link_tag "sb-admin" %> 
+    <%= stylesheet_link_tag "application", media: "all"%>
+    <%= stylesheet_link_tag "bootstrap" %>
+    <%= stylesheet_link_tag "sb-admin" %>
     <%= javascript_include_tag "application"%>
     <%= csrf_meta_tags %>
-   
+
 
   </head>
 
@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
           </button>
           <%= link_to current_restaurant.name, restaurant_root_path(session[:current_restaurant]), {class: "navbar-brand"} %>
-          
+
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,14 +41,14 @@
           <ul class="nav navbar-nav side-nav">
             <li><%= link_to "Dashboard", admin_path %><i class="fa fa-dashboard"></i></li>
             <li><%= link_to "All Orders", admin_orders_path %><i class="fa fa-bar-chart-o"></i></li>
-            <li><%= link_to "Edit Menu", admin_items_path %><i class="fa fa-table"></i></li>
-            <li><%= link_to "Create New Item", new_admin_item_path %><i class="fa fa-edit"></i></li>
-            
+            <li><%= link_to "Edit Menu Items", admin_items_path %><i class="fa fa-table"></i></li>
+            <li><%= link_to "Create A New Item", new_admin_item_path %><i class="fa fa-edit"></i></li>
+
               </ul>
             </li>
           </ul>
 
-          
+
           <ul class="nav navbar-nav navbar-right navbar-user">
             <li><a href="#">Logged in as <%= current_user.full_name if current_user %></a></li>
             <li><%= link_to "Visit Superman Panel", superman_path if current_user.superman? %></li>
@@ -56,7 +56,7 @@
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>
-      
+
       <div class="grid-container" id="flash-section">
         <% flash.each do |name, msg| %>
           <%= content_tag :div, msg, :id => "flash_#{name}", :class => "grid-100" %>

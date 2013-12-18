@@ -62,7 +62,7 @@ class SupermanTest < Capybara::Rails::TestCase
       assert_content page, "pending"
       find("#approve_button").click
     end
-    
+
     assert_content page, "Taco Bell was approved!"
     within "#taco-bell_row" do
       assert_content page, "approved"
@@ -135,7 +135,7 @@ class SupermanTest < Capybara::Rails::TestCase
     assert_content page, "Flame Broiled, Dawg!"
 
     # Superwoman adds an item
-    click_on "Create New Item"
+    click_on "Create A New Item"
     assert_content page, "Create New Menu Item"
     within "#new_item" do
       fill_in "Title", with: "The Whopper"

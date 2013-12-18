@@ -34,7 +34,7 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     assert_content page, "Flame Broiled, Dawg!"
 
     # Admin adds an item
-    click_on "Create New Item"
+    click_on "Create A New Item"
     assert_content page, "Create New Menu Item"
 
     within "#new_item" do
@@ -50,7 +50,7 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
       click_on "toggle"
     end
     assert_content page, "The Whopper was retired from the menu!"
-    
+
     # Admin logs out and is redirected to the home page
     click_on "Log out"
     assert_equal root_path, page.current_path
