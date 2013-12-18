@@ -21,10 +21,10 @@ class Transaction < ActiveRecord::Base
       :restaurant_name => Restaurant.find(transaction.order.restaurant_id).name,
       :invoice_price => transaction.total,
       :order_date_time => transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
-      :order_status => transaction.order.status,
-      :order_items => transaction.order_items.collect |oi|
-                        [[oi.title], [oi.quantity]]
-                      end 
+      :order_status => transaction.order.status
+      # :order_items => transaction.order_items.collect |oi|
+                        # [[oi.title], [oi.quantity]]
+                      # end
     }
   end
 
@@ -34,10 +34,10 @@ class Transaction < ActiveRecord::Base
       :restaurant_name => Restaurant.find(transaction.order.restaurant_id).name,
       :invoice_price => transaction.total,
       :order_date_time => transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
-      :order_status => transaction.order.status,
-      :order_items => transaction.order_items.collect |oi|
-                        [[oi.title], [oi.quantity]]
-                      end 
+      :order_status => transaction.order.status
+      # :order_items => transaction.order_items.collect |oi|
+                        # [[oi.title], [oi.quantity]]
+                      # end
     }
   end
 
