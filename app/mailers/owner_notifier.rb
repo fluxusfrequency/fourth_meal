@@ -1,5 +1,5 @@
 class OwnerNotifier < ActionMailer::Base
-  default from: "customer_service@noshify.com"
+  default from: "navyosu@gmail.com"
 
   def owner_approve_email(owner_email, link, restaurant_name, restaurant_description)
     @email = owner_email

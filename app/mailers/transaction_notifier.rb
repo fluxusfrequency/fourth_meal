@@ -1,5 +1,5 @@
 class TransactionNotifier < ActionMailer::Base
-  default from: "customer_service@noshify.com"
+  default from: "navyosu@gmail.com"
 
   def user_email(data)
     @customer_name = data[:customer_name]

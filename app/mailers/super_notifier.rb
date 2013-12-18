@@ -1,5 +1,5 @@
 class SuperNotifier < ActionMailer::Base
-  default from: "customer_service@noshify.com"
+  default from: "navyosu@gmail.com"
 
   def super_email(customer_name, superman_email, link, restaurant_name, restaurant_description)
     @customer_name = customer_name
