@@ -35,6 +35,7 @@ class SessionsController < ApplicationController
     session[:current_restaurant] = nil
     session[:user_id] = nil
     redirect_to root_url, :notice => "Logged out!"
+    #session reset
   end
 
   private
