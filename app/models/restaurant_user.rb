@@ -1,4 +1,5 @@
 class RestaurantUser < ActiveRecord::Base
+  include InvalidatesCache
   validates_numericality_of :restaurant_id, :greater_than => 0
   validates_numericality_of :user_id, :greater_than => 0
   validates :role, presence: true, inclusion: { in:

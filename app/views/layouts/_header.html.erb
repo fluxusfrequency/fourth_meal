@@ -1,4 +1,6 @@
-<div class="grid-container" id="header-container">
-  <%= render "users/user_nav" %>
-  <a href="/" id="site-logo"><h1>Noshify</h1></a>
-</div>
+<% cache :header do %>
+  <div class="grid-container" id="header-container">
+    <%= render "users/user_nav" %>
+    <a href="/" id="site-logo"><h1>Noshify</h1></a>
+  </div>
+<% end %>

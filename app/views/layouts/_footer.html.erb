@@ -1,7 +1,8 @@
-<div class="grid-100">
-  <% if current_user %>
-    <p><%= link_to "Create New Restaurant", new_restaurant_path %></p>
-  <% end %>
-  <p id="copyright">&copy; 2013 Ono Burrito Co. All Rights Reserved. </p>
-</div>
-
+<% cache :footer do %>
+  <div class="grid-100">
+    <% if current_user %>
+      <p><%= link_to "Create New Restaurant", new_restaurant_path %></p>
+    <% end %>
+    <p id="copyright">&copy; 2013 Ono Burrito Co. All Rights Reserved. </p>
+  </div>
+<% end %>

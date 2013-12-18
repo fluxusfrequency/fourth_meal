@@ -29,14 +29,18 @@ class Restaurant < ActiveRecord::Base
   end
 
   def owners
-    self.restaurant_users.where(role: "owner").collect do |ru|
-      ru.user
+    Rails.cache.fetch("#{id}s_owners") do
+      self.restaurant_users.where(role: "owner").collect do |ru|
+        ru.user
+      end
     end
   end
 
   def employees
-    self.restaurant_users.where(role: "employee").collect do |ru|
-      ru.user
+    Rails.cache.fetch("#{id}s_employees") do
+      self.restaurant_users.where(role: "employee").collect do |ru|
+        ru.user
+      end
     end
   end
 
@@ -98,6 +102,12 @@ class Restaurant < ActiveRecord::Base
 
   def pending?
     self.status == "pending"
+  end
+
+  def categories_with_items
+    Rails.cache.fetch("#{id}s_categories_with_items") do
+      self.categories.reject {|c| c.items.size == 0 }
+    end
   end
 
   def self.themes

@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def load_category
-    @categories = current_restaurant.categories
+    @categories = current_restaurant.categories_with_items
   end
 
   def item_params
