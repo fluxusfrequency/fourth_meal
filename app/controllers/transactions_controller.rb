@@ -81,13 +81,19 @@ class TransactionsController < ApplicationController
 
   def process_saved_transaction
     @transaction.pay!
-    clear_current_order
-    clear_checkout_session_data
     @address = Address.find(@transaction.address_id)
     @link = root_url +
       transaction_path(session[:current_restaurant], @transaction)[1..-1]
-    send_owner_emails
-    send_user_email
+    @transaction.order.update(user_id: current_user.id) if current_user
+    begin
+      send_owner_emails
+      send_user_email
+    rescue
+      return
+    end
+
+    clear_current_order
+    clear_checkout_session_data
   end
 
   def transaction_params
