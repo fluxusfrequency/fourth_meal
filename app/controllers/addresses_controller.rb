@@ -31,6 +31,11 @@ class AddressesController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def destroy
+    current_user.addresses.find(params[:id]).destroy
+    redirect_to user_path(current_user)
+  end
+
   def change
     session[:current_address] = nil
     redirect_to :back
