@@ -24,7 +24,7 @@ class TransactionNotifier < ActionMailer::Base
     mail(to: data,
       subject: "Order Received for @restaurant_name on Noshify!")
   end
-o
+
   def order_total(order_items)
     order_items.inject(0) {|sum, i| sum += (i.item.price * i.quantity) }
   end
