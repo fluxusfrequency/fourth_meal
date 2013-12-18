@@ -22,7 +22,8 @@ module OrdersHelper
  end
 
  def find_order
-   if current_restaurant && session[:orders].keys.include?(current_restaurant.id)
+   if current_restaurant &&
+    session[:orders].keys.include?(current_restaurant.id)
      order = Order.find(session[:orders][current_restaurant.id])
    end
  end

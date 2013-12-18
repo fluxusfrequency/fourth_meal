@@ -10,7 +10,8 @@ class Superman::RestaurantsController < ApplicationController
 
   def inactive
     @restaurants = Restaurant.where(
-      "status != 'rejected'").where(:active => false).page(params[:page]).per(20)
+      "status != 'rejected'").where(
+      :active => false).page(params[:page]).per(20)
   end
 
   def rejected

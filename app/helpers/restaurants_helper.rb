@@ -15,7 +15,8 @@ module RestaurantsHelper
   def fail_with_message
     if @restaurant && @restaurant.approved? && @restaurant.inactive?
       redirect_to root_path,
-        :notice => "Sorry, this restaurant is currently offline for maintenance."
+        :notice => "Sorry, this restaurant
+        is currently offline for maintenance."
     elsif @restaurant && !@restaurant.approved?
       redirect_to root_path,
         :notice => "Sorry, we couldn't find

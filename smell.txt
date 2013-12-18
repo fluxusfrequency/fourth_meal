@@ -1,39 +1,5 @@
 
 == using cane to check line length ==
-
-Lines violated style requirements (28):
-
-  app/controllers/admin/restaurants_controller.rb:16      (103)
-  app/controllers/orders_controller.rb:27                 (114)
-  app/controllers/restaurants_controller.rb:36            (82)
-  app/controllers/restaurants_controller.rb:42            (81)
-  app/controllers/sessions_controller.rb:32               (82)
-  app/controllers/superman/dashboard_controller.rb:7      (91)
-  app/controllers/superman/restaurants_controller.rb:7    (85)
-  app/controllers/superman/restaurants_controller.rb:11   (111)
-  app/controllers/superman/restaurants_controller.rb:15   (86)
-  app/controllers/transactions_controller.rb:88           (90)
-  app/controllers/transactions_controller.rb:97           (110)
-  app/controllers/users_controller.rb:18                  (111)
-  app/controllers/users_controller.rb:28                  (95)
-  app/controllers/users_controller.rb:45                  (93)
-  app/controllers/users_controller.rb:56                  (102)
-  app/helpers/auth_helper.rb:9                            (95)
-  app/helpers/auth_helper.rb:14                           (142)
-  app/helpers/orders_helper.rb:25                         (81)
-  app/helpers/restaurants_helper.rb:3                     (132)
-  app/helpers/restaurants_helper.rb:15                    (102)
-  app/helpers/restaurants_helper.rb:17                    (108)
-  app/mailers/owner_notifier.rb:9                         (89)
-  app/mailers/owner_notifier.rb:17                        (106)
-  app/mailers/super_notifier.rb:9                         (96)
-  app/mailers/transaction_notifier.rb:17                  (87)
-  app/models/restaurant.rb:10                             (85)
-  app/models/user.rb:16                                   (90)
-  app/models/user.rb:45                                   (93)
-
-Total Violations: 28
-
 == done checking line length ==
 
 
@@ -57,10 +23,10 @@ app/controllers/order_items_controller.rb -- 2 warnings:
   [5, 10]:OrderItemsController#destroy calls current_order twice (DuplicateMethodCall)
 app/controllers/orders_controller.rb -- 5 warnings:
   [1]:OrdersController has no descriptive comment (IrresponsibleModule)
-  [50, 51]:OrdersController#add_item_to_order calls params twice (DuplicateMethodCall)
-  [50, 51]:OrdersController#add_item_to_order calls params[:item] twice (DuplicateMethodCall)
-  [41, 42]:OrdersController#add_or_increment_item calls existing_order_item twice (DuplicateMethodCall)
-  [58, 59]:OrdersController#update_order calls current_order twice (DuplicateMethodCall)
+  [51, 52]:OrdersController#add_item_to_order calls params twice (DuplicateMethodCall)
+  [51, 52]:OrdersController#add_item_to_order calls params[:item] twice (DuplicateMethodCall)
+  [42, 43]:OrdersController#add_or_increment_item calls existing_order_item twice (DuplicateMethodCall)
+  [59, 60]:OrdersController#update_order calls current_order twice (DuplicateMethodCall)
 app/controllers/restaurants_controller.rb -- 2 warnings:
   [1]:RestaurantsController has no descriptive comment (IrresponsibleModule)
   [11]:RestaurantsController#create has approx 10 statements (TooManyStatements)
@@ -69,13 +35,13 @@ app/controllers/sessions_controller.rb -- 7 warnings:
   [22, 23]:SessionsController#checkout_as_guest calls session twice (DuplicateMethodCall)
   [22, 23]:SessionsController#checkout_as_guest calls session[:current_address] twice (DuplicateMethodCall)
   [9, 9]:SessionsController#create calls params twice (DuplicateMethodCall)
-  [31, 32, 32, 33, 34]:SessionsController#destroy calls session 5 times (DuplicateMethodCall)
-  [41, 42, 44]:SessionsController#find_redirect calls session 3 times (DuplicateMethodCall)
-  [41, 42]:SessionsController#find_redirect calls session[:forwarding_path] twice (DuplicateMethodCall)
+  [31, 32, 32, 35, 36]:SessionsController#destroy calls session 5 times (DuplicateMethodCall)
+  [43, 44, 46]:SessionsController#find_redirect calls session 3 times (DuplicateMethodCall)
+  [43, 44]:SessionsController#find_redirect calls session[:forwarding_path] twice (DuplicateMethodCall)
 app/controllers/transactions_controller.rb -- 10 warnings:
   [1]:TransactionsController has no descriptive comment (IrresponsibleModule)
   [18, 19]:TransactionsController#add_guest_address calls session twice (DuplicateMethodCall)
-  [101, 102]:TransactionsController#clear_checkout_session_data calls session twice (DuplicateMethodCall)
+  [109, 110]:TransactionsController#clear_checkout_session_data calls session twice (DuplicateMethodCall)
   [36, 39]:TransactionsController#create calls flash twice (DuplicateMethodCall)
   [32]:TransactionsController#create has approx 6 statements (TooManyStatements)
   [69, 70]:TransactionsController#current_or_new_guest_address calls session twice (DuplicateMethodCall)
@@ -92,31 +58,31 @@ app/controllers/users_controller.rb -- 14 warnings:
   [10, 14]:UsersController#create calls session twice (DuplicateMethodCall)
   [10, 14]:UsersController#create calls session[:user_id] = @user.id twice (DuplicateMethodCall)
   [7]:UsersController#create has approx 9 statements (TooManyStatements)
-  [42, 43, 44, 45]:UsersController#find_redirect calls session 4 times (DuplicateMethodCall)
-  [44, 45]:UsersController#find_redirect calls session[:current_restaurant] twice (DuplicateMethodCall)
-  [42, 43]:UsersController#find_redirect calls session[:forwarding_path] twice (DuplicateMethodCall)
-  [33, 34]:UsersController#show calls current_user twice (DuplicateMethodCall)
-  [26, 28]:UsersController#update calls @user.id twice (DuplicateMethodCall)
-  [26, 28]:UsersController#update calls user_path(@user.id) twice (DuplicateMethodCall)
+  [44, 45, 46, 47]:UsersController#find_redirect calls session 4 times (DuplicateMethodCall)
+  [46, 47]:UsersController#find_redirect calls session[:current_restaurant] twice (DuplicateMethodCall)
+  [44, 45]:UsersController#find_redirect calls session[:forwarding_path] twice (DuplicateMethodCall)
+  [35, 36]:UsersController#show calls current_user twice (DuplicateMethodCall)
+  [27, 29]:UsersController#update calls @user.id twice (DuplicateMethodCall)
+  [27, 29]:UsersController#update calls user_path(@user.id) twice (DuplicateMethodCall)
 app/helpers/application_helper.rb -- 3 warnings:
   [11]:ApplicationHelper#order_total doesn't depend on instance state (UtilityFunction)
   [12]:ApplicationHelper#order_total has the variable name 'i' (UncommunicativeVariableName)
   [11]:ApplicationHelper#order_total refers to i more than self (FeatureEnvy)
 app/helpers/auth_helper.rb -- 3 warnings:
-  [14, 14]:AuthHelper#employee_access calls current_restaurant twice (DuplicateMethodCall)
-  [14, 14, 14]:AuthHelper#employee_access calls current_user 3 times (DuplicateMethodCall)
-  [9, 9]:AuthHelper#owner_access calls current_user twice (DuplicateMethodCall)
+  [18, 19]:AuthHelper#employee_access calls current_restaurant twice (DuplicateMethodCall)
+  [18, 19, 19]:AuthHelper#employee_access calls current_user 3 times (DuplicateMethodCall)
+  [11, 11]:AuthHelper#owner_access calls current_user twice (DuplicateMethodCall)
 app/helpers/categories_helper.rb -- 1 warning:
   [6]:CategoriesHelper#link_to_category refers to category more than self (FeatureEnvy)
 app/helpers/orders_helper.rb -- 4 warnings:
-  [25, 25, 26]:OrdersHelper#find_order calls current_restaurant 3 times (DuplicateMethodCall)
-  [25, 26]:OrdersHelper#find_order calls current_restaurant.id twice (DuplicateMethodCall)
-  [25, 26]:OrdersHelper#find_order calls session twice (DuplicateMethodCall)
-  [25, 26]:OrdersHelper#find_order calls session[:orders] twice (DuplicateMethodCall)
+  [25, 26, 27]:OrdersHelper#find_order calls current_restaurant 3 times (DuplicateMethodCall)
+  [26, 27]:OrdersHelper#find_order calls current_restaurant.id twice (DuplicateMethodCall)
+  [26, 27]:OrdersHelper#find_order calls session twice (DuplicateMethodCall)
+  [26, 27]:OrdersHelper#find_order calls session[:orders] twice (DuplicateMethodCall)
 app/helpers/restaurants_helper.rb -- 3 warnings:
-  [3, 4]:RestaurantsHelper#current_restaurant calls session twice (DuplicateMethodCall)
-  [14, 16]:RestaurantsHelper#fail_with_message calls @restaurant.approved? twice (DuplicateMethodCall)
-  [15, 17]:RestaurantsHelper#fail_with_message calls root_path twice (DuplicateMethodCall)
+  [4, 6]:RestaurantsHelper#current_restaurant calls session twice (DuplicateMethodCall)
+  [16, 20]:RestaurantsHelper#fail_with_message calls @restaurant.approved? twice (DuplicateMethodCall)
+  [17, 21]:RestaurantsHelper#fail_with_message calls root_path twice (DuplicateMethodCall)
 app/helpers/users_helper.rb -- 3 warnings:
   [7, 7]:UsersHelper#find_user calls session twice (DuplicateMethodCall)
   [7, 7]:UsersHelper#find_user calls session[:user_id] twice (DuplicateMethodCall)
@@ -128,11 +94,11 @@ app/mailers/super_notifier.rb -- 2 warnings:
   [4]:SuperNotifier#super_email has 4 parameters (LongParameterList)
 app/mailers/transaction_notifier.rb -- 6 warnings:
   [1]:TransactionNotifier has no descriptive comment (IrresponsibleModule)
-  [20]:TransactionNotifier#order_total doesn't depend on instance state (UtilityFunction)
-  [21]:TransactionNotifier#order_total has the variable name 'i' (UncommunicativeVariableName)
-  [20]:TransactionNotifier#order_total refers to i more than self (FeatureEnvy)
-  [14, 16]:TransactionNotifier#user_email calls @transaction.order twice (DuplicateMethodCall)
-  [10]:TransactionNotifier#user_email has approx 7 statements (TooManyStatements)
+  [15]:TransactionNotifier#order_total doesn't depend on instance state (UtilityFunction)
+  [16]:TransactionNotifier#order_total has the variable name 'i' (UncommunicativeVariableName)
+  [15]:TransactionNotifier#order_total refers to i more than self (FeatureEnvy)
+  [8, 10]:TransactionNotifier#user_email calls @transaction.order twice (DuplicateMethodCall)
+  [4]:TransactionNotifier#user_email has approx 7 statements (TooManyStatements)
 app/models/address.rb -- 1 warning:
   [1]:Address has no descriptive comment (IrresponsibleModule)
 app/models/category.rb -- 1 warning:
@@ -158,6 +124,6 @@ app/models/transaction.rb -- 3 warnings:
   [10]:Transaction#self.send_transaction_emails has 4 parameters (LongParameterList)
 app/models/user.rb -- 2 warnings:
   [1]:User has no descriptive comment (IrresponsibleModule)
-  [53, 55]:User#encrypt_password calls password twice (DuplicateMethodCall)
+  [55, 57]:User#encrypt_password calls password twice (DuplicateMethodCall)
 == done checking method length ==
 
