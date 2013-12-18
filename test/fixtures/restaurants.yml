@@ -48,6 +48,6 @@ six:
   description: "There are a lot of fish in the sea"
   active: true
   status: "approved"
-  slug:
+  slug: "123"
   location: three
   theme: dark

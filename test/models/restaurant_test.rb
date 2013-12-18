@@ -60,7 +60,7 @@ class RestaurantTest < ActiveSupport::TestCase
 
   test "it can generate its slug" do
     refute_equal "long-john-silvers", restaurants(:six).name
-    assert_nil restaurants(:six).slug
+    refute_equal "long-john-silver-s", restaurants(:six).slug
     restaurants(:six).generate_slug
     assert_equal "long-john-silver-s", restaurants(:six).slug
   end
