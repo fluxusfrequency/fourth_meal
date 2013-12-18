@@ -14,7 +14,8 @@ class Transaction < ActiveRecord::Base
       :restaurant_name => transaction.order.restaurant_name,
       :invoice_price => transaction.total,
       :order_date_time => transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
-      :order_status => transaction.order.status
+      :order_status => transaction.order.status,
+      :link => link
     }
   end
 
@@ -24,7 +25,8 @@ class Transaction < ActiveRecord::Base
       :restaurant_name => transaction.order.restaurant_name,
       :invoice_price => transaction.total,
       :order_date_time => transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
-      :order_status => transaction.order.status
+      :order_status => transaction.order.status,
+      :link => link
     }
   end
 
