@@ -82,12 +82,13 @@ class TransactionsController < ApplicationController
   def process_saved_transaction
     @transaction.pay!
     @address = Address.find(@transaction.address_id)
-    @link = root_url +
-      transaction_path(session[:current_restaurant], @transaction)[1..-1]
     @transaction.order.update(user_id: current_user.id) if current_user
+    link = root_url +
+      transaction_path(session[:current_restaurant], @transaction)[1..-1]
+
     begin
-      send_owner_emails
-      send_user_email
+      send_owner_emails(@transaction, link)
+      send_user_email(@transaction, link)
     rescue
       return
     end
@@ -100,14 +101,16 @@ class TransactionsController < ApplicationController
     params.require(:transaction).permit(:stripe_token, :address, :stripe_email)
   end
 
-  def send_owner_emails
+  def send_owner_emails(transaction, link)
     current_restaurant.owners.each do |owner|
-      Transaction.send_owner_transaction_email(@address, owner, @transaction, @link)
+      data = transaction.owner_transaction_email_data(transaction, link, owner)
+      Resque.enqueue(OwnerTransactionNotifierJob, data)
     end
   end
 
-  def send_user_email
-    Transaction.send_user_transaction_email(@address, @transaction, @link)
+  def send_user_email(transaction, link)
+    data = transaction.user_transaction_email_data(transaction, link)
+    Resque.enqueue(UserTransactionNotifierJob, data)
   end
 
   def address_params

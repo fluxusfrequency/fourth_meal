@@ -17,4 +17,8 @@ class Order < ActiveRecord::Base
   def total_price
     self.order_items.inject(0) {|sum, i| sum += (i.item.price * i.quantity) }
   end
+
+  def restaurant_name
+    self.restaurant.name
+  end
 end

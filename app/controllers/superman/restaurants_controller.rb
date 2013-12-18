@@ -27,17 +27,17 @@ class Superman::RestaurantsController < ApplicationController
   end
 
   def approve
-    @restaurant = Restaurant.find_by_slug(params[:format])
-    @restaurant.approve
-    # notify_owner_of_approval(@restaurant)
-    redirect_to superman_path, :notice => "#{@restaurant.name} was approved!"
+    restaurant = Restaurant.find_by_slug(params[:format])
+    restaurant.approve
+    notify_owners_of_approval(restaurant)
+    redirect_to superman_path, :notice => "#{restaurant.name} was approved!"
   end
 
   def reject
-    @restaurant = Restaurant.find_by_slug(params[:format])
-    @restaurant.reject
-    # notify_owner_of_rejection(@restaurant)
-    redirect_to superman_path, :notice => "#{@restaurant.name} was rejected!"
+    restaurant = Restaurant.find_by_slug(params[:format])
+    restaurant.reject
+    notify_owners_of_rejection(restaurant)
+    redirect_to superman_path, :notice => "#{restaurant.name} was rejected!"
   end
 
   private
@@ -54,14 +54,18 @@ class Superman::RestaurantsController < ApplicationController
     flash.notice = "#{@restaurant.name} was activated!"
   end
 
-  def notify_owner_of_approval(restaurant)
-    @link = root_url + restaurant.slug + "/admin"
-    restaurant.send_owner_approve_emails(@link, self)
+  def notify_owners_of_approval(restaurant)
+    link = root_url + restaurant.slug + "/admin"
+    restaurant.owners.each do |owner|
+      Resque.enqueue(OwnerApproveJob, owner.email, link, restaurant.name, restaurant.description)
+    end
   end
 
-  def notify_owner_of_rejection(restaurant)
-    @link = root_url
-    restaurant.send_owner_reject_emails(@link, self)
+  def notify_owners_of_rejection(restaurant)
+    link = root_url
+    restaurant.owners.each do |owner|
+      Resque.enqueue(OwnerRejectJob, owner.email, link, restaurant.name, restaurant.description)
+    end
   end
 
 end

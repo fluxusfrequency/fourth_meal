@@ -27,7 +27,7 @@ class RestaurantsController < ApplicationController
     flash.notice = "Your request has been submitted.
                     You will be emailed when your restaurant is approved."
     session[:current_restaurant] = @restaurant.to_param
-    # notify_supers_of_request(@restaurant)
+    notify_supers_of_request(@restaurant)
   end
 
   def update_location
@@ -40,12 +40,10 @@ class RestaurantsController < ApplicationController
   end
 
   def notify_supers_of_request(restaurant)
-    @restaurant = restaurant
-    @link = root_url + superman_approval_path
+    link = root_url + superman_approval_path
 
     User.where(:super => true).each do |superman|
-      Restaurant.send_super_email(
-        current_user, superman.email, @link, @restaurant)
+      Resque.enqueue(SuperNotifierJob, current_user.full_name, superman.email, link, restaurant.name, restaurant.description)
     end
   end
 

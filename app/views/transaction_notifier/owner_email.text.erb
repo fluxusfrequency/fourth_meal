@@ -10,10 +10,6 @@ Here are their order details:
 Restaurant Name: <%= @restaurant_name %>
 Order Date/Time: <%= @order_date_time %>
 Status: <%= @order_status %>
-Items:  <%= order_items.each do |oi| %>
-          <%= oi[0] + " - " + oi[1] %>
-        <% end %>
-
 Total: <%= number_to_currency(@invoice_price) %>
 
 To view their full order information, please visit: <%= @link %>

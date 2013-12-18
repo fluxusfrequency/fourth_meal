@@ -4,27 +4,26 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Great news, <%= @customer_name %>, your order is on the way!</h1>
+    <p>
+      Your Order at <%= @restaurant_name %> Was Received!
+      ==============================================================
 
-    <p>Your card has been charged <%= number_to_currency(@transaction.total) %></p>
+      Great news, <%= @customer_name %> your order is on the way!
 
-    <p>Here are your order details:</p>
-     <div class="grid-container">
-      <div class="grid-100" id="transaction-container">
-        <h1>Transaction Details:</h1>
-        <div id="transaction-details">
-          <p class="order-item-details">
-          <% @transaction.order.order_items.each do |oi| %>
-            <div class="order-item-details">
-              <p>Item: <%= oi.item.title %></p>
-              <p>Quantity: <%= oi.quantity %></p>
-            </div>
-          <% end %>
-          <p class="order-item-details">Total: <%= number_to_currency(@transaction.total) %></p>
-        </div>
-        <p>To see your full order information, please visit: <%= @link %></p>
-      </div>
-    </div>
-      
+      Your card has been charged <%= number_to_currency(@invoice_price) %>
+
+      Here are your order details:
+
+      Restaurant Name: <%= @restaurant_name %>
+      Order Date/Time: <%= @order_date_time %>
+      Status: <%= @order_status %>
+
+      Total: <%= number_to_currency(@invoice_price) %>
+
+      To view your full order information, please visit: <%= @link %>
+
+      Thanks for using Noshify!
+    </p>
+
   </body>
 </html>
