@@ -87,6 +87,7 @@ class TransactionsController < ApplicationController
     @link = root_url +
       transaction_path(session[:current_restaurant], @transaction)[1..-1]
     send_owner_emails
+    send_user_email
   end
 
   def transaction_params
@@ -95,8 +96,12 @@ class TransactionsController < ApplicationController
 
   def send_owner_emails
     current_restaurant.owners.each do |owner|
-      Transaction.send_transaction_emails(@address, owner, @transaction, @link)
+      Transaction.send_owner_transaction_email(owner, @transaction, @link)
     end
+  end
+
+  def send_user_email
+    Transaction.send_user_transaction_email(@address, @transaction, @link)
   end
 
   def address_params
