@@ -1,20 +1,20 @@
-A Customer Placed an Order at <%= @restaurant.name %>!
+A Customer Placed an Order at <%= @restaurant_name %>!
 ==============================================================
 
-Great news, <%= @customer_name %> has placed an order at <%= @restaurant.name %>!
+Great news, <%= @customer_name %> has placed an order at <%= @restaurant_name %>!
 
-Their card has been charged <%= number_to_currency(@transaction.total) %>
+Their card has been charged <%= number_to_currency(@invoice_price) %>
 
 Here are their order details:
 
-Restaurant Name: <%= @restaurant.name %>
-Order Date/Time: <%= @transaction.created_at.strftime("%b %d, %Y at %I:%M%p") %>
-Status: <%= @transaction.order.status %>
-Items:  <% @transaction.order.order_items.each do |oi| %>
-          <%= oi.item.title %> - <%= oi.quantity %>
+Restaurant Name: <%= @restaurant_name %>
+Order Date/Time: <%= @order_date_time %>
+Status: <%= @order_status %>
+Items:  <%= order_items.each do |oi| %>
+          <%= oi[0] + " - " + oi[1] %>
         <% end %>
 
-Total: <%= number_to_currency(@transaction.total) %>
+Total: <%= number_to_currency(@invoice_price) %>
 
 To view their full order information, please visit: <%= @link %>
 

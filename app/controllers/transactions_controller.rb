@@ -102,7 +102,7 @@ class TransactionsController < ApplicationController
 
   def send_owner_emails
     current_restaurant.owners.each do |owner|
-      Transaction.send_owner_transaction_email(owner, @transaction, @link)
+      Transaction.send_owner_transaction_email(@address, owner, @transaction, @link)
     end
   end
 
