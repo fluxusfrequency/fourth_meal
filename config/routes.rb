@@ -9,7 +9,6 @@ OnoBurrito::Application.routes.draw do
   get "/log_in" => "sessions#new", as: "log_in"
   get "/sign_up" => "users#new"
 
-
   resources :locations, only: [ :index, :show ]
   resources :users, except: [ :index, :destroy ]
   resources :sessions, only: [ :new, :create, :checkout_as_guest, :destroy ]
