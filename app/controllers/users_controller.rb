@@ -15,7 +15,8 @@ class UsersController < ApplicationController
       flash.notice = "Signed up!"
       redirect_to root_path
     else
-      flash.notice = "There were errors that prevented your account from saving: #{@user.errors.full_messages}"
+      flash.notice = "There were errors that prevented
+        your account from saving: #{@user.errors.full_messages}"
       redirect_to log_in_path
     end
   end
@@ -25,7 +26,8 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user.id), :notice => "Credentials updated!"
     else
-      redirect_to user_path(@user.id), :notice => "Your account was not saved for some reason!"
+      redirect_to user_path(@user.id),
+        :notice => "Your account was not saved for some reason!"
     end
   end
 
@@ -42,7 +44,8 @@ private
     if session[:forwarding_path]
       redirect_to session[:forwarding_path]
     elsif session[:current_restaurant]
-      redirect_to restaurant_root_path(session[:current_restaurant]), :notice => "Signed up!"
+      redirect_to restaurant_root_path(session[:current_restaurant]),
+        :notice => "Signed up!"
     else
       redirect_to root_path, :notice => "Signed up!"
     end
@@ -53,6 +56,11 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:email, :full_name, :display_name, :password, :password_confirmation)
+    params.require(:user).permit(
+      :email,
+      :full_name,
+      :display_name,
+      :password,
+      :password_confirmation)
   end
 end

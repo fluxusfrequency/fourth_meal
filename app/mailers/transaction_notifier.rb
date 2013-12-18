@@ -1,12 +1,6 @@
 class TransactionNotifier < ActionMailer::Base
   default from: "customer_service@noshify.com"
 
-  # def welcome_email(user)
-  #   @user = user
-  #   @url = "noshify.herokuapp.com/login"
-  #   mail(to: @user.email, subject: "Welcome to Noshify")
-  # end
-
   def user_email(email, transaction, link)
     @email = email
     @transaction = transaction
@@ -14,7 +8,8 @@ class TransactionNotifier < ActionMailer::Base
     @total = order_total(@transaction.order.order_items)
     @link = link
     @restaurant = Restaurant.find(@transaction.order.restaurant_id)
-    mail(to: @email, subject: "Order Confirmation for #{@restaurant.name} on Noshify!")
+    mail(to: @email,
+      subject: "Order Confirmation for #{@restaurant.name} on Noshify!")
   end
 
   def order_total(order_items)

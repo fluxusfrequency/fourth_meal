@@ -24,7 +24,8 @@ class OrdersController < ApplicationController
     update_order
     @item = current_restaurant.items.find(params[:item])
     add_or_increment_item
-    flash.notice = "Item was added to your cart! Current total: #{number_to_currency(current_order.total_price)}."
+    flash.notice = "Item was added to your cart!
+      Current total: #{number_to_currency(current_order.total_price)}."
     redirect_to :back
   end
 

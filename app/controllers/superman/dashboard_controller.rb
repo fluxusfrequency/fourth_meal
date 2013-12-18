@@ -4,7 +4,8 @@ class Superman::DashboardController < ApplicationController
   before_action :super_access
 
   def index
-    @restaurants = Restaurant.all.where("status != 'rejected'").page(params[:page]).per(20)
+    @restaurants = Restaurant.all.where(
+      "status != 'rejected'").page(params[:page]).per(20)
   end
 
 end
