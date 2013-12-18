@@ -16,8 +16,7 @@ class OwnerNotifier < ActionMailer::Base
     @restaurant_name = restaurant_name
     @restaurant_description = restaurant_description
     mail(to: @email,
-      subject: "We're sorry, but your restaurant,
-      #{restaurant_name}, has been rejected.")
+      subject: "We're sorry, but your restaurant, #{restaurant_name}, has been rejected.")
   end
 
 end
