@@ -1,4 +1,8 @@
+require 'resque/server'
+
 OnoBurrito::Application.routes.draw do
+  mount Resque::Server.new, at: "/resque"
+
   root :to => "locations#index"
 
   get "/log_out" => "sessions#destroy"
