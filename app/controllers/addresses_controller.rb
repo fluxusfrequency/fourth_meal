@@ -38,7 +38,7 @@ class AddressesController < ApplicationController
   private
 
   def find_redirect
-    if current_user && session[:current_address]
+    if current_user && session[:current_address] && session[:current_restaurant]
       redirect_to new_transaction_path(session[:current_restaurant])
     elsif current_user
       redirect_to user_path(current_user)

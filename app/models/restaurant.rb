@@ -53,7 +53,11 @@ class Restaurant < ActiveRecord::Base
   end
 
   def inactive?
-    !self.active
+    self.active == false
+  end
+
+  def offline?
+    self.approved? && self.inactive?
   end
 
   def activate
@@ -78,6 +82,10 @@ class Restaurant < ActiveRecord::Base
 
   def approved?
     self.status == "approved"
+  end
+
+  def unapproved?
+    self.approved? == false
   end
 
   def reject
