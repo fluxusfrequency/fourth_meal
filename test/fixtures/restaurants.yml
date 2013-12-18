@@ -42,3 +42,12 @@ five:
   slug: "bonjour-dickhead"
   location: two
   theme: dark
+
+six:
+  name: "Long John Silver's"
+  description: "There are a lot of fish in the sea"
+  active: true
+  status: "approved"
+  slug:
+  location: three
+  theme: dark
