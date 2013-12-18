@@ -8,8 +8,7 @@ class SuperNotifier < ActionMailer::Base
     @restaurant_name = restaurant_name
     @restaurant_description = restaurant_description
     mail(to: @email,
-      subject: "New Restaurant #{@restaurant_name}
-      on Noshify Pending Approval!")
+      subject: "New Restaurant #{@restaurant_name} on Noshify Pending Approval!")
   end
 
 end
