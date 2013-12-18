@@ -86,12 +86,8 @@ class TransactionsController < ApplicationController
     link = root_url +
       transaction_path(session[:current_restaurant], @transaction)[1..-1]
 
-    begin
-      send_owner_emails(@transaction, link)
-      send_user_email(@transaction, link)
-    rescue
-      return
-    end
+    send_owner_emails(@transaction, link)
+    send_user_email(@transaction, link)
 
     clear_current_order
     clear_checkout_session_data
