@@ -83,15 +83,20 @@ class TransactionsController < ApplicationController
     @transaction.pay!
     clear_current_order
     clear_checkout_session_data
-    @owner = current_restaurant.find_owner
     @address = Address.find(@transaction.address_id)
     @link = root_url +
       transaction_path(session[:current_restaurant], @transaction)[1..-1]
-    Transaction.send_transaction_emails(@address, @owner, @transaction, @link)
+    send_owner_emails
   end
 
   def transaction_params
     params.require(:transaction).permit(:stripe_token, :address, :stripe_email)
+  end
+
+  def send_owner_emails
+    current_restaurant.owners.each do |owner|
+      Transaction.send_transaction_emails(@address, owner, @transaction, @link)
+    end
   end
 
   def address_params

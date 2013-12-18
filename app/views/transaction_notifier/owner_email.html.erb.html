@@ -4,14 +4,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Great news, <%= @customer_name %>, your order is on the way!</h1>
+    <h1>Great news, <%= @customer_name %> has placed an order at <%= @restaurant.name %>!</h1>
 
-    <p>Your card has been charged <%= number_to_currency(@transaction.total) %></p>
+    <p>Their card has been charged <%= number_to_currency(@transaction.total) %></p>
 
-    <p>Here are your order details:</p>
+    <p>Here are their order details:</p>
      <div class="grid-container">
       <div class="grid-100" id="transaction-container">
-        <h1>Transaction Details:</h1>
+        <h1>Transaction Details</h1>
         <div id="transaction-details">
           <p class="order-item-details">
           <% @transaction.order.order_items.each do |oi| %>

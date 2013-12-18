@@ -16,6 +16,8 @@ gem 'redis-rails'
 gem 'newrelic_rpm'
 gem 'dalli'
 gem 'kaminari'
+gem 'resque'
+gem 'resque_mailer'
 
 group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'

@@ -9,7 +9,7 @@ class Transaction < ActiveRecord::Base
 
   def self.send_transaction_emails(address, owner, transaction, link)
     TransactionNotifier.user_email(address.email, transaction, link).deliver
-    TransactionNotifier.user_email(owner.email, transaction, link).deliver
+    TransactionNotifier.owner_email(owner.email, transaction, link).deliver
   end
 
   def total
