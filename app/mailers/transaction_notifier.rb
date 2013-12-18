@@ -1,5 +1,4 @@
 class TransactionNotifier < ActionMailer::Base
-  include Resque::Mailer
   default from: "customer_service@noshify.com"
 
   def user_email(data)

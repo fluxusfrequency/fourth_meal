@@ -114,30 +114,6 @@ class Restaurant < ActiveRecord::Base
     %w(application dark light solarized)
   end
 
-  # def self.send_super_email(user, email, link, restaurant)
-  #   SuperNotifier.super_email(user, email, link, restaurant).deliver
-  # end
-
-  # def self.send_owner_approve_email(email, link, restaurant)
-  #   OwnerNotifier.owner_approve_email(email, link, restaurant).deliver
-  # end
-
-  # def self.send_owner_reject_email(email, link, restaurant)
-  #   OwnerNotifier.owner_reject_email(email, link, restaurant).deliver
-  # end
-
-  # def send_owner_approve_emails(link, restaurant)
-  #   self.owners.each do |owner|
-  #     Restaurant.send_owner_approve_email(owner.email, @link, @restaurant)
-  #   end
-  # end
-
-  # def send_owner_reject_emails(link, restaurant)
-  #   self.owners.each do |owner|
-  #     Restaurant.send_owner_reject_email(owner.email, @link, @restaurant)
-  #   end
-  # end
-
   def create_owner(user)
     self.restaurant_users.create( :restaurant => self,
                                   :user => user,

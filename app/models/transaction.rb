@@ -8,14 +8,6 @@ class Transaction < ActiveRecord::Base
     order.save
   end
 
-  # def self.send_owner_transaction_email(address, owner, transaction, link)
-  #   TransactionNotifier.owner_email(owner_transaction_email_data(address, owner, transaction, link)).deliver
-  # end
-
-  # def self.send_user_transaction_email(address, transaction, link)
-  #   TransactionNotifier.user_email(user_transaction_email_data(address, transaction, link)).deliver
-  # end
-
   def user_transaction_email_data(transaction, link)
     { :email => transaction.address.email,
       :customer_name => transaction.address.first_name + " " + transaction.address.last_name,
