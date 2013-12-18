@@ -27,6 +27,7 @@ class AddressesController < ApplicationController
   def update
     @address = current_user.addresses.find(params[:id])
     @address.update(address_params)
+    flash.notice = "Your address was successfully updated!"
     redirect_to user_path(current_user)
   end
 
