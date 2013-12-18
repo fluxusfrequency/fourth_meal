@@ -27,6 +27,6 @@ OnoBurrito::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-
 end
+
 ENV["REDISTOGO_URL"] = 'redis://localhost:6379'

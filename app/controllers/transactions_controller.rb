@@ -99,15 +99,49 @@ class TransactionsController < ApplicationController
 
   def send_owner_emails(transaction, link)
     current_restaurant.owners.each do |owner|
-      data = transaction.owner_transaction_email_data(transaction, link, owner)
-      Resque.enqueue(OwnerTransactionNotifierJob, owner.email)
+      Resque.enqueue(OwnerTransactionNotifierJob,
+        transaction.address.first_name + " " + transaction.address.last_name,
+        owner.email,
+        link,
+        current_restaurant.name,
+        transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
+        transaction.total,
+        transaction.order.status)
     end
   end
 
   def send_user_email(transaction, link)
-    data = transaction.user_transaction_email_data(transaction, link)
-    Resque.enqueue(UserTransactionNotifierJob, data)
+    Resque.enqueue(UserTransactionNotifierJob,
+      transaction.address.first_name + " " + transaction.address.last_name,
+      transaction.address.email,
+      link,
+      current_restaurant.name,
+      transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
+      transaction.total,
+      transaction.order.status)
   end
+
+  # def user_transaction_email_data(transaction, link)
+  #   { :email => transaction.address.email,
+  #     :customer_name => transaction.address.first_name + " " + transaction.address.last_name,
+  #     :restaurant_name => transaction.order.restaurant_name,
+  #     :invoice_price => transaction.total,
+  #     :order_date_time => transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
+  #     :order_status => transaction.order.status,
+  #     :link => link
+  #   }
+  # end
+
+  # def owner_transaction_email_data(transaction, link, owner)
+  #   { :email => owner.email,
+  #     :customer_name => transaction.address.first_name + " " + transaction.address.last_name,
+  #     :restaurant_name => transaction.order.restaurant_name,
+  #     :invoice_price => transaction.total,
+  #     :order_date_time => transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
+  #     :order_status => transaction.order.status,
+  #     :link => link
+  #   }
+  # end
 
   def address_params
     params.require(:address).permit(
