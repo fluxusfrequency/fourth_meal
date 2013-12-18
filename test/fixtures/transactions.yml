@@ -1,10 +1,10 @@
 one:
   address_id: addresses(:one).id
-  order_id: orders(:one).id
+  order: one
   stripe_token: "24mVDK2mvo423NNSKDS242MF224"
 
 two:
   address_id: addresses(:two).id
-  order_id: orders(:two).id
+  order: orders(:two).id
   stripe_token: "24mVDK2mvo423NNSKDS242MF224"
 

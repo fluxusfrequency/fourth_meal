@@ -38,6 +38,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'cane'
   gem 'reek'
+  gem 'simplecov', :require => false, :group => :test
 end
 
 group :production do
