@@ -100,7 +100,7 @@ class TransactionsController < ApplicationController
   def send_owner_emails(transaction, link)
     current_restaurant.owners.each do |owner|
       data = transaction.owner_transaction_email_data(transaction, link, owner)
-      Resque.enqueue(OwnerTransactionNotifierJob, data)
+      Resque.enqueue(OwnerTransactionNotifierJob, owner.email)
     end
   end
 
