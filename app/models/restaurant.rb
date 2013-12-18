@@ -126,4 +126,22 @@ class Restaurant < ActiveRecord::Base
     OwnerNotifier.owner_reject_email(email, link, restaurant).deliver
   end
 
+  def send_owner_approve_emails(link, restaurant)
+    self.owners.each do |owner|
+      Restaurant.send_owner_approve_email(owner.email, @link, @restaurant)
+    end
+  end
+
+  def send_owner_reject_emails(link, restaurant)
+    self.owners.each do |owner|
+      Restaurant.send_owner_reject_email(owner.email, @link, @restaurant)
+    end
+  end
+
+  def create_owner(user)
+    self.restaurant_users.create( :restaurant => self,
+                                  :user => user,
+                                  :role => "owner")
+  end
+
 end

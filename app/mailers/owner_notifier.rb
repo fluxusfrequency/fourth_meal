@@ -7,7 +7,7 @@ class OwnerNotifier < ActionMailer::Base
     @link = link
     @restaurant = restaurant
     mail(to: @email,
-      subject: "Your restaurant, #{@restaurant.name}, has been approved!")
+      subject: "Your restaurant, #{restaurant.name}, has been approved!")
   end
 
   def owner_reject_email(owner_email, link, restaurant)
@@ -16,7 +16,7 @@ class OwnerNotifier < ActionMailer::Base
     @restaurant = restaurant
     mail(to: @email,
       subject: "We're sorry, but your restaurant,
-      #{@restaurant.name}, has been rejected.")
+      #{restaurant.name}, has been rejected.")
   end
 
 end

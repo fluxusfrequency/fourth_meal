@@ -29,14 +29,14 @@ class Superman::RestaurantsController < ApplicationController
   def approve
     @restaurant = Restaurant.find_by_slug(params[:format])
     @restaurant.approve
-    notify_owner_of_approval(@restaurant)
+    # notify_owner_of_approval(@restaurant)
     redirect_to superman_path, :notice => "#{@restaurant.name} was approved!"
   end
 
   def reject
     @restaurant = Restaurant.find_by_slug(params[:format])
     @restaurant.reject
-    notify_owner_of_rejection(@restaurant)
+    # notify_owner_of_rejection(@restaurant)
     redirect_to superman_path, :notice => "#{@restaurant.name} was rejected!"
   end
 
@@ -56,18 +56,12 @@ class Superman::RestaurantsController < ApplicationController
 
   def notify_owner_of_approval(restaurant)
     @link = root_url + restaurant.slug + "/admin"
-    @restaurant = restaurant
-    restaurant.owners.each do |owner|
-      Restaurant.send_owner_approve_email(owner.email, @link, @restaurant)
-    end
+    restaurant.send_owner_approve_emails(@link, self)
   end
 
   def notify_owner_of_rejection(restaurant)
     @link = root_url
-    @restaurant = restaurant
-    restaurant.owners.each do |owner|
-      Restaurant.send_owner_reject_email(owner.email, @link, @restaurant)
-    end
+    restaurant.send_owner_reject_emails(@link, self)
   end
 
 end
