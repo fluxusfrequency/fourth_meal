@@ -42,7 +42,7 @@ class UserCheckoutTest < Capybara::Rails::TestCase
     fill_in "Zipcode", with: 22884
     fill_in "Email", with: "Benji@yeehaw.com"
 
-    click_on "Add This Address"
+    click_on "Use This Address"
     assert_content page, "Your address was successfully added."
 
     assert_content page, "Transaction Information"
@@ -133,7 +133,7 @@ class UserCheckoutTest < Capybara::Rails::TestCase
     fill_in "Zipcode", with: 22884
     fill_in "Email", with: "Benji@yeehaw.com"
 
-    click_on "Add This Address"
+    click_on "Use This Address"
     assert_content page, "Transaction Information"
     assert_content page, "Checking out as Benjamin Franklin"
 
