@@ -27,7 +27,7 @@ class RestaurantsController < ApplicationController
     flash.notice = "Your request has been submitted.
                     You will be emailed when your restaurant is approved."
     session[:current_restaurant] = @restaurant.to_param
-    notify_supers_of_request(@restaurant)
+    # notify_supers_of_request(@restaurant)
   end
 
   def update_location
