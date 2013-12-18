@@ -27,6 +27,8 @@ class TransactionTest < ActiveSupport::TestCase
     assert_equal total, transactions(:one).total
   end
 
-
+  test "it has an address" do
+    assert_equal addresses(:two), transactions(:two).address
+  end
 
 end

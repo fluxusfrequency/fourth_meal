@@ -8,7 +8,8 @@ class Order < ActiveRecord::Base
 
   has_many :order_items, inverse_of: :order
   has_many :items, through: :order_items
-  has_one  :transaction
+
+  has_one :transaction
 
   def items_in_cart?
     self.order_items.count > 0
