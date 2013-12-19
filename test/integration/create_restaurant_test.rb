@@ -25,7 +25,9 @@ class CreateRestaurantTest < Capybara::Rails::TestCase
 
     fill_in "Name", with: "Jeff's Gelato"
     fill_in "Description", with: "Frozen Goodness"
-
+    fill_in "Slug", with: "jeffs-gelato"
+    select "application", from: "Theme"
+    select "Denver", from: "Location"
     click_on "Create Restaurant"
     assert_content page, "Your request has been submitted. You will be emailed when your restaurant is approved."
 

@@ -6,6 +6,7 @@ class Restaurant < ActiveRecord::Base
 
   validates :name, presence: true
   validates :description, presence: true
+  validates :location_id, presence: true
   validates_inclusion_of :status, :in => ["pending", "rejected", "approved"]
   validates_inclusion_of :theme,
     :in => ["application", "dark", "light", "solarized"]
