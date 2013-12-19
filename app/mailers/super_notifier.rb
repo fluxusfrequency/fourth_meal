@@ -1,15 +1,14 @@
 class SuperNotifier < ActionMailer::Base
-  include Resque::Mailer
-  default from: "customer_service@noshify.com"
+  default from: "navyosu@gmail.com"
 
-  def super_email(user, superman_email, link, restaurant)
-    @user = user
+  def super_email(customer_name, superman_email, link, restaurant_name, restaurant_description)
+    @customer_name = customer_name
     @email = superman_email
     @link = link
-    @restaurant = restaurant
+    @restaurant_name = restaurant_name
+    @restaurant_description = restaurant_description
     mail(to: @email,
-      subject: "New Restaurant #{@restaurant.name}
-      on Noshify Pending Approval!")
+      subject: "New Restaurant #{@restaurant_name} on Noshify Pending Approval!")
   end
 
 end

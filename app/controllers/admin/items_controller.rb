@@ -16,12 +16,9 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = current_restaurant.items.build(admin_item_params)
     if @item.save
-      @category = Category.find_by_title(params[:item][:categories])
-      ItemCategory.create(item_id: @item.id, category_id: @category.id)
-      flash.notice = "#{@item.title} was added to the menu!"
+      process_saved_item
     else
-      flash.notice = "Errors prevented the item from
-        being created: #{@item.errors.full_messages}"
+      failed_save_message
     end
     redirect_to admin_items_path(session[:current_restaurant])
   end
@@ -48,6 +45,17 @@ class Admin::ItemsController < ApplicationController
   end
 
   private
+
+  def process_saved_item
+    @category = Category.find_by_title(params[:item][:categories])
+    ItemCategory.create(item_id: @item.id, category_id: @category.id)
+    flash.notice = "#{@item.title} was added to the menu!"
+  end
+
+  def failed_save_message
+    flash.notice = "Errors prevented the item from
+      being created: #{@item.errors.full_messages}"
+  end
 
   def toggle_status_message
     @item.retired ? retire_message : activate_message

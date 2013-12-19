@@ -13,9 +13,7 @@ class Admin::OrdersController < ApplicationController
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
-
     flash.notice = "Order number #{@order.id} removed!"
-
     redirect_to admin_orders_path
   end
 

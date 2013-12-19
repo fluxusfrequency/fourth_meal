@@ -10,8 +10,7 @@ class Admin::RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
     @restaurant.update(restaurant_params)
-    @location = Location.find_by_city(params[:restaurant][:location])
-    @restaurant.update(location_id: @location.id)
+    add_location_to_restaurant
     session[:current_restaurant] = @restaurant.to_param
     redirect_to admin_path(session[:current_restaurant]),
       :notice => "#{@restaurant.name} was updated!"
@@ -28,6 +27,11 @@ class Admin::RestaurantsController < ApplicationController
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :description, :slug, :theme)
+  end
+
+  def add_location_to_restaurant
+    @location = Location.find_by_city(params[:restaurant][:location])
+    @restaurant.update(location_id: @location.id)
   end
 
   def toggle_status_message

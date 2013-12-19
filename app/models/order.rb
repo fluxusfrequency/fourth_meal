@@ -8,7 +8,8 @@ class Order < ActiveRecord::Base
 
   has_many :order_items, inverse_of: :order
   has_many :items, through: :order_items
-  has_one  :transaction
+
+  has_one :transaction
 
   def items_in_cart?
     self.order_items.count > 0
@@ -16,5 +17,9 @@ class Order < ActiveRecord::Base
 
   def total_price
     self.order_items.inject(0) {|sum, i| sum += (i.item.price * i.quantity) }
+  end
+
+  def restaurant_name
+    self.restaurant.name
   end
 end

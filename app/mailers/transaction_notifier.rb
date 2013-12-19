@@ -1,25 +1,28 @@
 class TransactionNotifier < ActionMailer::Base
-  include Resque::Mailer
-  default from: "customer_service@noshify.com"
+  default from: "navyosu@gmail.com"
 
-  def user_email(email, transaction, link)
-    @customer_name = transaction.order.user.full_name
+  def user_email(customer_name, email, link, restaurant_name, order_date_time, invoice_price, order_status)
+    @customer_name = customer_name
     @email = email
-    @transaction = transaction
     @link = link
-    @restaurant = Restaurant.find(@transaction.order.restaurant_id)
+    @restaurant_name = restaurant_name
+    @order_date_time = order_date_time
+    @invoice_price = invoice_price
+    @order_status = order_status
     mail(to: @email,
-      subject: "Order Confirmation for #{@restaurant.name} on Noshify!")
+      subject: "Order Confirmation for #{@restaurant_name} on Noshify!")
   end
 
-  def owner_email(email, transaction, link)
-    @customer_name = transaction.order.user.full_name
+  def owner_email(customer_name, email, link, restaurant_name, order_date_time, invoice_price, order_status)
+    @customer_name = customer_name
     @email = email
-    @transaction = transaction
     @link = link
-    @restaurant = Restaurant.find(@transaction.order.restaurant_id)
+    @restaurant_name = restaurant_name
+    @order_date_time = order_date_time
+    @invoice_price = invoice_price
+    @order_status = order_status
     mail(to: @email,
-      subject: "Order Received for #{@restaurant.name} on Noshify!")
+      subject: "Order Received for #{@restaurant_name} on Noshify!")
   end
 
   def order_total(order_items)

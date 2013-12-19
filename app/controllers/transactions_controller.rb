@@ -81,28 +81,67 @@ class TransactionsController < ApplicationController
 
   def process_saved_transaction
     @transaction.pay!
+    @address = Address.find(@transaction.address_id)
+    @transaction.order.update(user_id: current_user.id) if current_user
+    link = root_url +
+      transaction_path(session[:current_restaurant], @transaction)[1..-1]
+
+    send_owner_emails(@transaction, link)
+    send_user_email(@transaction, link)
+
     clear_current_order
     clear_checkout_session_data
-    @address = Address.find(@transaction.address_id)
-    @link = root_url +
-      transaction_path(session[:current_restaurant], @transaction)[1..-1]
-    send_owner_emails
-    send_user_email
   end
 
   def transaction_params
     params.require(:transaction).permit(:stripe_token, :address, :stripe_email)
   end
 
-  def send_owner_emails
+  def send_owner_emails(transaction, link)
     current_restaurant.owners.each do |owner|
-      Transaction.send_owner_transaction_email(owner, @transaction, @link)
+      Resque.enqueue(OwnerTransactionNotifierJob,
+        transaction.address.first_name + " " + transaction.address.last_name,
+        owner.email,
+        link,
+        current_restaurant.name,
+        transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
+        transaction.total,
+        transaction.order.status)
     end
   end
 
-  def send_user_email
-    Transaction.send_user_transaction_email(@address, @transaction, @link)
+  def send_user_email(transaction, link)
+    Resque.enqueue(UserTransactionNotifierJob,
+      transaction.address.first_name + " " + transaction.address.last_name,
+      transaction.address.email,
+      link,
+      current_restaurant.name,
+      transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
+      transaction.total,
+      transaction.order.status)
   end
+
+  # def user_transaction_email_data(transaction, link)
+  #   { :email => transaction.address.email,
+  #     :customer_name => transaction.address.first_name + " " + transaction.address.last_name,
+  #     :restaurant_name => transaction.order.restaurant_name,
+  #     :invoice_price => transaction.total,
+  #     :order_date_time => transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
+  #     :order_status => transaction.order.status,
+  #     :link => link
+  #   }
+  # end
+
+  # def owner_transaction_email_data(transaction, link, owner)
+  #   { :email => owner.email,
+  #     :customer_name => transaction.address.first_name + " " + transaction.address.last_name,
+  #     :restaurant_name => transaction.order.restaurant_name,
+  #     :invoice_price => transaction.total,
+  #     :order_date_time => transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
+  #     :order_status => transaction.order.status,
+  #     :link => link
+  #   }
+  # end
 
   def address_params
     params.require(:address).permit(

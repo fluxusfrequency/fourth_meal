@@ -3,7 +3,7 @@ require "test_helper"
 class AddressTest < ActiveSupport::TestCase
   test "it is invalid without attributes" do
     address = Address.create()
-    refute address.valid? 
+    refute address.valid?
   end
 
   test "it is valid with correct attributes" do
