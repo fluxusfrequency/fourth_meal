@@ -4,9 +4,11 @@ class SupermanTest < Capybara::Rails::TestCase
 
   def test_superman_views_the_admin_panel
     @superman = User.create(full_name: "Clark Kent", display_name: "Superman", email: 'ckent@dailyplanet.com', password: 'kryptonite', password_confirmation: 'kryptonite', :super => true)
+
     # Superman page is unavailable to guests
     visit superman_path
     assert_content page, "You must be logged in to do that!"
+
     # Superman logs in
     visit root_path
     click_on "Sign up or Log in"

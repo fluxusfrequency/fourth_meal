@@ -142,6 +142,8 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     visit restaurant_root_path(restaurants(:seven).slug)
     assert_equal admin_path(restaurants(:seven)), current_path
     assert_content page, "Manage Your Restaurant"
+    @admin.destroy
+    @ru.destroy
   end
 
   def test_pending_restaurant_cannot_be_activated_by_restaurant_owner
@@ -149,6 +151,8 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     @ru = RestaurantUser.create(user: @admin, restaurant: restaurants(:four), role: "owner")
     visit restaurant_root_path(restaurants(:seven))
     assert_content page, "Sorry, this restaurant is currently offline for maintenance."
+    @admin.destroy
+    @ru.destroy
   end
 
   def test_owner_can_activate_approved_restaurant
@@ -173,6 +177,8 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     assert_content page, "Offline"
     click_on "Activate"
     assert_content page, "Active"
+    @admin.destroy
+    @ru.destroy
   end
 
   def test_pending_restaurant_cannot_be_activated_by_restaurant_owner
@@ -196,7 +202,8 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     visit admin_path(restaurants(:four))
     refute_content page, "Manage Your Restaurant"
     assert_equal root_path, current_path
-
+    @admin.destroy
+    @ru.destroy
   end
 
 
