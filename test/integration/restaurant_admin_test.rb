@@ -57,7 +57,7 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     @admin.destroy
     @ru.destroy
   end
-  
+
    def test_user_can_create_a_restaurant
 
     visit root_path
@@ -92,8 +92,35 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
   end
 
 
-  def test_approved_restaurant_can_be_seen_when_active
+  def test_approved_restaurant_can_not_be_seen_when_unless_its_active
     visit root_path
+    visit restaurant_root_path(restaurants(:seven))
+    assert_content page, "Sorry, this restaurant is currently offline for maintenance."
+  end
+
+  def test_approved_restaurant_redirects_restaurant_owner_to_restaurant_admin_page
+
+    @admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
+    @ru = RestaurantUser.create(user: @admin, restaurant: restaurants(:seven), role: "owner")
+
+    # restaurant owner logs in
+    visit root_path
+    click_on "Sign up or Log in"
+    within "#login-form" do
+      fill_in "Email", with: 'jarc@thestake.fr'
+      fill_in "Password", with: 'martyr'
+      click_button "Log In"
+    end
+
+    assert_content page, "Logged in"
+    visit restaurant_root_path("jeffs-lab")
+    assert current_path == restaurant_root_path("jeffs-lab")
+    assert_content page, "Manage Your Restaurant"
+  end
+
+  def test_pending_restaurant_cannot_be_activated_by_restaurant_owner
+    @admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
+    @ru = RestaurantUser.create(user: @admin, restaurant: restaurants(:four), role: "owner")
     visit restaurant_root_path(restaurants(:seven))
     assert_content page, "Sorry, this restaurant is currently offline for maintenance."
   end
@@ -141,9 +168,7 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     assert_content page, "Logged in"
 
     visit admin_path(restaurants(:four))
-
     refute_content page, "Manage Your Restaurant"
-
   end
 
 
