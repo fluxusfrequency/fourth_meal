@@ -1,3 +1,3 @@
 development: localhost:6379
 test: localhost:6379
-production: redis://:2a87ba1d510481ad303f693dcab5469a30cb0693dc7c3e9312a545ad259f57d9@54.243.253.145:13686
+production: redis://:75c55ed7b0f32ffd58fbb85231721b6ddabdcd5dd2349447e80e86a72e9467f7@174.129.249.212:13696
