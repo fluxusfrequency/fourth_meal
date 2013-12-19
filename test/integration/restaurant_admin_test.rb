@@ -146,7 +146,7 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     assert_equal "jeffs-lab", restaurants(:seven).slug
 
     visit restaurant_root_path(restaurants(:seven).slug)
-    assert current_path == admin_path(restaurants(:seven))
+    assert_equal admin_path(restaurants(:seven)), current_path
     assert_content page, "Manage Your Restaurant"
   end
 

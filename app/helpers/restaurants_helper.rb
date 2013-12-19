@@ -8,10 +8,10 @@ module RestaurantsHelper
   end
 
   def check_active
-    restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
-    if restaurant
-      offline_restaurant_failure if restaurant.offline?
-      unapproved_restaurant_failure if restaurant.unapproved?
+    @restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
+    if @restaurant
+      offline_restaurant_failure if @restaurant.offline?
+      unapproved_restaurant_failure if @restaurant.unapproved?
     end
   end
 
