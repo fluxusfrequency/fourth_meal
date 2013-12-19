@@ -5,7 +5,7 @@ class RestaurantsController < ApplicationController
     verify_logged_in_user
     @restaurant = Restaurant.new
     @themes = Restaurant.themes
-    @locations = Location.pluck(:city).sort
+    @locations = Location.all.collect {|location| location.city}.sort
   end
 
   def create

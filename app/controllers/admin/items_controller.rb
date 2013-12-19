@@ -25,7 +25,7 @@ class Admin::ItemsController < ApplicationController
 
   def new
     @item = current_restaurant.items.build
-    @categories = current_restaurant.categories.pluck(:title)
+    @categories = current_restaurant.categories.collect {|c| c.title}
   end
 
   def edit
