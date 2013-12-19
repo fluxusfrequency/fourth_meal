@@ -136,8 +136,9 @@ class UserCheckoutTest < Capybara::Rails::TestCase
     click_on "Use This Address"
     assert_content page, "Transaction Information"
     assert_content page, "Checking out as Benjamin Franklin"
-
+    save_and_open_page
     click_on "Pay With Card"
+
     assert_content page, "Successfully submitted your order!"
 
   end

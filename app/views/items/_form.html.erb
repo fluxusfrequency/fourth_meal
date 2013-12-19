@@ -1,9 +1,5 @@
 <%= form_for @item, as: :item, url: items_path, html: { :multipart => true } do |f| %>
-  <ul>
-  <% @item.errors.full_messages.each do |error| %>
-    <li><%= error %></li>
-  <% end %>
-  </ul>
+  <%= render "shared/errors", model: @item %>
 
   <p>
     <%= f.label :title %><br />
