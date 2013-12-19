@@ -18,7 +18,7 @@ class CanMakeAnOrderTest < Capybara::Rails::TestCase
 
   end
 
-  test "a user can cancel an order" do
+  test "a user can remove items or cancel an order" do
     visit root_path
     click_on "Denver"
     click_on "KFC"
@@ -31,7 +31,17 @@ class CanMakeAnOrderTest < Capybara::Rails::TestCase
     within ".order_item" do
       click_on  "Remove"
     end
-    assert_content page, "Your order has been cancelled."
+
+    assert_content page, "The item was removed from your cart."
+
+    within "#item_#{items(:three).id}" do
+      click_on "Add to Cart"
+    end
+
+    click_on "View Your Order"
+
+    click_on "(Cancel Order)"
+    assert_content page, "Your order was successfully cancelled."
 
   end
 

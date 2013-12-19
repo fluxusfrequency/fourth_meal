@@ -33,6 +33,7 @@ class AddressesController < ApplicationController
 
   def destroy
     current_user.addresses.find(params[:id]).destroy
+    flash.notice = "Your address was successfully deleted!"
     redirect_to user_path(current_user)
   end
 

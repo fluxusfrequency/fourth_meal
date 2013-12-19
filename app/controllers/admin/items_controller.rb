@@ -36,7 +36,7 @@ class Admin::ItemsController < ApplicationController
     @item = current_restaurant.items.find(params[:id])
     @item.update(admin_item_params)
     if @item.save
-      flash.notice = "#{@item.title} was updated"
+      flash.notice = "#{@item.title} was updated!"
     else
       flash.notice = "Errors prevented the item from
         being edited: #{@item.errors.full_messages}"

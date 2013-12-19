@@ -15,6 +15,7 @@ class UserProfileTest < Capybara::Rails::TestCase
       fill_in "Password confirmation", with: 'password'
       click_button "Create User"
     end
+
     assert_content page, 'Logged in'
 
     click_on "Account Profile"
@@ -34,6 +35,12 @@ class UserProfileTest < Capybara::Rails::TestCase
     assert_content page, "Credentials updated!"
 
 
+
+    # # user fails to chq
+    # refute_content page, "Credentials updated!"
+    # assert_content page, "There were errors that prevented your account from saving:"
+
+
     # user adds an address
     click_on "Add New Address"
     fill_in "First name", with: "Benita"
@@ -51,6 +58,21 @@ class UserProfileTest < Capybara::Rails::TestCase
 
     assert_content page, "123 Benita Street"
 
+
+    # user tries to add an invalid address
+    click_on "Add New Address"
+    fill_in "First name", with: ""
+    fill_in "Last name", with: ""
+    fill_in "Street address", with: ""
+    fill_in "City", with: ''
+    fill_in "State", with: ''
+    fill_in "Zipcode", with: ''
+    fill_in "Email", with: ""
+
+    click_button "Use This Address"
+    assert_content page, "Errors prevented the address from being saved:"
+    refute_content page, "Your address was successfully added."
+
     # user edits an address
     click_on "Edit Address"
     assert_equal edit_address_path(Address.last.id), current_path
@@ -65,6 +87,11 @@ class UserProfileTest < Capybara::Rails::TestCase
     click_on "Use This Address"
 
     assert_content page, "Your address was successfully updated!"
+
+    # user deletes an address
+    click_on "Delete"
+    assert_content page, "Your address was successfully deleted!"
+    refute_content page, "123 Benita St"
   end
 
 end

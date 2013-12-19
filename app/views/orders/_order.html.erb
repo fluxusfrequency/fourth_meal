@@ -1,6 +1,6 @@
 <table class="grid-100">
   <h1 id="your-current-order">Your Current Order</h1>
-  
+
   <thead>
     <%= render partial: 'orders/order_item_table' %>
   </thead>
@@ -16,15 +16,15 @@
     <%= link_to "(Cancel Order)", order_path(session[:current_restaurant], current_order.id), :method => :delete, id: "cancel-link" %>
     <br/>
     <h2 id="current-total">
-      Current Total: <%= number_to_currency(order_total(order.order_items)) %>
+      Current Total: <%= number_to_currency(order.total_price) %>
     </h2>
-    
+
   </div>
 
   <div class="grid-100">
-    <%= button_to "Checkout", new_transaction_path(session[:current_restaurant]), 
-      :method => :get, class: "button grid-25 prefix-65", 
+    <%= button_to "Checkout", new_transaction_path(session[:current_restaurant]),
+      :method => :get, class: "button grid-25 prefix-65",
       id:"checkout-button" %>
   </div>
-  
+
 <% end %>

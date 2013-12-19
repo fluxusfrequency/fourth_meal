@@ -26,8 +26,9 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user.id), :notice => "Credentials updated!"
     else
-      redirect_to user_path(@user.id),
-        :notice => "Your account was not saved for some reason!"
+      flash.notice = "There were errors that prevented
+        your account from saving: #{@user.errors.full_messages}"
+      redirect_to user_path(@user.id)
     end
   end
 

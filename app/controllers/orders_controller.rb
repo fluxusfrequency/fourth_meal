@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
     empty_order_redirect
   end
 
+
   def update
     update_order
     @item = current_restaurant.items.find(params[:item])
