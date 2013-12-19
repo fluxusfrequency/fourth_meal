@@ -13,10 +13,14 @@ class Restaurant < ActiveRecord::Base
 
   belongs_to :location, :touch => true
 
+  # scope :not_rejected, lambda { where(:status => 'approved') }
+  # scope :inactive, lambda {where(:active => false) }
+
   scope :not_rejected, lambda { where("status != 'rejected'") }
-  scope :pending, lambda { where(:status => "pending") }
   scope :inactive, lambda { where("status != 'rejected'").
     where(:active => false) }
+
+  scope :pending, lambda { where(:status => "pending") }
   scope :rejected, lambda { where(:status => "rejected") }
 
   def to_param

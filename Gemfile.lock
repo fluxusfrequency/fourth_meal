@@ -360,6 +360,7 @@ DEPENDENCIES
   kaminari
   launchy
   memcachier
+  minitest-rails
   minitest-rails-capybara
   newrelic_rpm
   nokogiri

@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def owns?(restaurant)
-    self.restaurant_users.where(role: "owner").detect do |role|
+    results = self.restaurant_users.where(role: "owner").detect do |role|
       role.restaurant_id == restaurant.id
     end
   end

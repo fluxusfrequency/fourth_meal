@@ -3,11 +3,12 @@ require './test/test_helper'
 class SupermanTest < Capybara::Rails::TestCase
 
   def test_superman_views_the_admin_panel
-    @superman = User.create(full_name: "Clark Kent", display_name: "Superman", email: 'ckent@dailyplanet.com', password: 'kryptonite', password_confirmation: 'kryptonite', :super => true)
+    superman = User.create(full_name: "Clark Kent", display_name: "Superman", email: 'ckent@dailyplanet.com', password: 'kryptonite', password_confirmation: 'kryptonite', :super => true)
 
     # Superman page is unavailable to guests
     visit superman_path
     assert_content page, "You must be logged in to do that!"
+
 
     # Superman logs in
     visit root_path
@@ -29,11 +30,10 @@ class SupermanTest < Capybara::Rails::TestCase
     # Superman logs out and is redirected to the home page
     click_on "Log out"
     assert_equal root_path, page.current_path
-    @superman.destroy
   end
 
   def test_superman_views_approves_and_rejects_pending_restaurants
-    @superman = User.create(full_name: "Clark Kent", display_name: "Superman", email: 'ckent@dailyplanet.com', password: 'kryptonite', password_confirmation: 'kryptonite', :super => true)
+    superman = User.create(full_name: "Clark Kent", display_name: "Superman", email: 'ckent@dailyplanet.com', password: 'kryptonite', password_confirmation: 'kryptonite', :super => true)
     # Can't view a pending restaurant
     visit restaurant_root_path(restaurants(:three).slug)
     assert_equal root_path, page.current_path
@@ -121,11 +121,10 @@ class SupermanTest < Capybara::Rails::TestCase
 
     # Superman logs out
     click_on "Log out"
-    @superman.destroy
   end
 
   def test_superwoman_administers_a_restaurant
-    @superwoman = User.create(full_name: "Lois Lane", display_name: "Superwoman", email: 'llane@aol.com', password: 'password', password_confirmation: 'password', :super => true)
+    superwoman = User.create(full_name: "Lois Lane", display_name: "Superwoman", email: 'llane@aol.com', password: 'password', password_confirmation: 'password', :super => true)
     # Superwoman logs in
     visit root_path
     click_on "Sign up or Log in"
@@ -174,7 +173,6 @@ class SupermanTest < Capybara::Rails::TestCase
 
     # Superwoman logs out
     click_on "Log out"
-    @superwoman.destroy
   end
 
 end

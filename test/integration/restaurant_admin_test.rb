@@ -3,8 +3,8 @@ require './test/test_helper'
 class RestaurantAdminTest < Capybara::Rails::TestCase
 
   def test_admin_views_the_admin_panel
-    @admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
-    @ru = RestaurantUser.create(user: @admin, restaurant: restaurants(:one), role: "owner")
+    admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
+    ru = RestaurantUser.create(user: admin, restaurant: restaurants(:one), role: "owner")
 
     # Admin page is unavailable to guests
     visit admin_path(restaurants(:one))
@@ -75,8 +75,6 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     # Admin logs out and is redirected to the home page
     click_on "Log out"
     assert_equal root_path, page.current_path
-    @admin.destroy
-    @ru.destroy
   end
 
    def test_user_can_create_a_restaurant
@@ -121,8 +119,8 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
 
   def test_approved_restaurant_redirects_restaurant_owner_to_restaurant_admin_page
 
-    @admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
-    @ru = RestaurantUser.create(user: @admin, restaurant: restaurants(:seven), role: "owner")
+    admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
+    ru = RestaurantUser.create(user: admin, restaurant: restaurants(:seven), role: "owner")
 
     # restaurant owner logs in
     visit root_path
@@ -142,23 +140,19 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     visit restaurant_root_path(restaurants(:seven).slug)
     assert_equal admin_path(restaurants(:seven)), current_path
     assert_content page, "Manage Your Restaurant"
-    @admin.destroy
-    @ru.destroy
   end
 
   def test_pending_restaurant_cannot_be_activated_by_restaurant_owner
-    @admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
-    @ru = RestaurantUser.create(user: @admin, restaurant: restaurants(:four), role: "owner")
+    admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
+    ru = RestaurantUser.create(user: admin, restaurant: restaurants(:four), role: "owner")
     visit restaurant_root_path(restaurants(:seven))
     assert_content page, "Sorry, this restaurant is currently offline for maintenance."
-    @admin.destroy
-    @ru.destroy
   end
 
   def test_owner_can_activate_approved_restaurant
 
-    @admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
-    @ru = RestaurantUser.create(user: @admin, restaurant: restaurants(:seven), role: "owner")
+    admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
+    ru = RestaurantUser.create(user: admin, restaurant: restaurants(:seven), role: "owner")
 
     # restaurant owner logs in
     visit root_path
@@ -177,13 +171,11 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     assert_content page, "Offline"
     click_on "Activate"
     assert_content page, "Active"
-    @admin.destroy
-    @ru.destroy
   end
 
   def test_pending_restaurant_cannot_be_activated_by_restaurant_owner
-    @admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
-    @ru = RestaurantUser.create(user: @admin, restaurant: restaurants(:four), role: "owner")
+    admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
+    ru = RestaurantUser.create(user: admin, restaurant: restaurants(:four), role: "owner")
 
     #make sure restaurant is pending
     assert_equal "pending", restaurants(:four).status
@@ -202,8 +194,6 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     visit admin_path(restaurants(:four))
     refute_content page, "Manage Your Restaurant"
     assert_equal root_path, current_path
-    @admin.destroy
-    @ru.destroy
   end
 
 
