@@ -51,3 +51,12 @@ six:
   slug: "123"
   location: three
   theme: dark
+
+seven:
+  name: "Jeffs Lab"
+  description: "We like to cook up ruby recipes"
+  active: false
+  status: "approved"
+  slug: "jeffs-lab"
+  location: three
+  theme: dark
