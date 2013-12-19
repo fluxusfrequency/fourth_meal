@@ -35,6 +35,15 @@ class CanLogInAndOutTest < Capybara::Rails::TestCase
 
     click_on "Sign up or Log in"
     within "#login-form" do
+      fill_in "Email", with: ''
+      fill_in "Password", with: 'password'
+      click_button "Log In"
+    end
+    assert_content page, "Invalid email or password."
+    refute_content page, "Logged in"
+
+    click_on "Sign up or Log in"
+    within "#login-form" do
       fill_in "Email", with: 'benji@example.com'
       fill_in "Password", with: 'password'
       click_button "Log In"

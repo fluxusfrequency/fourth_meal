@@ -1,7 +1,8 @@
 require "test_helper"
 
 class OwnerNotifierTest < ActionMailer::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  tests OwnerNotifier
+  test "notifies owner of an order at their restaurant" do
+
+  end
 end

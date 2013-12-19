@@ -17,16 +17,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def checkout_as_guest
-    @transaction = Transaction.new
-    if session[:current_address]
-      @address = Address.find(session[:current_address])
-    else
-      @address = Address.new
-    end
-    render :new
-  end
-
   def destroy
     session[:forwarding_path] = nil
     if session[:current_order] && session[:current_restaurant]

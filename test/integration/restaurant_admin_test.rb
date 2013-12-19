@@ -45,11 +45,32 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
     end
     assert_content page, "The Whopper was added to the menu!"
 
-    # Admin retires an item
+    # Admin edits an item
     within "#the-whopper-row" do
+      click_on "edit"
+    end
+
+    assert_content page, "Edit Menu Item"
+    within ".edit_item" do
+      fill_in "Title", with: "The Whopper Deluxe"
+      fill_in "Description", with: "Beats a Whopper"
+      fill_in "Price", with: 8
+      click_on "Update Item"
+    end
+    assert_content page, "The Whopper Deluxe was updated!"
+
+    # Admin toggles an item
+    within "#the-whopper-deluxe-row" do
+      assert_content "true"
       click_on "toggle"
     end
-    assert_content page, "The Whopper was retired from the menu!"
+    assert_content page, "The Whopper Deluxe was retired from the menu!"
+
+    within "#the-whopper-deluxe-row" do
+      assert_content "false"
+      click_on "toggle"
+    end
+    assert_content page, "The Whopper Deluxe was added to the menu!"
 
     # Admin logs out and is redirected to the home page
     click_on "Log out"

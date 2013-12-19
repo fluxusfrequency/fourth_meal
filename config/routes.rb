@@ -11,7 +11,7 @@ OnoBurrito::Application.routes.draw do
 
   resources :locations, only: [ :index, :show ]
   resources :users, except: [ :index, :destroy ]
-  resources :sessions, only: [ :new, :create, :checkout_as_guest, :destroy ]
+  resources :sessions, only: [ :new, :create, :destroy ]
   resources :restaurants, except: [ :index, :show, :update, :destroy ]
   resources :addresses
 
@@ -35,7 +35,7 @@ OnoBurrito::Application.routes.draw do
     get '/transactions/guest' => 'transactions#checkout_as_guest', as: "guest_transaction"
     post '/transactions/guest' => 'transactions#add_guest_address', as: "guest_address"
     resources :transactions, except: [ :update, :destroy ]
-    
+
     get '/' => 'items#index', as: :restaurant_root
     get 'menu' => 'items#index', as: :menu
     get "menu/:category_slug" => "items#in_category", as: "menu_items"
