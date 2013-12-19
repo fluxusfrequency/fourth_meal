@@ -45,8 +45,33 @@ class AdminCanActiveRestaurantTest < Capybara::Rails::TestCase
   def test_owner_can_activate_approved_restaurant
 
     @admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
-    @res = Restaurant.create(name: "pizz", description: "cool", active: false, status: true, slug: "pizz")
-    @ru = RestaurantUser.create(user: @admin, restaurant: @res, role: "owner")
+    @ru = RestaurantUser.create(user: @admin, restaurant: restaurants(:seven), role: "owner")
+
+    # restaurant owner logs in
+    visit root_path
+    click_on "Sign up or Log in"
+    within "#login-form" do
+      fill_in "Email", with: 'jarc@thestake.fr'
+      fill_in "Password", with: 'martyr'
+      click_button "Log In"
+    end
+
+    assert_content page, "Logged in"
+    visit admin_path(restaurants(:seven))
+    refute_content page, "You're not authorized to do that!"
+    assert_content page, "Manage Your Restaurant"
+
+    assert_content page, "Offline"
+    click_on "Activate"
+    assert_content page, "Active"
+  end
+
+  def test_pending_restaurant_cannot_be_activated_by_restaurant_owner
+    @admin = User.create(full_name: "Joan of Arc", display_name: "Joan A.", email: 'jarc@thestake.fr', password: 'martyr', password_confirmation: 'martyr')
+    @ru = RestaurantUser.create(user: @admin, restaurant: restaurants(:four), role: "owner")
+
+    #make sure restaurant is pending
+    assert_equal "pending", restaurants(:four).status
 
     # restaurant owner logs in
     visit root_path
@@ -59,9 +84,9 @@ class AdminCanActiveRestaurantTest < Capybara::Rails::TestCase
 
     assert_content page, "Logged in"
 
-    visit 
-    refute_content page, "You're not authorized to do that!"
-    assert_content page, "Manage Your Restaurant"
+    visit admin_path(restaurants(:four))
+
+    refute_content page, "Manage Your Restaurant"
 
   end
 end
