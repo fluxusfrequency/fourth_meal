@@ -1,7 +1,9 @@
 module ThemesHelper
 
   def current_theme
-    if current_restaurant && current_path != root_path
+    if !params[:restuarant_slug]
+      "application"
+    elsif current_restaurant
       current_restaurant.theme
     else
       "application"
