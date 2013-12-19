@@ -43,7 +43,7 @@ class RestaurantsController < ApplicationController
     link = root_url + superman_approval_path[1..-1]
 
     User.superheroes.each do |superman|
-      Resque.enqueue(SuperNotifierJob, current_user.full_name, superman.email, link, restaurant.name, restaurant.description)
+      SuperNotifier.super_email(current_user.full_name, superman.email, link, restaurant.name, restaurant.description).deliver
     end
   end
 

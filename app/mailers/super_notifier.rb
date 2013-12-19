@@ -1,4 +1,5 @@
 class SuperNotifier < ActionMailer::Base
+  include Resque::Mailer
   default from: "navyosu@gmail.com"
 
   def super_email(customer_name, superman_email, link, restaurant_name, restaurant_description)
