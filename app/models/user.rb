@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
                         :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validates             :email, uniqueness: true
 
+  scope :superheroes, lambda { where(:super => true) }
+
   def superman?
     self.super
   end

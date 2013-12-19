@@ -42,7 +42,7 @@ class RestaurantsController < ApplicationController
   def notify_supers_of_request(restaurant)
     link = root_url + superman_approval_path[1..-1]
 
-    User.where(:super => true).each do |superman|
+    User.superheroes.each do |superman|
       Resque.enqueue(SuperNotifierJob, current_user.full_name, superman.email, link, restaurant.name, restaurant.description)
     end
   end
