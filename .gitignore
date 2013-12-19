@@ -15,3 +15,5 @@
 /log/*.log
 /tmp
 /public/system/items/photos
+
+/config/resque.yml
