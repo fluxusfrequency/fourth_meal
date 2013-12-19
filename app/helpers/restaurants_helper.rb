@@ -18,7 +18,7 @@ module RestaurantsHelper
   private
 
   def offline_restaurant_failure
-    if owner_access
+    if current_user && owner_access
       offline_admin_redirect
     else
       offline_redirect

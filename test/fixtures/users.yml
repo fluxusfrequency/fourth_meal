@@ -22,4 +22,3 @@ three:
   password_hash: "$2a$10$Jxv7e7hPL6H7bVNJ4Wi3o.59XJOr1aKQhbw37SnJ1N7Lw2FUjnFn6"
   password_salt: "$2a$10$Jxv7e7hPL6H7bVNJ4Wi3o"
   super: false
-
