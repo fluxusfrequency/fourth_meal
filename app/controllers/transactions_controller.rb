@@ -99,26 +99,26 @@ class TransactionsController < ApplicationController
 
   def send_owner_emails(transaction, link)
     current_restaurant.owners.each do |owner|
-      Resque.enqueue(OwnerTransactionNotifierJob,
+      TransactionNotifier.owner_email(
         transaction.address.first_name + " " + transaction.address.last_name,
         owner.email,
         link,
         current_restaurant.name,
         transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
         transaction.total,
-        transaction.order.status)
+        transaction.order.status).deliver
     end
   end
 
   def send_user_email(transaction, link)
-    Resque.enqueue(UserTransactionNotifierJob,
+    TransactionNotifier.user_email(
       transaction.address.first_name + " " + transaction.address.last_name,
       transaction.address.email,
       link,
       current_restaurant.name,
       transaction.created_at.strftime("%b %d, %Y at %I:%M%p"),
       transaction.total,
-      transaction.order.status)
+      transaction.order.status).deliver
   end
 
   def address_params

@@ -53,14 +53,14 @@ class Superman::RestaurantsController < ApplicationController
   def notify_owners_of_approval(restaurant)
     link = root_url + restaurant.slug + "/admin"
     restaurant.owners.each do |owner|
-      Resque.enqueue(OwnerApproveJob, owner.email, link, restaurant.name, restaurant.description)
+      OwnerNotifier.owner_approve_email(owner.email, link, restaurant.name, restaurant.description).deliver
     end
   end
 
   def notify_owners_of_rejection(restaurant)
     link = root_url
     restaurant.owners.each do |owner|
-      Resque.enqueue(OwnerRejectJob, owner.email, link, restaurant.name, restaurant.description)
+      OwnerNotifier.owner_reject_email(owner.email, link, restaurant.name, restaurant.description).deliver
     end
   end
 

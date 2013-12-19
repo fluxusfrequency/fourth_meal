@@ -1,4 +1,5 @@
 class OwnerNotifier < ActionMailer::Base
+  include Resque::Mailer
   default from: "navyosu@gmail.com"
 
   def owner_approve_email(owner_email, link, restaurant_name, restaurant_description)

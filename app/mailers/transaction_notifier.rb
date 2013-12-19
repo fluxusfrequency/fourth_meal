@@ -1,4 +1,5 @@
 class TransactionNotifier < ActionMailer::Base
+  include Resque::Mailer
   default from: "navyosu@gmail.com"
 
   def user_email(customer_name, email, link, restaurant_name, order_date_time, invoice_price, order_status)
