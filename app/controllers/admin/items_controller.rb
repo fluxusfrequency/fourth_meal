@@ -47,7 +47,12 @@ class Admin::ItemsController < ApplicationController
   private
 
   def process_saved_item
-    @category = Category.find_by_title(params[:item][:categories])
+    if params[:item][:categories]
+      @category = Category.find_by_title(params[:item][:categories])
+    elsif !current_restaurant.has_categories?
+      @category = current_restaurant.create_default_category
+    end
+
     ItemCategory.create(item_id: @item.id, category_id: @category.id)
     flash.notice = "#{@item.title} was added to the menu!"
   end

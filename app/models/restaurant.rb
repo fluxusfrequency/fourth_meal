@@ -127,4 +127,12 @@ class Restaurant < ActiveRecord::Base
                                   :role => "owner")
   end
 
+  def has_categories?
+    self.categories.count > 0
+  end
+
+  def create_default_category
+    Category.create(title: "Main Menu", slug: "main-menu", restaurant: self)
+  end
+
 end
