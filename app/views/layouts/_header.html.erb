@@ -1,6 +1,25 @@
-<% cache [:header, current_user] do %>
+<% cache [:header, current_user, current_restaurant] do %>
   <div class="grid-container" id="header-container">
     <%= render "users/user_nav" %>
-    <a href="/" id="site-logo"><h1>Noshify</h1></a>
+
+    <div class="grid-100">
+      <a href="/" id="site-logo"><h1>Noshify</h1></a>
+    </div>
+
+    <div class="grid-100">
+      <% if current_restaurant && current_order.items_in_cart? %>
+        <%= link_to "View Your Order", order_path(session[:current_restaurant], current_order), class: "button-small" %>
+      <% end %>
+
+      <% if current_user %>
+        <%= link_to "Create New Restaurant", new_restaurant_path, class: "button-small" %>
+      <% end %>
+
+      <% if current_user && current_user.superman? %>
+        <%= link_to "Superman Panel", superman_path, class:"button-small" %>
+      <% end %>
+    </div>
+
   </div>
+
 <% end %>
