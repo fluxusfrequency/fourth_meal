@@ -139,9 +139,14 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
       click_button "Log In"
     end
 
+    assert_equal "approved", restaurants(:seven).status
+
     assert_content page, "Logged in"
-    visit restaurant_root_path("jeffs-lab")
-    assert current_path == restaurant_root_path("jeffs-lab")
+
+    assert_equal "jeffs-lab", restaurants(:seven).slug
+
+    visit restaurant_root_path(restaurants(:seven).slug)
+    assert current_path == admin_path(restaurants(:seven))
     assert_content page, "Manage Your Restaurant"
   end
 
