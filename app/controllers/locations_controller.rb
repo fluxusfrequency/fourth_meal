@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  layout "application"
+
   def index
     @locations = Location.all.sort
     @page_title = "Locations"
