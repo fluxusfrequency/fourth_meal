@@ -11,7 +11,7 @@
       <td class="transaction-label"><%= f.label :last_name %></td>
       <td class="transaction-form"><%= f.text_field :last_name %></td>
     </tr>
-   
+
     <tr>
       <td class="transaction-label"><%= f.label :zipcode %>
       <td class="transaction-form"><%= f.text_field :zipcode %>
@@ -19,7 +19,7 @@
   </table>
 
   <h2 id="current-total">
-    Order Total: <%= number_to_currency(order_total(current_order.order_items)) %>
+    Order Total: <%= number_to_currency(current_order.total_price) %>
   </h2>
   <br/>
 

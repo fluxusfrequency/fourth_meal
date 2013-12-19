@@ -65,6 +65,11 @@ class UserProfileTest < Capybara::Rails::TestCase
     click_on "Use This Address"
 
     assert_content page, "Your address was successfully updated!"
+
+    # user deletes an address
+    click_on "Delete"
+    assert_content page, "Your address was successfully deleted!"
+    refute_content page, "123 Benita St"
   end
 
 end

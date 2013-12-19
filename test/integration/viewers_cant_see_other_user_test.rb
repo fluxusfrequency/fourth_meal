@@ -5,8 +5,8 @@ class ViewersCantSeeOtherUserTest < Capybara::Rails::TestCase
 
   test "logged in user cannot view other user's info" do
     visit root_path
+    save_and_open_page
     click_on "Sign up or Log in"
-
     within "#new_user" do
       fill_in "Email", with: 'benji@example.com'
       fill_in "Full name", with: 'Benjamin Franklin'
@@ -23,7 +23,6 @@ class ViewersCantSeeOtherUserTest < Capybara::Rails::TestCase
   test "logged in user cannot create items" do
     visit root_path
     click_on "Sign up or Log in"
-
     within "#new_user" do
       fill_in "Email", with: 'benji@example.com'
       fill_in "Full name", with: 'Benjamin Franklin'

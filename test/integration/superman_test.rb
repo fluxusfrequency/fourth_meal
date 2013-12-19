@@ -68,6 +68,23 @@ class SupermanTest < Capybara::Rails::TestCase
       assert_content page, "approved"
     end
 
+    # Superman toggles a restaurant
+    within "#taco-bell_row" do
+      assert_content page, "false"
+      click_on "toggle"
+    end
+    assert_content page, "Taco Bell was activated!"
+
+    within "#taco-bell_row" do
+      assert_content page, "true"
+      click_on "toggle"
+    end
+    assert_content page, "Taco Bell was taken offline!"
+
+    within "#taco-bell_row" do
+      assert_content page, "false"
+    end
+
     # Superman views rejected restaurants
     click_on "Rejected"
     assert_content page, "Rejected Restaurants"

@@ -18,6 +18,29 @@ class CanMakeAnOrderTest < Capybara::Rails::TestCase
 
   end
 
+  test "a user can remove items or cancel an order" do
+    visit root_path
+    click_on "Denver"
+    click_on "KFC"
+
+    within "#item_#{items(:two).id}" do
+      click_on "Add to Cart"
+    end
+
+    within "#item_#{items(:three).id}" do
+      click_on "Add to Cart"
+    end
+
+    click_on "View Your Order"
+    find("#taters-delete-button").click
+
+    assert_content page, "The item was removed from your cart."
+
+    click_on "(Cancel Order)"
+    assert_content page, "Your order was successfully cancelled."
+
+  end
+
   test "can add multiple items to order without logging in" do
     visit root_path
     click_on "Denver"
@@ -84,7 +107,7 @@ class CanMakeAnOrderTest < Capybara::Rails::TestCase
     refute_content page, "Mashed Potatoes"
     assert_content page, "Big Mac"
 
-    
+
   end
 
 end
