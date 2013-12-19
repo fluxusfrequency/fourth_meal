@@ -14,12 +14,6 @@ class OrdersController < ApplicationController
     empty_order_redirect
   end
 
-  def create
-    @order = Order.create(:status => "unpaid", :user_id => 1)
-    add_item_to_order
-    redirect_to order_path(session[:current_restaurant], @order.id)
-  end
-
   def update
     update_order
     @item = current_restaurant.items.find(params[:item])

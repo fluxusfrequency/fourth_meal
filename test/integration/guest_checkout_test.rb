@@ -31,11 +31,9 @@ class GuestCheckoutTest < Capybara::Rails::TestCase
      fill_in "Email", with: "Benji@yeehaw.com"
      click_on "Use This Billing Address"
     end
-    
-    assert_content page, ("Order Summary")
-    assert_content page, ("Checking out as Guest")
 
-    # TODO: Get Javascript testing working
-    # click_on ".stripe-button-el"
+    assert_content page, "Order Summary"
+    assert_content page, "Checking out as Guest"
+
   end
 end

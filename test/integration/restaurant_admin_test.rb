@@ -50,6 +50,33 @@ class RestaurantAdminTest < Capybara::Rails::TestCase
       click_on "toggle"
     end
     assert_content page, "The Whopper was retired from the menu!"
+    within "#the-whopper-row" do
+      click_on "toggle"
+    end
+
+    # Admin edits an item
+    within "#the-whopper-row" do
+      click_on "edit"
+    end
+    assert_content page, "Edit an Item"
+
+    fill_in "Title", with: "The Whopper Deluxe"
+    fill_in "Description", with: "Beats a Whopper"
+    fill_in "Price", with: 8
+    click_button "Update Item"
+
+    assert_content page, "The Whopper Deluxe was updated"
+    within "#the-whopper-deluxe-row" do
+      assert_content page, "Beats a Whopper"
+      click_on "edit"
+    end
+
+    # Validation on item creation
+    fill_in "Title", with: ""
+    fill_in "Description", with: ""
+    fill_in "Price", with: -1
+    click_button "Update Item"
+    assert_content page, "Errors prevented the item from being edited"
 
     # Admin logs out and is redirected to the home page
     click_on "Log out"
