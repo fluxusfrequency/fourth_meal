@@ -2,7 +2,6 @@
   <% cache current_user do %>
     <% if current_user %>
       Logged in as <%= current_user.display_name %>
-      <%= link_to "Superman Panel", superman_path, class:"user-nav-link" if current_user.superman? %>
       <%= link_to "Account Profile", user_path(current_user.id), class:"user-nav-link" %>
       <%= link_to "Log out", log_out_path, class:"user-nav-link" %>
     <% else %>
@@ -13,4 +12,4 @@
 </div>
 
 
- 
+

@@ -15,6 +15,13 @@ module RestaurantsHelper
     end
   end
 
+  def check_approved
+    restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
+    if restaurant
+      unapproved_restaurant_failure if restaurant.unapproved?
+    end
+  end
+
   private
 
   def offline_restaurant_failure
@@ -43,7 +50,7 @@ module RestaurantsHelper
   def unapproved_redirect
     redirect_to root_path,
       :notice => "Sorry, we couldn't find
-      the restaurant you requested in our sytem."
+      the restaurant you requested in our system."
   end
 
 end

@@ -35,7 +35,7 @@ class SupermanTest < Capybara::Rails::TestCase
     # Can't view a pending restaurant
     visit restaurant_root_path(restaurants(:three).slug)
     assert_equal root_path, page.current_path
-    assert_content page, "Sorry, we couldn't find the restaurant you requested in our sytem."
+    assert_content page, "Sorry, we couldn't find the restaurant you requested in our system."
 
     # Superman logs in
     visit root_path

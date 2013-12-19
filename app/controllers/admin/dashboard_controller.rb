@@ -1,6 +1,7 @@
 class Admin::DashboardController < ApplicationController
   before_action :ensure_user
   before_action :owner_access
+  before_action :check_approved
   layout 'admin'
 
   def index

@@ -16,16 +16,14 @@ class CreateRestaurantTest < Capybara::Rails::TestCase
     end
     assert_content page, 'Signed up!'
 
-    # TODO: uncomment me when adam is done
-    # click_on "Account Profile"
-    # assert_content page, "Edit Your Account Info"
-
     click_on "Create New Restaurant"
     assert_content page, "Creating A New Restaurant"
 
     fill_in "Name", with: "Jeff's Gelato"
     fill_in "Description", with: "Frozen Goodness"
-
+    fill_in "Slug", with: "jeffs-gelato"
+    select "application", from: "Theme"
+    select "Denver", from: "Location"
     click_on "Create Restaurant"
     assert_content page, "Your request has been submitted. You will be emailed when your restaurant is approved."
 

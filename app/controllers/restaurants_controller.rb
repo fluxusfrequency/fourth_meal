@@ -11,6 +11,7 @@ class RestaurantsController < ApplicationController
   def create
     verify_logged_in_user
     @restaurant = Restaurant.new(restaurant_params)
+    update_location
     if @restaurant.save
       process_saved_restaurant
       redirect_to root_path
@@ -23,7 +24,6 @@ class RestaurantsController < ApplicationController
 
   def process_saved_restaurant
     create_owner
-    update_location
     flash.notice = "Your request has been submitted.
                     You will be emailed when your restaurant is approved."
     session[:current_restaurant] = @restaurant.to_param
