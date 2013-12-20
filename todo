@@ -1,6 +1,0 @@
-clear cart on logout 
-address should be billing address
-put guest checkout details on signin/up page
-update order total in flash
-
-fill in address automatically on signup during checkout
