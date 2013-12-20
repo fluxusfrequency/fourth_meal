@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  layout "application"
+  layout "items"
   before_action :check_active,
                 :load_restaurant,
                 :load_category, only: [:in_category, :index]
