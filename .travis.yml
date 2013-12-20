@@ -1,5 +1,5 @@
 language: ruby
 rvm:
-  - "2.0.0"
+  - "2.0.0-p353"
 script:
-  - RAILS_ENV=test bundle exec rake test:all:db
+  - bundle exec rake test:all:db RAILS_ENV=test
