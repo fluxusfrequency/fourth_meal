@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -41,6 +41,7 @@ group :development, :test do
   gem 'reek'
   gem 'simplecov', :require => false, :group => :test
   gem 'database_cleaner', :require => false, :group => :test
+  gem 'brakeman', :require => false
 end
 
 group :production do

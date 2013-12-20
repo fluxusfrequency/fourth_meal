@@ -1,0 +1,64 @@
+
++BRAKEMAN REPORT+
+
+Application path: /Users/benlewis/Dropbox/Code/fourth_meal
+Rails version: 4.0.2
+Brakeman version: 2.3.1
+Started at 2013-12-20 11:21:50 -0700
+Duration: 1.947659 seconds
+Checks run: BasicAuth, ContentTag, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, EscapeFunction, Evaluation, Execute, FileAccess, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NumberToCurrency, QuoteTableName, Redirect, Render, ResponseSplitting, SQL, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, StripTags, SymbolDoS, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, YAMLParsing
+
+
++SUMMARY+
+
++-------------------+-------+
+| Scanned/Reported  | Total |
++-------------------+-------+
+| Controllers       | 16    |
+| Models            | 11    |
+| Templates         | 59    |
+| Errors            | 1     |
+| Security Warnings | 4 (3) |
++-------------------+-------+
+
++---------------------+-------+
+| Warning Type        | Total |
++---------------------+-------+
+| Dynamic Render Path | 1     |
+| Format Validation   | 2     |
+| Session Setting     | 1     |
++---------------------+-------+
++Errors+
++--------------------------------------------------------+----------------------------------------------------------------------------------->>
+| Error                                                  | Location                                                                          >>
++--------------------------------------------------------+----------------------------------------------------------------------------------->>
+| (string):26 :: parse error on value ["end", 26] (kEND) | could not parse /Users/benlewis/Dropbox/Code/fourth_meal/app/views/users/new.html.>>
++--------------------------------------------------------+----------------------------------------------------------------------------------->>
+
+
++SECURITY WARNINGS+
+
++------------+-------+--------+-----------------+-----------------------------------------------------------------------+
+| Confidence | Class | Method | Warning Type    | Message                                                               |
++------------+-------+--------+-----------------+-----------------------------------------------------------------------+
+| High       |       |        | Session Setting | Session secret should not be included in version control near line 12 |
++------------+-------+--------+-----------------+-----------------------------------------------------------------------+
+
+
+Model Warnings:
+
++------------+---------+-------------------+-------------------------------------------------------------------------------------------+
+| Confidence | Model   | Warning Type      | Message                                                                                   |
++------------+---------+-------------------+-------------------------------------------------------------------------------------------+
+| High       | Address | Format Validation | Insufficient validation for 'state' using /\w{2}/. Use \A and \z as anchors near line 6   |
+| High       | Address | Format Validation | Insufficient validation for 'zipcode' using /\d{5}/. Use \A and \z as anchors near line 8 |
++------------+---------+-------------------+-------------------------------------------------------------------------------------------+
+
+View Warnings:
+
++------------+-------------------------------------------+---------------------+------------------------------------------------------------->>
+| Confidence | Template                                  | Warning Type        | Message                                                     >>
++------------+-------------------------------------------+---------------------+------------------------------------------------------------->>
+| Weak       | items/index (ItemsController#in_category) | Dynamic Render Path | Render path contains parameter value near line 5: render(act>>
++------------+-------------------------------------------+---------------------+------------------------------------------------------------->>
+
